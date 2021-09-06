@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  ci:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: true
+      matrix:
+        name:
+          [ubuntu-gcc-10, ubuntu-clang-12, macos-appleclang-12, windows-msvc-19]
+        include:
+          - name: ubuntu-gcc-10
+            os: ubuntu-20.04
+            compiler: g++-10
+
+          - name: ubuntu-clang-12
+            os: ubuntu-20.04
+            compiler: clang++-12
+
+          - name: macos-appleclang-12
+            os: macos-10.15
+
+          - name: windows-msvc-19
+            os: windows-2019
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: set-compiler-env
+        run: |
+          if [ "${{ matrix.compiler }}" != "" ]; then
+            echo "CXX=${{ matrix.compiler }}" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      - name: make-build-dir
+        run: mkdir build
+      - name: cmake-configure-debug
+        run: cmake -DCMAKE_BUILD_TYPE=Debug ..
+        working-directory: ./build
+      - name: build-debug
+        run: cmake --build ./build --config Debug
+      - name: ctest
+        run: ctest -C Debug
+        working-directory: ./build
+
