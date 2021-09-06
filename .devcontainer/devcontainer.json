@@ -1,0 +1,14 @@
+{
+    "build": { "dockerfile": "Dockerfile"}, 
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "vadimcn.vscode-lldb",
+        "cheshirekow.cmake-format"
+    ],
+    "remoteEnv": {
+        "DISPLAY": ":0"
+    },
+    "containerUser": "conan"
+}
