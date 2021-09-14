@@ -8,6 +8,10 @@ RUN  apt-get update; \
     apt-get -y install --fix-missing \
     gdb curl bash-completion vim 
 
+# Download version 3.21 from CMake
+RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2.sh
+RUN ./cmake-3.21.2.sh && rm ./cmake-3.21.2.sh
+
 USER conan
 
 RUN pip install cmake-format
