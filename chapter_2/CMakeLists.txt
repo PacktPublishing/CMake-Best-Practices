@@ -24,6 +24,13 @@ set(CMAKE_CXX_STANDARD 11)
 # configure step will fail.
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+# MSVC requires these two flags to be set in order to link driver executable
+# against shared library
+if(MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+    set(BUILD_SHARED_LIBS TRUE)
+endif()
+
 add_subdirectory(component_interface)
 add_subdirectory(component1)
 add_subdirectory(component2)
