@@ -8,5 +8,12 @@
 # SPDX-License-Identifier: MIT
 # ______________________________________________________
 
-add_library(framework.component_interface INTERFACE)
-target_include_directories(framework.component_interface INTERFACE include/)
+project(
+    ch2.framework.component_interface
+    VERSION 1.0
+    DESCRIPTION "Chapter 2 component interface implementation"
+    LANGUAGES CXX
+)
+
+add_library(${PROJECT_NAME} INTERFACE)
+target_include_directories(${PROJECT_NAME} INTERFACE include/)

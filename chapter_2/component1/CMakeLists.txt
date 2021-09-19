@@ -8,7 +8,14 @@
 # SPDX-License-Identifier: MIT
 # ______________________________________________________
 
-add_library(framework.component1 STATIC)
-target_include_directories(framework.component1 PUBLIC include/)
-target_sources(framework.component1 PRIVATE src/component1.cpp)
-target_link_libraries(framework.component1 PUBLIC framework.component_interface)
+project(
+    ch2.framework.component1
+    VERSION 1.0
+    DESCRIPTION "Chapter 2 component 1 implementation"
+    LANGUAGES CXX
+)
+
+add_library(${PROJECT_NAME} STATIC) # Create a static library target named ch2.framework.component1 (retrieved from project name variable) 
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/) # Add include/ to include directories with visibility of PUBLIC.  
+target_sources(${PROJECT_NAME} PRIVATE src/component1.cpp) # Add src/component1.cpp file as sources to the target with PRIVATE visibility.
+target_link_libraries(${PROJECT_NAME} PUBLIC ch2.framework.component_interface) # Link against ch2.framework.component_interface

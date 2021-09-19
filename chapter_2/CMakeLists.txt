@@ -8,8 +8,6 @@
 # SPDX-License-Identifier: MIT
 # ______________________________________________________
 
-cmake_minimum_required(VERSION 3.21)
-
 project(
   "CMake Tips and Tricks Chapter 2"
   VERSION 1.0
@@ -35,3 +33,18 @@ add_subdirectory(component_interface)
 add_subdirectory(component1)
 add_subdirectory(component2)
 add_subdirectory(driver_app)
+
+# Make specified target(s) installable.
+install (
+    TARGETS ch2.framework.component_interface ch2.framework.component1 ch2.framework.component2 ch2.driver_application
+    ARCHIVE 
+        DESTINATION lib
+    LIBRARY 
+        DESTINATION lib
+    RUNTIME 
+        DESTINATION bin
+    PUBLIC_HEADER
+        DESTINATION include
+    PRIVATE_HEADER
+        DESTINATION include
+)
