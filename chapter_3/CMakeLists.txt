@@ -15,6 +15,6 @@ project(
     "A collection of sample C++ applications and libraries to demonstrate creating libraries and executables"
   LANGUAGES CXX)
 
-add_subdirectory(hello_world)
+add_subdirectory(hello_world_standalone)
 add_subdirectory(hello_lib)
 add_subdirectory(hello_header_only)
