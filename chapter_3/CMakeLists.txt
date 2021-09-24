@@ -17,3 +17,4 @@ project(
 
 add_subdirectory(hello_world)
 add_subdirectory(hello_lib)
+add_subdirectory(hello_header_only)
