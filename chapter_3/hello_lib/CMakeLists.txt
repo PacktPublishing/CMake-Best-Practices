@@ -14,6 +14,8 @@ target_sources(
   PRIVATE src/hello.cpp src/internal.cpp
   PUBLIC include/hello/hello.hpp)
 
+target_compile_features(hello PUBLIC cxx_std_17)
+
 target_include_directories(
   hello
   PRIVATE src/hello
