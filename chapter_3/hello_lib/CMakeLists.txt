@@ -7,6 +7,11 @@ project(
     "A simple C++ project to demonstrate creating executables and libraries in CMake"
   LANGUAGES CXX)
 
+if(MSVC)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+  set(BUILD_SHARED_LIBS TRUE)
+endif()
+
 add_library(hello SHARED)
 
 target_sources(

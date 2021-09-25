@@ -18,3 +18,4 @@ project(
 add_subdirectory(hello_world_standalone)
 add_subdirectory(hello_lib)
 add_subdirectory(hello_header_only)
+add_subdirectory(policy_example)
