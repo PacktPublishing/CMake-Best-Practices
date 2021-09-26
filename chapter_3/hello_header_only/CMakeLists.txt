@@ -7,7 +7,7 @@
 # ______________________________________________________
 
 project(
-  ch3.hello_header_only
+  hello_header_only
   VERSION 1.0
   DESCRIPTION "Chapter 3 header only example"
   LANGUAGES CXX)
