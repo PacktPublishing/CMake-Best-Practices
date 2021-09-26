@@ -19,3 +19,7 @@ add_subdirectory(hello_world_standalone)
 add_subdirectory(hello_lib)
 add_subdirectory(hello_header_only)
 add_subdirectory(policy_example)
+
+add_executable(chapter3)
+target_sources(chapter3 PRIVATE src/main.cpp)
+target_link_libraries(chapter3 PRIVATE hello_header_only hello)
