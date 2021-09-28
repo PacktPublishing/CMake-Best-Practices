@@ -1,9 +1,12 @@
 #pragma once 
 
 #include <string>
+#include "export_hello.hpp"
+
 
 namespace hello{
-    class Hello {
+    /// Example class that is explicitely exported into a dll
+    class HELLO_EXPORT Hello {
         public:
         Hello(const std::string& name) : name_{name} {}
 
