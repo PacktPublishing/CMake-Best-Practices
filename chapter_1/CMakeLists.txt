@@ -7,6 +7,7 @@
 # 
 # SPDX-License-Identifier: MIT
 # ______________________________________________________
+cmake_minimum_required(VERSION 3.21)
 
 project(
   "CMake Tips and Tricks Chapter 1"
