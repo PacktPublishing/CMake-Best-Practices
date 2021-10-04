@@ -3,26 +3,25 @@
 # SPDX-License-Identifier: MIT
 
 project(
-    ch2.framework.component_interface
+    ch2_framework_component_interface
     VERSION 1.0
     DESCRIPTION "Chapter 2 component interface implementation"
     LANGUAGES CXX
 )
 
-add_library(${PROJECT_NAME} INTERFACE)
+add_library(ch2_framework_component_interface INTERFACE)
 target_include_directories(
-    ${PROJECT_NAME} INTERFACE include/ $<INSTALL_INTERFACE:include>
+  ch2_framework_component_interface INTERFACE include/
 )
 
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_11)
+target_compile_features(ch2_framework_component_interface INTERFACE cxx_std_11)
 
 # Make specified target(s) installable. Separate them to components.
-install(TARGETS ${PROJECT_NAME} COMPONENT ch2.libraries)
+install(TARGETS ch2_framework_component_interface COMPONENT ch2.libraries)
 
 # Install the headers
 install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
     COMPONENT ch2.libraries
     DESTINATION include
-    FILES_MATCHING PATTERN "**/*"
 )

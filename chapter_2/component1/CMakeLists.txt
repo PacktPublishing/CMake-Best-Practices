@@ -3,39 +3,38 @@
 # SPDX-License-Identifier: MIT
 
 project(
-    ch2.framework.component1
+    ch2_framework_component1
     VERSION 1.0
     DESCRIPTION "Chapter 2 component 1 implementation"
     LANGUAGES CXX
 )
 
 add_library(
-    ${PROJECT_NAME} STATIC
-) # Create a static library target named ch2.framework.component1 (retrieved
+    ch2_framework_component1 STATIC
+) # Create a static library target named ch2_framework_component1 (retrieved
   # from project name variable)
 target_include_directories(
-    ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/
+  ch2_framework_component1 PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include/
 ) # Add include/ to include directories with visibility of PUBLIC.
 target_sources(
-    ${PROJECT_NAME} PRIVATE src/component1.cpp
+  ch2_framework_component1 PRIVATE src/component1.cpp
 ) # Add src/component1.cpp file as sources to the target with PRIVATE
   # visibility.
 target_link_libraries(
-  ${PROJECT_NAME} PUBLIC ch2.framework.component_interface
-)# Link against ch2.framework.component_interface
+  ch2_framework_component1 PUBLIC ch2_framework_component_interface
+)# Link against ch2_framework_component_interface
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+target_compile_features(ch2_framework_component1 PUBLIC cxx_std_11)
 
 # Make specified target(s) installable. Separate them to components.
 install(
-    TARGETS ${PROJECT_NAME}
+    TARGETS ch2_framework_component1
     COMPONENT ch2.libraries
 )
 
 # Install the headers
 install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+    DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
     COMPONENT ch2.libraries
     DESTINATION include
-    FILES_MATCHING PATTERN "**/*"
 )

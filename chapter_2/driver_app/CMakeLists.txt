@@ -6,24 +6,24 @@
 # going to create for the component. This will allow us to use project()
 # variables in target creation.
 project(
-  ch2.driver_application
+  ch2_driver_application
   VERSION 1.0
   DESCRIPTION "Chapter 2 driver application implementation"
   LANGUAGES CXX)
 
 add_executable(
-  ${PROJECT_NAME}) # Create an executable target named with the same name as
+  ch2_driver_application) # Create an executable target named with the same name as
                    # project name (ch2.driver_application)
-target_sources(${PROJECT_NAME} PRIVATE src/main.cpp) # Add src/main.cpp as
+target_sources(ch2_driver_application PRIVATE src/main.cpp) # Add src/main.cpp as
                                                      # source to the target
 target_link_libraries(
-  ${PROJECT_NAME} PRIVATE ch2.framework.component1 ch2.framework.component2
-)# Link target against ch2.framework.component1 and ch2.framework.component2
+  ch2_driver_application PRIVATE ch2_framework_component1 ch2_framework_component2
+)# Link target against ch2_framework_component1 and ch2_framework_component2
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+target_compile_features(ch2_driver_application PUBLIC cxx_std_11)
 
 install(
-  TARGETS ch2.driver_application
+  TARGETS ch2_driver_application
   COMPONENT ch2.executables
 )
 
