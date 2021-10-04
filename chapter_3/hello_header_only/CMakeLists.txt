@@ -10,6 +10,10 @@ project(
   DESCRIPTION "Chapter 3 header only example"
   LANGUAGES CXX)
 
+# Create a library target
 add_library(${PROJECT_NAME} INTERFACE)
+
+# expose the include directories
 target_include_directories(${PROJECT_NAME} INTERFACE include/)
+# expose the minium C++ standard needed to compile this library
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)

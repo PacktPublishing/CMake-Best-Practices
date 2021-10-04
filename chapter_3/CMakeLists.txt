@@ -1,4 +1,4 @@
-# Top-level CMakeLists file for the Chapter 2 example content.
+# Top-level CMakeLists file for the Chapter 3 example content.
 #
 # SPDX-License-Identifier: MIT
 
@@ -11,11 +11,16 @@ project(
     "A collection of sample C++ applications and libraries to demonstrate creating libraries and executables"
   LANGUAGES CXX)
 
+# Add subdirectories with examples
 add_subdirectory(hello_world_standalone)
 add_subdirectory(hello_lib)
 add_subdirectory(hello_header_only)
 add_subdirectory(policy_example)
 
+# add an example executable
 add_executable(chapter3)
+# add sources to the example executable
 target_sources(chapter3 PRIVATE src/main.cpp)
+# link libraries "hello" and "hello_header_only" to the example executable the
+# libraries are described in the subdirectories
 target_link_libraries(chapter3 PRIVATE hello_header_only hello)

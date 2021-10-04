@@ -1,3 +1,7 @@
+# Top-level CMakeLists file for the Chapter 3 example content.
+#
+# SPDX-License-Identifier: MIT
+
 cmake_minimum_required(VERSION 3.21)
 
 project(
@@ -12,7 +16,10 @@ project(
 # introduced with cmake varsion 3.21
 cmake_policy(SET CMP0121 OLD)
 
+# Create a sample list
 list(APPEND MYLIST "abc;def;ghi")
+# This command will fail if the policy is set to NEW or if the call to
+# cmake_policy above is removed as CMake 3.21 sets this policy automatically
 list(GET MYLIST "any" OUT_VAR)
 
 # Create a target to build an executable
