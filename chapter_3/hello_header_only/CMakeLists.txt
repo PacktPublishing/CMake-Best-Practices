@@ -1,10 +1,7 @@
 # Chapter 3 - Header only library
 #
-# @file     CMakeLists.txt @author   Dominik Berner <dominik.berner@gmail.com>
-# @date     19.09.2021
-#
 # SPDX-License-Identifier: MIT
-# ______________________________________________________
+
 cmake_minimum_required(VERSION 3.21)
 
 project(

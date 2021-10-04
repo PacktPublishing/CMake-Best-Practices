@@ -1,12 +1,8 @@
-# ______________________________________________________
+
 # CMakeLists file for the Chapter 1 example
-#
-# @file     CMakeLists.txt
-# @author   Dominik Berner <dominik.berner@gmail.com>
-# @date     05.09.2021
 # 
 # SPDX-License-Identifier: MIT
-# ______________________________________________________
+
 cmake_minimum_required(VERSION 3.21)
 
 project(
@@ -17,3 +13,4 @@ project(
 
 add_executable(Chapter1)
 target_sources(Chapter1 PRIVATE src/main.cpp)
+

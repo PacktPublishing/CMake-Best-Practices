@@ -1,11 +1,7 @@
-# ______________________________________________________ Top-level CMakeLists
+# Top-level CMakeLists
 # file for the CMake Tips and Tricks book CMake example project
 #
-# @file     CMakeLists.txt @author   Dominik Berner <dominik.berner@gmail.com>
-# Mustafa Kemal GILOR <mustafagilor@gmail.com> @date     05.09.2021
-#
 # SPDX-License-Identifier: MIT
-# ______________________________________________________
 
 # Specifies the minimum required CMake version to build this project (and
 # subprojects) Subprojects may override this value by specifying another version

@@ -1,11 +1,7 @@
-# ______________________________________________________ Top-level CMakeLists
-# file for the Chapter 2 example content.
-#
-# @file     CMakeLists.txt @author   Dominik Berner <dominik.berner@gmail.com>
-# @date     19.09.2021
+# Top-level CMakeLists file for the Chapter 2 example content.
 #
 # SPDX-License-Identifier: MIT
-# ______________________________________________________
+
 cmake_minimum_required(VERSION 3.21)
 
 project(

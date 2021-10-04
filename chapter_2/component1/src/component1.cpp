@@ -1,11 +1,7 @@
 /**
  * ______________________________________________________
  * Component-1 implementation
- * 
- * @file 	component1.cpp
- * @author 	Mustafa Kemal GILOR <mustafagilor@gmail.com>
- * @date 	19.09.2021
- * 
+ *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
  */
@@ -14,23 +10,19 @@
 
 #include <iostream>
 
-namespace framework{
-    namespace components {
+namespace framework {
+namespace components {
 
-        component1::component1(){
-            std::cout << "Component 1 is constructed" << std::endl;
-        }
-
-        component1::~component1(){
-            std::cout << "Component 1 is destructed" << std::endl;
-        }
-
-        bool component1::do_stuff() const  {
-            return false;
-        }
-
-        int component1::do_other_stuff(int param) {
-            return param;
-        }
-    }
+component1::component1() {
+  std::cout << "Component 1 is constructed" << std::endl;
 }
+
+component1::~component1() {
+  std::cout << "Component 1 is destructed" << std::endl;
+}
+
+bool component1::do_stuff() const { return false; }
+
+int component1::do_other_stuff(int param) { return param; }
+} // namespace components
+} // namespace framework

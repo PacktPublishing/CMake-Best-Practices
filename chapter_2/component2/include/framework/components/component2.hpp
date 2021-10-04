@@ -1,11 +1,7 @@
 /**
  * ______________________________________________________
  * Component-2 interface description
- * 
- * @file 	component2.hpp
- * @author 	Mustafa Kemal GILOR <mustafagilor@gmail.com>
- * @date 	19.09.2021
- * 
+ *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
  */
@@ -15,37 +11,37 @@
 #include <framework/components/component_interface.hpp>
 
 namespace framework {
-    namespace components {
+namespace components {
 
-        /**
-         * @brief Component 1 interface 
-         */
-        class component2 : public component_interface {
-        public:
-            /**
-             * @brief Construct a new component1 object
-             */
-            component2();
+/**
+ * @brief Component 1 interface
+ */
+class component2 : public component_interface {
+public:
+  /**
+   * @brief Construct a new component1 object
+   */
+  component2();
 
-            /**
-             * @brief Destroy the component1 object
-             */
-            virtual ~component2() override;
+  /**
+   * @brief Destroy the component1 object
+   */
+  virtual ~component2() override;
 
-            /**
-             * @brief Do some work
-             * 
-             * @return true on success, false on failure
-             */
-            virtual bool do_stuff() const override;
+  /**
+   * @brief Do some work
+   *
+   * @return true on success, false on failure
+   */
+  virtual bool do_stuff() const override;
 
-            /**
-             * @brief Do other stuff
-             * 
-             * @param param Argument
-             * @return int Stuffs completed
-             */
-            virtual int do_other_stuff(int param) override;
-        }; // class component2
-    } // namespace components
-} // namespace frameworjk
+  /**
+   * @brief Do other stuff
+   *
+   * @param param Argument
+   * @return int Stuffs completed
+   */
+  virtual int do_other_stuff(int param) override;
+}; // class component2
+} // namespace components
+} // namespace framework
