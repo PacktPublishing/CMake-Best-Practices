@@ -16,13 +16,18 @@ project(
     "The 'build-all' instructions for all examples for the book CMake tips and tricks"
   LANGUAGES CXX)
 
-# Set build type to "Debug" if not set.
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
+# Set the default build type for single-config generators.
+# The build type variable is still overridable from outside.
+set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Default build type for single-config generators")
 
-# Print current build type
-message("Current build type ${CMAKE_BUILD_TYPE}")
+# Print generator type and build type (if applicable)
+get_property(is_multi_config_generator GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if (NOT is_multi_config_generator)
+  message(STATUS "Using a single-config generator (${CMAKE_GENERATOR})")
+  message(STATUS "Current build type is `${CMAKE_BUILD_TYPE}`")
+else()
+  message(STATUS "Using a multi-config generator (${CMAKE_GENERATOR})")
+endif ()
 
 # Add chapter examples to root project
 add_subdirectory(chapter_1)
