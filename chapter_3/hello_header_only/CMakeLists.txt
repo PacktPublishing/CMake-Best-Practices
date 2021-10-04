@@ -5,6 +5,7 @@
 #
 # SPDX-License-Identifier: MIT
 # ______________________________________________________
+cmake_minimum_required(VERSION 3.21)
 
 project(
   hello_header_only
