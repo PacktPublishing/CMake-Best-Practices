@@ -19,3 +19,11 @@ target_sources(${PROJECT_NAME} PRIVATE src/main.cpp) # Add src/main.cpp as
 target_link_libraries(
   ${PROJECT_NAME} PRIVATE ch2.framework.component1 ch2.framework.component2
 )# Link target against ch2.framework.component1 and ch2.framework.component2
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+
+install(
+  TARGETS ch2.driver_application
+  COMPONENT ch2.executables
+)
+
