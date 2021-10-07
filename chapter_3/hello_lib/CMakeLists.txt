@@ -18,9 +18,8 @@ set(CMAKE_DEBUG_POSTFIX d)
 
 # Since windows by default hides all symbols in DLLs, this behavior is changed
 # here
-if(MSVC)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-  set(BUILD_SHARED_LIBS TRUE)
 endif()
 
 # add the library target
