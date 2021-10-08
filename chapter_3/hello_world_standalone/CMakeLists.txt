@@ -5,11 +5,12 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  "hello_world_standalone"
-  VERSION 1.0
-  DESCRIPTION
-    "A simple C++ project to demonstrate creating a standalone executables"
-  LANGUAGES CXX)
+    hello_world_standalone
+    VERSION 1.0
+    DESCRIPTION
+        "A simple C++ project to demonstrate creating a standalone executables"
+    LANGUAGES CXX
+)
 
 # Create a target to build an executable
 add_executable(hello_world_standalone)
