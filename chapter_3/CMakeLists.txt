@@ -5,11 +5,12 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  "CMake Tips and Tricks Chapter 3"
-  VERSION 1.0
-  DESCRIPTION
-    "A collection of sample C++ applications and libraries to demonstrate creating libraries and executables"
-  LANGUAGES CXX)
+    "Chapter_3"
+    VERSION 1.0
+    DESCRIPTION
+        "A collection of sample C++ applications and libraries to demonstrate creating libraries and executables"
+    LANGUAGES CXX
+)
 
 # Add subdirectories with examples
 add_subdirectory(hello_world_standalone)
