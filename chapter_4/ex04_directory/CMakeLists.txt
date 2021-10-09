@@ -1,5 +1,5 @@
 # CMakeLists file for the Chapter 4 Example nr. 04: 
-# Installable executable
+# Install directories
 #
 # SPDX-License-Identifier: MIT
 

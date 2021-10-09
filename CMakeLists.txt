@@ -8,8 +8,6 @@
 # requirement in their CMakeLists file (e.g. require a later version of CMake)
 cmake_minimum_required(VERSION 3.21)
 
-set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY true)
-
 # The main project
 project(
   "CMake Tips and Tricks"
@@ -20,7 +18,7 @@ project(
 
 # Set the default build type for single-config generators.
 # The build type variable is still overridable from outside.
-set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Default build type for single-config generators")
+set(CMAKE_BUILD_TYPE_INIT "Debug" CACHE STRING "Default build type for single-config generators")
 
 # Print generator type and build type (if applicable)
 get_property(is_multi_config_generator GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)

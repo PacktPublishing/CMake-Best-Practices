@@ -1,12 +1,12 @@
-# CMakeLists file for the Chapter 4 Example nr. 01: 
-# Installable executable
+# CMakeLists file for the Chapter 4 Example nr. 02: 
+# Installable static library
 #
 # SPDX-License-Identifier: MIT
 
 project(
   ch4_ex02_static
   VERSION 1.0
-  DESCRIPTION "Chapter 4 Example 01, installable static library project"
+  DESCRIPTION "Chapter 4 Example 02, installable static library project"
   LANGUAGES CXX)
 
 # Define an executable target named `ch4_ex02_static` 
