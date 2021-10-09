@@ -10,27 +10,35 @@ cmake_minimum_required(VERSION 3.21)
 
 # The main project
 project(
-  "CMake Tips and Tricks"
-  VERSION 1.0
-  DESCRIPTION
-    "The 'build-all' instructions for all examples for the book CMake tips and tricks"
-  LANGUAGES CXX)
+    "CMake Tips and Tricks"
+    VERSION 1.0
+    DESCRIPTION
+        "The 'build-all' instructions for all examples for the book CMake tips and tricks"
+    LANGUAGES CXX
+)
 
-# Set the default build type for single-config generators.
-# The build type variable is still overridable from outside.
-set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Default build type for single-config generators")
+# Set the default build type for single-config generators. The build type
+# variable is still overridable from outside.
+set(CMAKE_BUILD_TYPE
+    "Debug"
+    CACHE STRING "Default build type for single-config generators"
+)
 
 # Print generator type and build type (if applicable)
-get_property(is_multi_config_generator GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
-if (NOT is_multi_config_generator)
-  message(STATUS "Using a single-config generator (${CMAKE_GENERATOR})")
-  message(STATUS "Current build type is `${CMAKE_BUILD_TYPE}`")
+get_property(
+    is_multi_config_generator GLOBAL
+    PROPERTY GENERATOR_IS_MULTI_CONFIG
+)
+if(NOT is_multi_config_generator)
+    message(STATUS "Using a single-config generator (${CMAKE_GENERATOR})")
+    message(STATUS "Current build type is `${CMAKE_BUILD_TYPE}`")
 else()
-  message(STATUS "Using a multi-config generator (${CMAKE_GENERATOR})")
-endif ()
+    message(STATUS "Using a multi-config generator (${CMAKE_GENERATOR})")
+endif()
 
 # Add chapter examples to root project
 add_subdirectory(chapter_1)
 add_subdirectory(chapter_2)
 add_subdirectory(chapter_3)
 add_subdirectory(chapter_4)
+add_subdirectory(chapter_5)
