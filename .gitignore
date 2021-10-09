@@ -31,9 +31,12 @@
 *.out
 *.app
 
-#ID specific
+#IDE specific
 build/
 .vscode
+.cache
 
+# Clangd language server files
+.clangd/
 
 # exclude generated documentation

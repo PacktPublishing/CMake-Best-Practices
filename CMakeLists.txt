@@ -8,6 +8,8 @@
 # requirement in their CMakeLists file (e.g. require a later version of CMake)
 cmake_minimum_required(VERSION 3.21)
 
+set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY true)
+
 # The main project
 project(
   "CMake Tips and Tricks"
@@ -28,3 +30,4 @@ message("Current build type ${CMAKE_BUILD_TYPE}")
 add_subdirectory(chapter_1)
 add_subdirectory(chapter_2)
 add_subdirectory(chapter_3)
+add_subdirectory(chapter_4)
