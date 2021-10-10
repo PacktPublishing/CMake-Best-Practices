@@ -18,6 +18,6 @@ add_executable(ch4_ex06_executable src/main.cpp)
 target_compile_features(ch4_ex06_executable PRIVATE cxx_std_11)
 
 # Link executable target to library target
-target_link_libraries(ch4_ex06_executable ch4_ex06_library)
+target_link_libraries(ch4_ex06_executable PRIVATE ch4_ex06_library)
 
 install(TARGETS ch4_ex06_executable)

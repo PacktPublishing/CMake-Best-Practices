@@ -12,7 +12,7 @@ project(
   LANGUAGES CXX)
 
 if(NOT PROJECT_IS_TOP_LEVEL)
-  message(FATAL_ERROR "The chapter-4, ex05_consumer project is intended to be a standalone, top-level project. Do not include this directory.")
+  message(FATAL_ERROR "The chapter-4, ex05_consumer project is intended to be a standalone, top-level project. Do not vendor this directory.")
 endif()
 
 ##################################################################################
@@ -38,4 +38,4 @@ target_compile_features(ch4_ex05_consumer PRIVATE cxx_std_11)
 
 # Link executable to ch4_ex05_lib package found by find_package() before. Target is under 
 # `ch4_ex05_lib::` namespace since export is made using that namespace. 
-target_link_libraries(ch4_ex05_consumer ch4_ex05_lib::ch4_ex05_lib)
+target_link_libraries(ch4_ex05_consumer PRIVATE ch4_ex05_lib::ch4_ex05_lib)
