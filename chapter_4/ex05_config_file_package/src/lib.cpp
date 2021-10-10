@@ -1,6 +1,6 @@
 /**
  * ______________________________________________________
- * Component-1 implementation
+ * Greeter implementation
  *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________

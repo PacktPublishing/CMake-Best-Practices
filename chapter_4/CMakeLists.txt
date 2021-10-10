@@ -8,7 +8,7 @@ project(
   "CMake Tips and Tricks Chapter 4"
   VERSION 1.0
   DESCRIPTION
-    "A collection of sample C++ applications and libraries to demonstrate creating libraries and executables"
+    "A collection of sample C++ applications and libraries to demonstrate installing and packaging project artifacts"
   LANGUAGES CXX)
 
 add_subdirectory(ex01_executable)

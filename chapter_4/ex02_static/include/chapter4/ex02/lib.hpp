@@ -1,6 +1,6 @@
 /**
  * ______________________________________________________
- * Abstrace component interface description
+ * Greeter interface declaration
  *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
