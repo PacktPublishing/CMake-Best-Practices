@@ -13,17 +13,18 @@ project(
 )
 
 # enable debuging for finding the package (For illustrative purposes)
-set(CMAKE_FIND_DEBUG_MODE
-    TRUE
-)
+# set(CMAKE_FIND_DEBUG_MODE TRUE )
 find_package(OpenSSL REQUIRED)
-# disable debugging again
-set(CMAKE_FIND_DEBUG_MODE
-    FALSE
-)
+# # disable debugging again set(CMAKE_FIND_DEBUG_MODE FALSE )
 
 # Create a target to build an executable
 add_executable(find_package_example)
+# set the c++ version required
+
+target_compile_features(
+    find_package_example
+    PRIVATE cxx_std_11
+)
 # Add source files to 'hello_world' target
 target_sources(
     find_package_example
