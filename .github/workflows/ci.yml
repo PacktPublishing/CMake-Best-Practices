@@ -41,10 +41,28 @@ jobs:
           fi
         shell: bash
 
+      - name: dependecies (macos)
+        if: runner.os == 'macOS'
+        # macOS is using libreSSL which clashes with openssl which means that the package is extracted but 
+        # not installed properly in the system. Because of this cmake needs to be pointed to the correct place 
+        run: |
+          brew update
+          brew install openssl@1.1
+          
+          echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
+          
+
+      - name: dependencies (windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install openssl
+
+
       - name: make-build-dir
         run: mkdir build
       - name: cmake-configure-debug
-        run: cmake -DCMAKE_BUILD_TYPE=Debug ..
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
         working-directory: ./build
       - name: build-debug
         run: cmake --build ./build --config Debug
