@@ -18,7 +18,7 @@ project(
 
 # Set the default build type for single-config generators.
 # The build type variable is still overridable from outside.
-set(CMAKE_BUILD_TYPE_INIT "Debug" CACHE STRING "Default build type for single-config generators")
+set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Default build type for single-config generators")
 
 # Print generator type and build type (if applicable)
 get_property(is_multi_config_generator GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)

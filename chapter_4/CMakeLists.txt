@@ -16,5 +16,6 @@ add_subdirectory(ex02_static)
 add_subdirectory(ex03_file)
 add_subdirectory(ex04_directory)
 add_subdirectory(ex05_config_file_package)
-# ex05_consumer is intentionally left out of the project
-# ex06_pack is intentionally left out of the project
+# ex05_consumer & ex06_pack are intentionally left out of the project
+# since they are intended be standalone projects independent from the
+# root project. 
