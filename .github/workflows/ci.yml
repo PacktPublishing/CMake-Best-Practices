@@ -69,4 +69,6 @@ jobs:
       - name: ctest
         run: ctest -C Debug
         working-directory: ./build
+      - name: pytest
+        run: pytest-3 -x -v
 

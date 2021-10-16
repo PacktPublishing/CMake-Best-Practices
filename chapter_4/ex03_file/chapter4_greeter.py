@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # CMakeLists file for the Chapter 4 Example nr. 01: 
 # Installable executable
