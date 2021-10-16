@@ -192,4 +192,8 @@ class TestChapter4Example6():
     def test_pack_check_files(self):
         """Check whether CPack produced the package files
         """
-        assert file_exists(f"{self.temporary_build_root}/pak/ch4_ex06_pack-1.0-Linux.tar.gz")
+        # Linux, Windows, and Darwin
+        for system_name in ["Linux", "Windows", "Darwin"]:
+            if file_exists(f"{self.temporary_build_root}/pak/ch4_ex06_pack-1.0-{system_name}.tar.gz"):
+                return True
+        assert False, "Package file is not present!"
