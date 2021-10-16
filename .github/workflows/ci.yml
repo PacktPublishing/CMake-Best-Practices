@@ -34,12 +34,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set up Python 3.8
+      - name: install-python-3
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
 
-      - name: Install python dependencies
+      - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
           pip3 install pytest
@@ -61,30 +61,33 @@ jobs:
           
           echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
           
-
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
           choco install openssl
 
-
-      - name: Set environment variables (Windows)
+      - name: correct-tmp-dir (win)
         if: runner.os == 'Windows'
         run: |
               echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
               echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
         shell: pwsh
+
       - name: make-build-dir
         run: mkdir build
+
       - name: cmake-configure-debug
         run: |
           cmake -DCMAKE_BUILD_TYPE=Debug ..
         working-directory: ./build
+
       - name: build-debug
         run: cmake --build ./build --config Debug
+
       - name: ctest
         run: ctest -C Debug
         working-directory: ./build
+
       - name: pytest
         run: python3 -m pytest -x -v
 

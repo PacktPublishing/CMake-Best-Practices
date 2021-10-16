@@ -22,6 +22,20 @@ def get_root_project_directory():
 def get_chapter4_root_directory():
     return get_root_project_directory().joinpath("chapter_4")
 
+if os.name == 'nt':
+    CMAKE_COMMAND_MULTICONFIG_ARGS=("--config", "Debug")
+    CPACK_COMMAND_MULTICONFIG_ARGS=("-C", "Debug")
+    PLATFORM_EXECUTABLE_EXTENSION=".exe"
+    PLATFORM_STATIC_LIBRARY_PREFIX=""
+    PLATFORM_STATIC_LIBRARY_EXTENSION=".lib"
+else:
+    PLATFORM_EXECUTABLE_EXTENSION=""
+    PLATFORM_STATIC_LIBRARY_PREFIX="lib"
+    PLATFORM_STATIC_LIBRARY_EXTENSION=".a"
+    CMAKE_COMMAND_MULTICONFIG_ARGS=()
+    CPACK_COMMAND_MULTICONFIG_ARGS=()
+
+
 
 CMAKE_COMMAND="cmake"
 CPACK_COMMAND="cpack"
@@ -92,20 +106,20 @@ class TestChapter4():
     def test_build(self):
         """Check if project can be built
         """
-        assert run_cmake("--build", self.temporary_build_root,  "--parallel", str(os.cpu_count()))
+        assert run_cmake("--build", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS,  "--parallel", str(os.cpu_count()))
 
     def test_install(self):
         """Check if project can be installed
         """
-        assert run_cmake("--install", self.temporary_build_root, "--prefix", self.temporary_install_root)
+        assert run_cmake("--install", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS, "--prefix", self.temporary_install_root)
 
     def test_install_check_files_exists(self):
         """Check if install step has installed the all files that install() commands intend to install
         """
         # Example 1
-        assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex01_executable")
+        assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex01_executable{PLATFORM_EXECUTABLE_EXTENSION}")
         # Example 2
-        assert file_exists(f"{self.temporary_install_root}/lib/libch4_ex02_static.a")
+        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex02_static{PLATFORM_STATIC_LIBRARY_EXTENSION}")
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex02/lib.hpp")
         # Example 3
         assert file_exists(f"{self.temporary_install_root}/bin/chapter4_greeter_content")
@@ -119,7 +133,7 @@ class TestChapter4():
         assert file_exists(f"{self.temporary_install_root}/var/dir3/asset4")
         assert not file_exists(f"{self.temporary_install_root}/var/dir3/bin/goodbye.dat")
         # Example 5
-        assert file_exists(f"{self.temporary_install_root}/lib/libch4_ex05_lib.a")
+        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex05_lib{PLATFORM_STATIC_LIBRARY_EXTENSION}")
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex05/lib.hpp")
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config.cmake")
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config-version.cmake")
@@ -127,8 +141,8 @@ class TestChapter4():
     def test_install_run_binaries(self):
         """Try to run executables that installed via install
         """
-        assert run_command(f"{self.temporary_install_root}/bin/ch4_ex01_executable")
-        assert run_command(f"{self.temporary_install_root}/bin/chapter4_greeter")
+        assert run_command(f"{self.temporary_install_root}/bin/ch4_ex01_executable{PLATFORM_EXECUTABLE_EXTENSION}")
+        assert run_command("python3", f"{self.temporary_install_root}/bin/chapter4_greeter")
 
     def test_ex05_consumer(self):
         """Check config-file package works by building ex05_consumer after installing the chapter 4 content
@@ -137,7 +151,7 @@ class TestChapter4():
         ex05_temporary_build_root=ex05_temporary_build_root_dir.name
         ex05_source_directory=str(get_chapter4_root_directory().joinpath("ex05_consumer").absolute())
         assert run_cmake("-S", ex05_source_directory, "-B", ex05_temporary_build_root, f"-DCMAKE_INSTALL_PREFIX:STRING={self.temporary_install_root}")
-        assert run_cmake("--build", ex05_temporary_build_root,  "--parallel", str(os.cpu_count()))
+        assert run_cmake("--build", ex05_temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS, "--parallel", str(os.cpu_count()))
 
 
 
@@ -164,36 +178,36 @@ class TestChapter4Example6():
     def test_build(self):
         """Check if project can be built
         """
-        assert run_cmake("--build", self.temporary_build_root,  "--parallel", str(os.cpu_count()))
+        assert run_cmake("--build", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS,  "--parallel", str(os.cpu_count()))
 
     def test_install(self):
         """Check if project can be installed
         """
-        assert run_cmake("--install", self.temporary_build_root, "--prefix", self.temporary_install_root)
+        assert run_cmake("--install", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS, "--prefix", self.temporary_install_root)
 
     def test_install_check_files(self):
         """Check if install step has installed the all files that install() commands intend to install
         """
-        assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex06_executable")
-        assert file_exists(f"{self.temporary_install_root}/lib/libch4_ex06_library.a")
+        assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex06_executable{PLATFORM_EXECUTABLE_EXTENSION}")
+        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex06_library{PLATFORM_STATIC_LIBRARY_EXTENSION}")
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex06/lib.hpp")
 
     def test_install_run_binaries(self):
         """Try to run executables that installed via install
         """
-        assert run_command(f"{self.temporary_install_root}/bin/ch4_ex06_executable")
+        assert run_command(f"{self.temporary_install_root}/bin/ch4_ex06_executable{PLATFORM_EXECUTABLE_EXTENSION}")
 
 
     def test_pack(self):
         """Try to pack the project via CPack
         """
-        assert run_cpack("--config", f"{self.temporary_build_root}/CPackConfig.cmake", "-G", "TGZ", "-B", f"{self.temporary_build_root}/pak")
+        assert run_cpack("--config", f"{self.temporary_build_root}/CPackConfig.cmake", *CPACK_COMMAND_MULTICONFIG_ARGS, "-G", "TGZ", "-B", f"{self.temporary_build_root}/pak")
 
     def test_pack_check_files(self):
         """Check whether CPack produced the package files
         """
         # Linux, Windows, and Darwin
-        for system_name in ["Linux", "Windows", "Darwin"]:
+        for system_name in ["Linux", "win32", "win64", "Darwin"]:
             if file_exists(f"{self.temporary_build_root}/pak/ch4_ex06_pack-1.0-{system_name}.tar.gz"):
                 return True
         assert False, "Package file is not present!"
