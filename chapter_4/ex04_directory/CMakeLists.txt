@@ -7,7 +7,7 @@ project(
   ch4_ex04_directory
   VERSION 1.0
   DESCRIPTION "Chapter 4 Example 04, install directory"
-  LANGUAGES NONE)
+  LANGUAGES CXX)
 
 include(GNUInstallDirs) # Defines the ${CMAKE_INSTALL_INCLUDEDIR} variable.
 
