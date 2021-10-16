@@ -68,6 +68,12 @@ jobs:
           choco install openssl
 
 
+      - name: Set environment variables (Windows)
+        if: runner.os == 'Windows'
+        run: |
+              echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+              echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+        shell: pwsh
       - name: make-build-dir
         run: mkdir build
       - name: cmake-configure-debug
