@@ -27,5 +27,5 @@ install(TARGETS ch4_ex02_static)
 # to be installed separately. 
 install (
     DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-    DESTINATION include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
