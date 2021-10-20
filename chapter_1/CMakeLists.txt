@@ -16,45 +16,57 @@ project(
 add_subdirectory(simple_executable)
 add_subdirectory(policy_example)
 
-#examples for list operations
-set(MYLIST abc def ghi) 
-message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
-set(MYLIST "abc;def;ghi") 
-message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
-list(APPEND MYLIST "xyz") 
-message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
 
-list(FIND MYLIST def ABC_INDEX) 
-list(GET MYLIST ${ABC_INDEX} ABC) 
-message(STATUS "Chapter1: Index of 'def' in MYLIST is ${ABC_INDEX} the value at the index is '${ABC}'")
+option(CHAPTER1_PRINT_LANGUAGE_EXAMPLES "Print examples for each language" OFF)
+include(CMakeDependentOption)
+# create an option CHAPTER1_PRINT_HELLO_WORLD that is only visible of CHAPTER1_PRINT_LANGUAGE_EXAMPLES is set to ON
+cmake_dependent_option(CHAPTER1_PRINT_HELLO_WORLD "Print a nice greeting from chapter1" ON CHAPTER1_PRINT_LANGUAGE_EXAMPLES ON)
+mark_as_advanced(CHAPTER1_PRINT_LANGUAGE_EXAMPLES)
 
-# add MYVAR as cache variable with the value foo
-set(ch1_MYVAR foo CACHE STRING "Variable foo that configures bar")
+if(CHAPTER1_PRINT_LANGUAGE_EXAMPLES)
+    if(CHAPTER1_PRINT_HELLO_WORLD)
+        message(STATUS "Chapter1: welcome to chapter 1!")
+    endif()
+    #examples for list operations
+    set(MYLIST abc def ghi) 
+    message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
+    set(MYLIST "abc;def;ghi") 
+    message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
+    list(APPEND MYLIST "xyz") 
+    message(STATUS "Chapter1: MYLIST is: ${MYLIST}")
 
-# set a property for this directory
-set_property(DIRECTORY PROPERTY CHAPTER1_PROPERTY "Hello from chapter 1")
-get_property(CH1_PROPERTY_VARIABLE DIRECTORY PROPERTY CHAPTER1_PROPERTY)
-message(STATUS "Chapter1: Property value for CHAPTER1_PROPERTy is '${CH1_PROPERTY_VARIABLE}'")
+    list(FIND MYLIST def ABC_INDEX) 
+    list(GET MYLIST ${ABC_INDEX} ABC) 
+    message(STATUS "Chapter1: Index of 'def' in MYLIST is ${ABC_INDEX} the value at the index is '${ABC}'")
 
-# loop examples
-set(MYVAR 0)
-while(MYVAR LESS "5") 
-    message(STATUS "Chapter1: MYVAR is '${MYVAR}'")
-    math(EXPR MYVAR "${MYVAR}+1") 
-endwhile() 
+    # add MYVAR as cache variable with the value foo
+    set(ch1_MYVAR foo CACHE STRING "Variable foo that configures bar")
 
-foreach(ITEM IN LISTS MYLIST) 
-    message(STATUS "Chapter1: ITEM from MYLIST is '${ITEM}'")
-endforeach() 
+    # set a property for this directory
+    set_property(DIRECTORY PROPERTY CHAPTER1_PROPERTY "Hello from chapter 1")
+    get_property(CH1_PROPERTY_VARIABLE DIRECTORY PROPERTY CHAPTER1_PROPERTY)
+    message(STATUS "Chapter1: Property value for CHAPTER1_PROPERTy is '${CH1_PROPERTY_VARIABLE}'")
 
-foreach(ITEM RANGE 0 5) 
-    message(STATUS "Chapter1: ITEM from RANGE is '${ITEM}'")
-endforeach() 
+    # loop examples
+    set(MYVAR 0)
+    while(MYVAR LESS "5") 
+        message(STATUS "Chapter1: MYVAR is '${MYVAR}'")
+        math(EXPR MYVAR "${MYVAR}+1") 
+    endwhile() 
 
-# function example
-function(foo ARG1) 
-    message(STATUS "Chapter1: foo called with '${ARG1}'")
-endfunction() 
+    foreach(ITEM IN LISTS MYLIST) 
+        message(STATUS "Chapter1: ITEM from MYLIST is '${ITEM}'")
+    endforeach() 
 
-# invoke foo with parameter bar 
-foo(“bar”) 
+    foreach(ITEM RANGE 0 5) 
+        message(STATUS "Chapter1: ITEM from RANGE is '${ITEM}'")
+    endforeach() 
+
+    # function example
+    function(foo ARG1) 
+        message(STATUS "Chapter1: foo called with '${ARG1}'")
+    endfunction() 
+
+    # invoke foo with parameter bar 
+    foo(“bar”) 
+endif()
