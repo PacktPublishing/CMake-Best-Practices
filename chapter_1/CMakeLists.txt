@@ -14,6 +14,7 @@ project(
 
 # Add subdirectories with a simple executable
 add_subdirectory(simple_executable)
+add_subdirectory(policy_example)
 
 #examples for list operations
 set(MYLIST abc def ghi) 
