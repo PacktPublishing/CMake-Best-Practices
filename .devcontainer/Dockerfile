@@ -15,9 +15,8 @@ RUN  apt-get update; \
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh
 
 RUN chmod +x ./cmake-3.21.2-linux-x86_64.sh && ./cmake-3.21.2-linux-x86_64.sh --skip-license --prefix=/opt/pyenv/versions/3.7.5/
+RUN cp /opt/pyenv/shims/cmake /opt/pyenv/shims/ccmake
 USER conan
-
-
 
 #install git shell extension
 RUN curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.bash_git && echo "source ~/.bash_git" >> ~/.bashrc
