@@ -3,7 +3,7 @@ find_library(
     OBSCURE_LIBRARY
     NAMES obscure 
     HINTS ${PROJECT_SOURCE_DIR}/dep/
-    PATH_SUFFIXES lib bin
+    PATH_SUFFIXES lib bin build/Release build/Debug
 )
 
 find_path(
