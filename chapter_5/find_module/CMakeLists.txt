@@ -18,24 +18,26 @@ project(
 # it will not perform a regular installation as the idea is to provide an example of how to find non-cmake projects
 
 execute_process(
-    COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/../../chapter_3/hello_lib/ -B ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_SOURCE_DIR}/dep/lib/
+    COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/ -B ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_SOURCE_DIR}/dep/lib/ -DCMAKE_BUILD_TYPE=Release
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 execute_process(
-    COMMAND cmake --build ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/
+    COMMAND cmake --build ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ --config Release
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 execute_process(
-    COMMAND cmake -E copy_directory ../../chapter_3/hello_lib/include ${CMAKE_CURRENT_SOURCE_DIR}/dep/include 
+    COMMAND cmake -E copy_directory dep_source/include ${CMAKE_CURRENT_SOURCE_DIR}/dep/include 
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+find_package(Obscure REQUIRED)
 
 # Create a target to build an executable
 add_executable(find_module_example)
+target_link_libraries(find_module_example Obscure::Obscure)
 # set the c++ version required
 
 target_compile_features(
