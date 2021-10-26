@@ -13,3 +13,4 @@ project(
 )
 
 add_subdirectory(find_package_example)
+add_subdirectory(find_module)
