@@ -1,5 +1,5 @@
 # Top-level CMakeLists
-# file for the CMake Tips and Tricks book CMake example project
+# file for the CMake Best Practices book CMake example project
 #
 # SPDX-License-Identifier: MIT
 
@@ -10,10 +10,10 @@ cmake_minimum_required(VERSION 3.21)
 
 # The main project
 project(
-    "CMake Tips and Tricks"
+    "CMakeBestPractices"
     VERSION 1.0
     DESCRIPTION
-        "The 'build-all' instructions for all examples for the book CMake tips and tricks"
+        "The 'build-all' instructions for all examples for the book CMake Best Practices"
     LANGUAGES CXX
 )
 
