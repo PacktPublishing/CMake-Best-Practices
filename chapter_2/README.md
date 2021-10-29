@@ -1,4 +1,4 @@
-# Example code for CMake Tips and Tricks - Chapter 2
+# Example code for CMake Best Practices - Chapter 2
 
 The project for this chapter is structured as a framework which contains three CMake targets and example driver application which consumes the framework. The project follows component based design principles.
 

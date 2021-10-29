@@ -8,7 +8,7 @@ project(
     "chapter_1"
     VERSION 1.0
     DESCRIPTION
-        "Examples for chapter 1 of the CMake tips and tricks book"
+        "Examples for chapter 1 of the CMake Best Practices book"
     LANGUAGES CXX
 )
 

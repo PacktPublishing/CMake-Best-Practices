@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  "CMake Tips and Tricks Chapter 4"
+  "CMake Best Practices Chapter 4"
   VERSION 1.0
   DESCRIPTION
     "A collection of sample C++ applications and libraries to demonstrate installing and packaging project artifacts"
