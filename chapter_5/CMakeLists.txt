@@ -14,3 +14,4 @@ project(
 
 add_subdirectory(find_package_example)
 add_subdirectory(find_module)
+add_subdirectory(fetch_content_example)
