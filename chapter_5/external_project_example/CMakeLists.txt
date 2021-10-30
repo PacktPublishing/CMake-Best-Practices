@@ -16,12 +16,15 @@ include(ExternalProject)
 ExternalProject_Add(
   bertrand_downloaded
   URL https://github.com/bernedom/bertrand/archive/refs/tags/0.0.17.tar.gz
+  URL_HASH MD5=354141c50b8707f2574b69f30cef0238
+  
   INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/bertrand_downloaded_install
   CMAKE_ARGS -D BERTRAND_BUILD_TESTING=OFF             
              -D CMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 )
 
 ExternalProject_Get_Property(bertrand_downloaded INSTALL_DIR)
+set(BERTRAND_DOWNLOADED_INSTALL_DIR "${INSTALL_DIR}")
 
 # Create a target to build an executable
 add_executable(external_project_example)
@@ -42,5 +45,5 @@ add_dependencies(external_project_example bertrand_downloaded)
 
 # make the header file for bertrand available
 target_include_directories(external_project_example PRIVATE 
-                          ${INSTALL_DIR}/include
+                          ${BERTRAND_DOWNLOADED_INSTALL_DIR}/include
 )
