@@ -21,6 +21,8 @@ ExternalProject_Add(
              -D CMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 )
 
+ExternalProject_Get_Property(bertrand_downloaded INSTALL_DIR)
+
 # Create a target to build an executable
 add_executable(external_project_example)
 # set the c++ version required
@@ -40,5 +42,5 @@ add_dependencies(external_project_example bertrand_downloaded)
 
 # make the header file for bertrand available
 target_include_directories(external_project_example PRIVATE 
-                          ${CMAKE_CURRENT_BINARY_DIR}/bertrand_downloaded_install/include
+                          ${INSTALL_DIR}/include
 )
