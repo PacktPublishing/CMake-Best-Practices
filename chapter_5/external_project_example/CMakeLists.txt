@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links to a system library
+# Illustrating the use of ExternalProject
 #
 # SPDX-License-Identifier: MIT
 

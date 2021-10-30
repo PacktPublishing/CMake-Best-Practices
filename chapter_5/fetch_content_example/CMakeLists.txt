@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links to a system library
+# Illustrating the use of FetchContent
 #
 # SPDX-License-Identifier: MIT
 
@@ -20,8 +20,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(bertrand)
 
-# # disable debugging again set(CMAKE_FIND_DEBUG_MODE FALSE )
-
 # Create a target to build an executable
 add_executable(fetch_content_example)
 # set the c++ version required
@@ -30,13 +28,13 @@ target_compile_features(
     fetch_content_example
     PRIVATE cxx_std_11
 )
-# Add source files to 'hello_world' target
+# Add source files to 'fetch_content_example' target
 target_sources(
     fetch_content_example
     PRIVATE src/main.cpp
 )
 
-# link the openssl library to the executable
+# link the bertrand library to the executable
 target_link_libraries(
     fetch_content_example
     PRIVATE bertrand::bertrand
