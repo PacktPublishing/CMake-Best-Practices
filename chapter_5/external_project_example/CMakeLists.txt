@@ -26,6 +26,14 @@ ExternalProject_Add(
 ExternalProject_Get_Property(bertrand_downloaded INSTALL_DIR)
 set(BERTRAND_DOWNLOADED_INSTALL_DIR "${INSTALL_DIR}")
 
+# Add an extra step after the build step to extract and archive the license file
+ExternalProject_Add_Step(bertrand_downloaded copy_license 
+                        COMMAND ${CMAKE_COMMAND} -E tar "cvzf" 
+                                ${CMAKE_CURRENT_BINARY_DIR}/licenses.tar.gz <SOURCE_DIR>/LICENSE 
+                        DEPENDEES build
+                        ALWAYS YES
+)
+
 # Create a target to build an executable
 add_executable(external_project_example)
 # set the c++ version required
@@ -34,7 +42,7 @@ target_compile_features(
     external_project_example
     PRIVATE cxx_std_11
 )
-# Add source files to 'hello_world' target
+# Add source files to 'external_project_example' target
 target_sources(
     external_project_example
     PRIVATE src/main.cpp
