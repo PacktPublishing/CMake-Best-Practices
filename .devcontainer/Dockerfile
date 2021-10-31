@@ -9,7 +9,7 @@ USER root
 RUN  apt-get update; \
     apt-get -y install --fix-missing \
     gdb curl bash-completion vim rpm \
-    graphviz python3-pytest
+    graphviz python3-pytest doxygen
 
 # Download version 3.21 from CMake
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh
