@@ -1,4 +1,4 @@
-FROM conanio/gcc11:1.39.0
+FROM conanio/gcc11:1.40.4
 
 RUN pip install cmake-format
 
