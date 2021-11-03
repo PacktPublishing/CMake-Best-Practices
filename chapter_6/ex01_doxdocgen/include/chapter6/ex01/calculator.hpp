@@ -1,5 +1,7 @@
 /**
  * ______________________________________________________
+ * @file calculator.hpp
+ *
  * Calculator interface declaration
  *
  * SPDX-License-Identifier:	MIT
@@ -8,12 +10,17 @@
 
 #pragma once
 
+#include <chapter6/ex01/calculator_interface.hpp>
+
 namespace chapter6 {
 namespace ex01 {
 /**
- * @brief The 'calculator' class interface
+ * @brief The basic 'calculator' class
+ *
+ * Implements the @ref calculator_interface to provide the four
+ * basic arithmetic operations.
  */
-class calculator {
+class calculator : private calculator_interface {
 public:
   /**
    * Calculate the sum of two numbers, @p augend lhs and @p addend
@@ -23,7 +30,7 @@ public:
    *
    * @return double Sum of two numbers, @p lhs and @p rhs
    */
-  static double sum(double augend, double addend);
+  virtual double sum(double augend, double addend) override;
 
   /**
    * Calculate the difference of @p rhs from @p lhs
@@ -33,27 +40,33 @@ public:
    *
    * @return double Difference of two numbers, @p minuend and @p subtrahend
    */
-  static double sub(double minuend, double subtrahend);
+  virtual double sub(double minuend, double subtrahend) override;
 
   /**
    * Multiply @p multiplicand with @p multiplier
    *
-   * @param [in] multiplicand The number which is to be multiplied by @p multiplier
+   * @param [in] multiplicand The number which is to be multiplied by @p
+   * multiplier
    * @param [in] multiplier   The number which is to multiply @p multiplicand
    *
    * @return double Product of two numbers, @p multiplicand and @p multiplier
    */
-  static double mul(double multiplicand, double multiplier);
+  virtual double mul(double multiplicand, double multiplier) override;
 
   /**
    * Divide @p dividend with @p divisor
    *
    * @param [in] dividend The number to be divided by @p divisor
-   * @param [in] divisor  The number by which @p divisor is to be divided 
+   * @param [in] divisor  The number by which @p divisor is to be divided
    *
    * @return double Quotient of two numbers, @p dividend and @p divisor
    */
-  static double div(double dividend, double divisor);
+  virtual double div(double dividend, double divisor) override;
+
+  /**
+   * The result of the last operation
+   */
+  double last_result{};
 }; // class calculator
 } // namespace ex01
 } // namespace chapter6

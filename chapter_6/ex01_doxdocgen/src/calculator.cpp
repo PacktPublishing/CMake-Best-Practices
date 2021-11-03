@@ -1,30 +1,32 @@
 /**
  * ______________________________________________________
+ * @file calculator.cpp
+ *
  * Calculator implementation
  *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
  */
 
-#include <chapter6/ex06/lib.hpp>
+#include <chapter6/ex01/calculator.hpp>
 
 namespace chapter6 {
 namespace ex01 {
 
-double calculator::sum(double augend, double addend) { 
-    return augend + addend; 
+double calculator::sum(double augend, double addend) {
+  return last_result = augend + addend;
 }
 
 double calculator::sub(double minuend, double subtrahend) {
-  return minuend - subtrahend;
+  return last_result = minuend - subtrahend;
 }
 
 double calculator::mul(double multiplicand, double multiplier) {
-  return multiplicand * multiplier;
+  return last_result = multiplicand * multiplier;
 }
 
 double calculator::div(double dividend, double divisor) {
-  return dividend / divisor;
+  return last_result = dividend / divisor;
 }
 
 } // namespace ex01
