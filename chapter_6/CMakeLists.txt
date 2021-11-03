@@ -11,11 +11,5 @@ project(
     "A collection of sample C++ applications and libraries to demonstrate documentation generation tool integrations"
   LANGUAGES CXX)
 
-# Locate Doxygen in the environment. This will set DOXYGEN_FOUND variable 
-# as a result. When Doxygen is found, DOXYGEN_VERSION variable will be 
-# also set to found Doxygen version.
-find_package(Doxygen REQUIRED)
-
-
-
 add_subdirectory(ex01_doxdocgen)
+add_subdirectory(ex02_doxplantuml)
