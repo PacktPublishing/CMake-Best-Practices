@@ -40,6 +40,8 @@ set(DOXYGEN_DOT_UML_DETAILS YES)
 set(DOXYGEN_DOT_WRAP_THRESHOLD 100)
 # Enables drawing call graphs for the functions
 set(DOXYGEN_CALL_GRAPH YES)
+# Suppress the output messages
+set(DOXYGEN_QUIET YES)
 ############################################################################
 # Define an static library target named `ch6_ex01_doxdocgen_lib` 
 add_library(ch6_ex01_doxdocgen_lib STATIC)

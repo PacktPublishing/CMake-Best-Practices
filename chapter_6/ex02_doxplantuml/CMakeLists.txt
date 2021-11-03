@@ -12,6 +12,8 @@ project(
 ############################################################################
 # Doxygen configuration
 ############################################################################
+# Locate PlantUML JAR file in the environment
+find_path(PLANTUML_JAR_PATH NAMES plantuml.jar HINTS "/usr/share/plantuml" REQUIRED)
 # Locate Doxygen in the environment. This will set DOXYGEN_FOUND variable 
 # as a result. When Doxygen is found, DOXYGEN_VERSION variable will be 
 # also set to found Doxygen version.
@@ -22,6 +24,10 @@ set(DOXYGEN_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/docs")
 set(DOXYGEN_GENERATE_HTML YES)
 # Enable autolink support
 set(DOXYGEN_AUTOLINK_SUPPORT YES)
+# Tell the Doxygen the PlantUML JAR path
+set(DOXYGEN_PLANTUML_JAR_PATH "${PLANTUML_JAR_PATH}")
+# Suppress the output messages
+set(DOXYGEN_QUIET YES)
 ############################################################################
 # Create an executable target that consumes the library
 add_executable(ch6_ex02_doxplantuml src/main.cpp)

@@ -2,23 +2,29 @@
  * ______________________________________________________
  * @file main.cpp
  *
- * Calculator implementation
- *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
  */
 
 #include <iostream>
+#include <string>
 
 /**
  * @brief Main entry point of the application
-  @startuml{myimage.png} "Image Caption" width=5cm
-  Alice -> Bob : Hello
+
+  @startuml{system_interaction.png} "System Interaction Diagram"
+  user -> executable : main()
+  user -> stdin
+  executable -> executable: read_stdin()
+  executable -> stdout
   @enduml
  *
  * @return int Exit code
  */
 int main(void) {
-  std::cout << "Hello, PlantUML!" << std::endl;
-  // TIP OF THE DAY: return value is optional in main() function
+  std::cout << "Greetings from the echo application!" << std::endl;
+  std::string input;
+  while (std::getline(std::cin, input)) {
+    std::cout << input;
+  }
 }

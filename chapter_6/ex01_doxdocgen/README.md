@@ -7,7 +7,7 @@ This example is intended to illustrate integration between CMake and the Doxygen
 
 ## Project structure
 
-Project contains a static library and an executable target. Static library consist of two header files and one source file (@ref include/chapter6/ex06/calculator.hpp "calculator.hpp", @ref include/chapter6/ex06/calculator_interface.hpp "calculator_interface.hpp", @ref src/calculator.cpp "calculator.cpp"), whereas executable only contains a single source file (@ref src/main.cpp "main.cpp").
+Project contains a static library and an executable target. Static library consist of two header files and one source file (@ref include/chapter6/ex01/calculator.hpp "calculator.hpp", @ref include/chapter6/ex01/calculator_interface.hpp "calculator_interface.hpp", @ref src/calculator.cpp "calculator.cpp"), whereas executable only contains a single source file (@ref src/main.cpp "main.cpp").
 
 ### Static library (ch6_ex01_doxdocgen_lib)
 
