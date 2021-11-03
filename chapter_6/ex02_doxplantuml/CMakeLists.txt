@@ -13,7 +13,7 @@ project(
 # Doxygen configuration
 ############################################################################
 # Locate PlantUML JAR file in the environment
-find_path(PLANTUML_JAR_PATH NAMES plantuml.jar HINTS "/usr/share/plantuml" REQUIRED)
+find_path(PLANTUML_JAR_PATH NAMES plantuml.jar HINTS "/usr/share/plantuml" "C:/Program Files/PlantUML" "C:/ProgramData/chocolatey/lib/plantuml/tools" "/usr/local/Cellar/plantuml@1.2021.13/1.2021.13/libexec" REQUIRED)
 # Locate Doxygen in the environment. This will set DOXYGEN_FOUND variable 
 # as a result. When Doxygen is found, DOXYGEN_VERSION variable will be 
 # also set to found Doxygen version.

@@ -57,14 +57,22 @@ jobs:
         # not installed properly in the system. Because of this cmake needs to be pointed to the correct place 
         run: |
           brew update
-          brew install openssl@1.1
+          brew extract --version=1.2021.13 plantuml homebrew/cask
+          brew install openssl@1.1 plantuml@1.2021.13
+          brew install --cask doxygen
           
           echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
           
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
-          choco install openssl
+          choco install -y --limit-output openssl doxygen.install plantuml
+
+      - name: dependencies (debian-like)
+        if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
+        run: |
+          sudo apt -y update
+          sudo apt -y install doxygen plantuml
 
       - name: correct-tmp-dir (win)
         if: runner.os == 'Windows'
