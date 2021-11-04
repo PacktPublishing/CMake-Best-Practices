@@ -20,13 +20,13 @@ add_subdirectory(library)
 
 # We will not explicitly specify project name and version here and 
 # let CPack to get project name and version from the project()
-set(CPACK_PACKAGE_VENDOR "CTT Authors")
+set(CPACK_PACKAGE_VENDOR "CBP Authors")
 # Enable DEB, RPM and TBZ2 generators by default
 set(CPACK_GENERATOR "DEB;RPM;TBZ2")
 # Use all available cores when parallelism is supported
 set(CPACK_THREADS 0) 
 # The DEB generator requires CPACK_DEBIAN_PACKAGE_MAINTAINER
 # value to be set.
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "CTT Authors")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "CBP Authors")
 # Enable packaging support for the project
 include(CPack)

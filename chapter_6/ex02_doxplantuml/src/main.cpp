@@ -14,9 +14,11 @@
 
   @startuml{system_interaction.png} "System Interaction Diagram"
   user -> executable : main()
-  user -> stdin
-  executable -> executable: read_stdin()
-  executable -> stdout
+  user -> stdin : input text
+  executable -> stdin: read_stdin()
+  stdin -> executable
+  executable -> stdout: print_to_stdout()
+  stdout -> user : visual feedback
   @enduml
  *
  * @return int Exit code

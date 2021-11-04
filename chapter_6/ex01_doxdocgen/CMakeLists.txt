@@ -66,3 +66,29 @@ doxygen_add_docs(
   ALL
   COMMENT "Generating documentation for Chapter 6 - Example 01 with Doxygen"
 )
+
+
+# End of core example, rest of the code is related to the packaging part
+
+# Default paths for installation
+include(GNUInstallDirs)
+
+# Install the HTML documentation to system's default documentation folder 
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs/html/ DESTINATION ${CMAKE_INSTALL_DOCDIR})
+
+# Install the MAN pages to man3 folder, since we're documenting a `library`.
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs/man/ DESTINATION ${CMAKE_INSTALL_MANDIR})
+
+# Override the package name
+set(CPACK_PACKAGE_NAME cbp_chapter6_example01)
+# We will not explicitly specify project name and version here and 
+# let CPack to get project name and version from the project()
+set(CPACK_PACKAGE_VENDOR "CBP Authors")
+# Enable DEB, RPM and TBZ2 generators by default
+set(CPACK_GENERATOR "DEB;RPM;TBZ2")
+# The DEB generator requires CPACK_DEBIAN_PACKAGE_MAINTAINER
+# value to be set.
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "CBP Authors")
+
+# Enable packaging support for the project
+include(CPack)
