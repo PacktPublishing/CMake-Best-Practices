@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links to a system library
+# CMakeLists creating a simple executable that links to a library retrieved with conan from a conanfile.txt
 #
 # SPDX-License-Identifier: MIT
 
@@ -13,22 +13,22 @@ project(
 )
 find_program(CONAN conan)
 
-
-
-
 # if built within conan use the file from local cache
 if(CONAN)
-  # setting up conan to download.cmake automatically
+  
+  # Download conan.cmake if it does not already exist
   if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/bernedom/cmake-conan")
     file( DOWNLOAD
       "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
   endif()
-  include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
 
+  include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
+  # Detect the current settings of cmake and store them for conan in CONAN_SETTINGS
   conan_cmake_autodetect(CONAN_SETTINGS)
   
+  # Run conan to set up the dependencies
   conan_cmake_run(CONANFILE ${CMAKE_CURRENT_LIST_DIR}/conanfile.txt 
                   BASIC_SETUP
                   BUILD missing
@@ -39,6 +39,7 @@ else()
   return()
 endif()
 
+# Append the current binary dir to CMAKE_MODULE_PATH because conan stores the configuration for the dependencies there
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(fmt 6.1 REQUIRED)
