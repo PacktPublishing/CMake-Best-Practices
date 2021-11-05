@@ -11,13 +11,16 @@ project(
         "A simple C++ project to demonstrate fetching external content"
     LANGUAGES CXX
 )
+# make the FetchContent module available
 include(FetchContent)
 
+# declare where to get bertrand from 
 FetchContent_Declare(
   bertrand
   GIT_REPOSITORY https://github.com/bernedom/bertrand.git
-  GIT_TAG 0.0.17)
+  GIT_TAG f88bf21b3a651c07e94a9a9c33607dd659fe6318) # 0.0.17
 
+# populate bertrand to make it available
 FetchContent_MakeAvailable(bertrand)
 
 # Create a target to build an executable

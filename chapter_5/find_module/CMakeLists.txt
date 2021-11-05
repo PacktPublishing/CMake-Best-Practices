@@ -12,8 +12,8 @@ project(
     LANGUAGES CXX
 )
 
-# the following code is used to set up the example for the find_module calling cmake
-# from itself is dangerous and should not be done in practice
+# the following code is used to set up the library which we want to find with the  find_module.
+# calling cmake from itself is dangerous and should not be done in practice
 # this will configure and build the hello_lib from chapter3 into the folder ./dep
 # it will not perform a regular installation as the idea is to provide an example of how to find non-cmake projects
 
@@ -31,8 +31,11 @@ execute_process(
     COMMAND cmake -E copy_directory dep_source/include ${CMAKE_CURRENT_SOURCE_DIR}/dep/include 
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
+# End of setting up block - The example starts below
 
+# Tell CMake where to look for find modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+# try to find the package obscure see the file cmake/FindObscure.cmake for the innner workings
 find_package(Obscure REQUIRED)
 
 # Create a target to build an executable
