@@ -12,10 +12,11 @@ project(
     LANGUAGES CXX
 )
 
-# the following code is used to set up the library which we want to find with the  find_module.
+# the following code is used to set up and build the library which we want to find with the find_module.
 # calling cmake from itself is dangerous and should not be done in practice
 # this will configure and build the hello_lib from chapter3 into the folder ./dep
-# it will not perform a regular installation as the idea is to provide an example of how to find non-cmake projects
+# it will not perform a regular installation as the idea is to provide an example of how include binary projects 
+# by using a custom written find_module
 
 execute_process(
     COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/ -B ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_SOURCE_DIR}/dep/lib/ -DCMAKE_BUILD_TYPE=Release
