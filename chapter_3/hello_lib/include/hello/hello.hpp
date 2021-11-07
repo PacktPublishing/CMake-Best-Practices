@@ -5,7 +5,7 @@
 
 
 namespace hello{
-    /// Example class that is explicitely exported into a dll
+    /// Example class that is explicitly exported into a dll
     class HELLO_EXPORT Hello {
         public:
         Hello(const std::string& name) : name_{name} {}

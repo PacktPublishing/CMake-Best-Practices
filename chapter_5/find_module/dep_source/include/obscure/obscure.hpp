@@ -3,7 +3,7 @@
 #include <string>
 
 namespace obscure{
-    /// Example class that is explicitely exported into a dll
+    /// Example class that is explicitly exported into a dll
     class Obscure {
         public:
         Obscure(const std::string& name) : name_{name} {}
