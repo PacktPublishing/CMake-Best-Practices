@@ -17,7 +17,7 @@ find_program(CONAN conan)
 if(CONAN)
   
   if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
-    message(STATUS "Downloading conan.cmake from https://github.com/bernedom/cmake-conan")
+    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
     file( DOWNLOAD
       "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")

@@ -3,7 +3,7 @@
 #include <string>
 
 namespace hello_object {
-/// Example class that is explicitely exported into a dll
+/// Example class that is explicitly exported into a dll
 class HelloObject {
 public:
   HelloObject(const std::string &name) : name_{name} {}
