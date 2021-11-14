@@ -14,7 +14,7 @@ enable_testing()
 add_executable(ch7_pass_fail_criteria)
 target_sources(ch7_pass_fail_criteria PRIVATE src/main.cpp)
 
-add_test(NAME pass_fail_test COMMAND ch7_pass_fail_criteria)
+add_test(NAME pass_fail_test COMMAND ch7_pass_fail_criteria ARG1)
 set_tests_properties(pass_fail_test PROPERTIES 
                                     FAIL_REGULAR_EXPRESSION "[W|w]arning|[E|e]rror"
                                     PASS_REGULAR_EXPRESSION "[S|s]uccess")
