@@ -15,3 +15,4 @@ project(
 add_subdirectory(simple_test)
 add_subdirectory(pass_fail_criteria)
 add_subdirectory(timeout_example)
+add_subdirectory(code_coverage_example)
