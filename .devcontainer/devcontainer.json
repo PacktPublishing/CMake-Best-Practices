@@ -5,7 +5,8 @@
         "ms-vscode.cmake-tools",
         "twxs.cmake",
         "vadimcn.vscode-lldb",
-        "cheshirekow.cmake-format"
+        "cheshirekow.cmake-format",
+        "eamodio.gitlens",
     ],
     "remoteEnv": {
         "DISPLAY": ":0"
