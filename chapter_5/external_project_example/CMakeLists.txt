@@ -40,7 +40,7 @@ add_executable(external_project_example)
 
 target_compile_features(
     external_project_example
-    PRIVATE cxx_std_11
+    PRIVATE cxx_std_17
 )
 # Add source files to 'external_project_example' target
 target_sources(
