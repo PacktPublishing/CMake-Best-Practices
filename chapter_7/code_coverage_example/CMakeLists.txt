@@ -10,20 +10,24 @@ project(
   VERSION 1.0
   DESCRIPTION "A simple C++ project to demonstrate basic CMake usage"
   LANGUAGES CXX)
+
+option(ENABLE_COVERAGE "Enable code coverage" ON)
   
 enable_testing()
-add_library(ch7_code_coverage)
+add_library(ch7_code_coverage STATIC)
 target_include_directories(ch7_code_coverage PUBLIC include)
 target_compile_features(ch7_code_coverage PUBLIC cxx_std_11)
-target_link_libraries(ch7_code_coverage INTERFACE --coverage)    
-target_compile_options(ch7_code_coverage PUBLIC --coverage -O0 -g)
+if(ENABLE_COVERAGE)
+  target_link_libraries(ch7_code_coverage INTERFACE --coverage)    
+  target_compile_options(ch7_code_coverage PUBLIC --coverage -O0 -g)
+endif()
 target_sources(ch7_code_coverage PRIVATE src/coverage_example/coverage_example.cpp)
 
 add_executable(ch7_code_coverage_test src/coverage_test.cpp)
-target_link_libraries(ch7_code_coverage_test ch7_code_coverage)
+if(ENABLE_COVERAGE)
+  target_link_libraries(ch7_code_coverage_test ch7_code_coverage)
+  target_compile_options(ch7_code_coverage_test PUBLIC --coverage -O0 -g)  
+endif()
 target_compile_features(ch7_code_coverage_test PRIVATE cxx_std_11)
 
-target_compile_options(ch7_code_coverage_test PUBLIC --coverage -O0 -g)
 add_test(NAME "code_coverage_test" COMMAND ch7_code_coverage_test)
-
-
