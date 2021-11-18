@@ -10,12 +10,23 @@ project(
   VERSION 1.0
   DESCRIPTION "A simple C++ project to demonstrate using various sanitizers"
   LANGUAGES CXX)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+  option(ENABLE_ADDRESS_SANITIZER "Enable address sanitizer" OFF)
+  option(ENABLE_ADDRESS_SANITIZER_GLOBAL "Enable address sanitizer globally" OFF)
+ 
+endif()
+if(ENABLE_ADDRESS_SANITIZER_GLOBAL)
+  add_compile_options(-fsanitize=address)
+  add_link_options(-fsanitize=address)
+endif()
   
+
 enable_testing()
 add_executable(ch7_sanitizers)
 target_sources(ch7_sanitizers PRIVATE src/main.cpp)
-target_compile_options(ch7_sanitizers PRIVATE -fsanitize=address)
-target_link_options(ch7_sanitizers PRIVATE -fsanitize=address)
+target_compile_options(ch7_sanitizers PRIVATE $<$<BOOL:${ENABLE_ADDRESS_SANITIZER}>:-fsanitize=address>)
+target_link_options(ch7_sanitizers PRIVATE $<$<BOOL:${ENABLE_ADDRESS_SANITIZER}>:-fsanitize=address>)
 
 add_test(NAME sanitizer_test COMMAND ch7_sanitizers)
 # The test will fail because of address sanitizer violations

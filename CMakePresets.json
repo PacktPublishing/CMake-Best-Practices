@@ -37,6 +37,15 @@
             "generator": "Ninja Multi-Config"
         },
         {
+            "name": "Sanitizers",
+            "inherits": "ninja-debug",
+            "displayName": "Sanitizers Debug",
+            "cacheVariables": {
+                "ENABLE_ADDRESS_SANITIZER": "ON",
+                "CMAKE_CXX_COMPILER": "clang++-10"
+            }
+        },
+        {
             "name": "windows-only",
             "inherits": "ninja",
             "displayName": "Windows-only configuration",
