@@ -41,8 +41,7 @@
             "inherits": "ninja-debug",
             "displayName": "Sanitizers Debug",
             "cacheVariables": {
-                "ENABLE_ADDRESS_SANITIZER": "ON",
-                "CMAKE_CXX_COMPILER": "clang++-10"
+                "ENABLE_ADDRESS_SANITIZER": "ON"
             }
         },
         {

@@ -96,6 +96,9 @@ jobs:
         run: ctest -C Debug
         working-directory: ./build
 
+      - name: pytest
+        run: python3 -m pytest -x -v
+
       - name: coverage
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
         run: |
@@ -103,6 +106,13 @@ jobs:
           gcvor -r ../ .
         working-directory: ./build
 
-      - name: pytest
-        run: python3 -m pytest -x -v
+      - name: sanitizers
+        if: contains(matrix.compiler, 'clang-12')
+        run: |
+          cmake .. --preset Sanitizers
+          cmake --build .
+          ctest
+          
+        working-directory: ./build  
+
 
