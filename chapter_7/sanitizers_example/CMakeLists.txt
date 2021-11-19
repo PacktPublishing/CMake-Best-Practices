@@ -28,6 +28,10 @@ target_sources(ch7_sanitizers PRIVATE src/main.cpp)
 target_compile_options(ch7_sanitizers PRIVATE $<$<BOOL:${ENABLE_ADDRESS_SANITIZER}>:-fsanitize=address>)
 target_link_options(ch7_sanitizers PRIVATE $<$<BOOL:${ENABLE_ADDRESS_SANITIZER}>:-fsanitize=address>)
 
-add_test(NAME sanitizer_test COMMAND ch7_sanitizers)
-# The test will fail because of address sanitizer violations
-set_tests_properties(sanitizer_test PROPERTIES WILL_FAIL True)
+# Since this test contains a memory use after free to illustrate the use of the address sanitizer
+# it is not stable and only enabled if the address sanitizer is enabled to show how it is working
+if(ENABLE_ADDRESS_SANITIZER OR ENABLE_ADDRESS_SANITIZER_GLOBAL)  
+  add_test(NAME sanitizer_test COMMAND ch7_sanitizers)
+  # The test will fail because of address sanitizer violations
+  set_tests_properties(sanitizer_test PROPERTIES WILL_FAIL True)
+endif()
