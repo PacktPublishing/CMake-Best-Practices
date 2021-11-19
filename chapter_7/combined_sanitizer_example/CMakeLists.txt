@@ -17,8 +17,6 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
 
   set(ENABLED_SANITIZERS "")
   set(HAS_SANITIZER_FLAGS false)
-  mark_as_advanced(ENABLED_SANITIZERS)
-  mark_as_advanced(HAS_SANITIZER_FLAGS)
 
   option(ENABLE_SANITIZER_ADDRESS "Enable address sanitizer" OFF)
   if(ENABLE_SANITIZER_ADDRESS)
@@ -50,10 +48,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
 
   option(ENABLE_SANITIZER_MEMORY "Enable memory sanitizer" OFF)
   if(ENABLE_SANITIZER_MEMORY AND CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-    if("address" IN_LIST ENABLED_SANITIZERStarget_compile_options(${project_name}
-    INTERFACE -fsanitize=${LIST_OF_ENABLED_SANITIZERS})
-target_link_options(${project_name} INTERFACE
--fsanitize=${LIST_OF_ENABLED_SANITIZERS})
+    if("address" IN_LIST ENABLED_SANITIZERS
         OR "thread" IN_LIST ENABLED_SANITIZERS
         OR "leak" IN_LIST ENABLED_SANITIZERS)
       message(
@@ -66,14 +61,12 @@ target_link_options(${project_name} INTERFACE
   endif()
 
   list(JOIN ENABLED_SANITIZERS "," LIST_OF_ENABLED_SANITIZERS)
-  mark_as_advanced(LIST_OF_ENABLED_SANITIZERS)
 
 endif()
 
 if(LIST_OF_ENABLED_SANITIZERS AND NOT "${LIST_OF_ENABLED_SANITIZERS}" STREQUAL "")
   set(ENABLED_SANITIZER_FLAGS "-fsanitize=${LIST_OF_ENABLED_SANITIZERS}")
   set(HAS_SANITIZER_FLAGS true)
-  mark_as_advanced(ENABLED_SANITIZER_FLAGS)
   
 endif()
   

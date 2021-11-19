@@ -15,7 +15,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
                                             ".*Clang")
   option(ENABLE_COVERAGE "Enable code coverage" ON)
   set(COVERAGE_LINKER_FLAGS "--coverage")
-  set(COVERAGE_COMPILER_FLAGS "--coverage -o0 -g")
+  set(COVERAGE_COMPILER_FLAGS "--coverage")
 
 endif()
   
@@ -31,7 +31,6 @@ target_sources(ch7_code_coverage PRIVATE src/coverage_example/coverage_example.c
 add_executable(ch7_code_coverage_test src/coverage_test.cpp)
 target_link_libraries(ch7_code_coverage_test ch7_code_coverage)
 target_compile_options(ch7_code_coverage_test PUBLIC $<$<BOOL:${ENABLE_COVERAGE}>:${COVERAGE_COMPILER_FLAGS}>)  
-endif()
 
 target_compile_features(ch7_code_coverage_test PRIVATE cxx_std_11)
 
