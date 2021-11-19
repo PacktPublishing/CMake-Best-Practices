@@ -42,7 +42,7 @@ jobs:
       - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install pytest
+          pip3 install pytest conan
 
       - name: set-compiler-env
         run: |
@@ -100,7 +100,7 @@ jobs:
         run: python3 -m pytest -x -v
 
       - name: coverage
-        if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
+        if: contains(matrix.compiler, 'clang-12')
         run: |
           ctest -T Coverage
           gcvor -r ../ .
