@@ -72,7 +72,7 @@ jobs:
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
         run: |
           sudo apt -y update
-          sudo apt -y install doxygen plantuml
+          sudo apt -y install doxygen plantuml gcovr
 
       - name: correct-tmp-dir (win)
         if: runner.os == 'Windows'
@@ -100,14 +100,14 @@ jobs:
         run: python3 -m pytest -x -v
 
       - name: coverage
-        if: contains(matrix.compiler, 'clang-12')
+        if: contains(matrix.compiler, 'g++-10')
         run: |
           ctest -T Coverage
-          gcvor -r ../ .
+          gcovr -r ../ .
         working-directory: ./build
 
       - name: sanitizers
-        if: contains(matrix.compiler, 'clang-12')
+        if: contains(matrix.compiler, 'clang++-12')
         run: |
           cmake .. --preset Sanitizers
           cmake --build .
