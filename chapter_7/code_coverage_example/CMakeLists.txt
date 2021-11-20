@@ -41,8 +41,10 @@ find_program(GCOVR_EXECUTABLE NAMES gcovr)
 if(ENABLE_COVERAGE AND GCOVR_EXECUTABLE)
 message(STATUS "Code coverage enabled")
   add_custom_target(coverage_report_html
+    DEPENDS $<TARGET_FILE:ch7_code_coverage_test>
     COMMAND ${GCOVR_EXECUTABLE} -r ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} 
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Generate coverate report")
+    DEPENDS
   
 endif()
