@@ -82,7 +82,9 @@ jobs:
         shell: pwsh
 
       - name: make-build-dir
-        run: mkdir build
+        run: |
+          mkdir build
+          mkdir build-sanitizers
 
       - name: cmake-configure-debug
         run: |
@@ -113,6 +115,6 @@ jobs:
           cmake --build .
           ctest
           
-        working-directory: ./build  
+        working-directory: ./build-sanitizers
 
 
