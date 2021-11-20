@@ -15,7 +15,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
                                             ".*Clang")
   option(ENABLE_COVERAGE "Enable code coverage" ON)
   set(COVERAGE_LINKER_FLAGS --coverage)
-  set(COVERAGE_COMPILER_FLAGS --coverage -O0)
+  set(COVERAGE_COMPILER_FLAGS --coverage)
 
 endif()
   
@@ -40,9 +40,15 @@ find_program(GCOVR_EXECUTABLE NAMES gcovr)
 
 if(ENABLE_COVERAGE AND GCOVR_EXECUTABLE)
 message(STATUS "Code coverage enabled")
-  add_custom_target(coverage_report_html
-    DEPENDS $<TARGET_FILE:ch7_code_coverage_test>
-    COMMAND ${GCOVR_EXECUTABLE} -r ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} 
+
+  add_custom_target(
+    run_coverage_tests
+    COMMAND $<TARGET_FILE:ch7_code_coverage_test>
+    COMMENT "Run coverage tests")
+
+  add_custom_target(coverage_report
+    DEPENDS run_coverage_tests
+    COMMAND ${GCOVR_EXECUTABLE} -r ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Generate coverate report")
 endif()

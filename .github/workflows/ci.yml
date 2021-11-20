@@ -106,7 +106,9 @@ jobs:
         if: contains(matrix.compiler, 'g++-10')
         run: |
           ctest -T Coverage
+          cmake --build . --target coverage_report
           gcovr -r ../ . --html -o coverage-report.html
+          
         working-directory: ./build
 
       - name: archive coverage results
