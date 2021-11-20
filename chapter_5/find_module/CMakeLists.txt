@@ -19,17 +19,17 @@ project(
 # by using a custom written find_module
 
 execute_process(
-    COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/ -B ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_SOURCE_DIR}/dep/lib/ -DCMAKE_BUILD_TYPE=Release -G${CMAKE_GENERATOR}
+    COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/ -B ${CMAKE_CURRENT_BINARY_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_BINARY_DIR}/dep/lib/ -DCMAKE_BUILD_TYPE=Release -G${CMAKE_GENERATOR}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 execute_process(
-    COMMAND cmake --build ${CMAKE_CURRENT_SOURCE_DIR}/dep/build/ --config Release
+    COMMAND cmake --build ${CMAKE_CURRENT_BINARY_DIR}/dep/build/ --config Release
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 execute_process(
-    COMMAND cmake -E copy_directory dep_source/include ${CMAKE_CURRENT_SOURCE_DIR}/dep/include 
+    COMMAND cmake -E copy_directory dep_source/include ${CMAKE_CURRENT_BINARY_DIR}/dep/include 
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 # End of setting up block - The example starts below

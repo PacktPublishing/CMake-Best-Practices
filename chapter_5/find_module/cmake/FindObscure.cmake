@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.21)
 find_library(
     OBSCURE_LIBRARY
     NAMES obscure 
-    HINTS ${PROJECT_SOURCE_DIR}/dep/
+    HINTS ${PROJECT_SOURCE_DIR}/dep/ ${CMAKE_CURRENT_BINARY_DIR}/dep
     PATH_SUFFIXES lib bin build/Release build/Debug
 )
 
@@ -14,7 +14,7 @@ find_library(
 find_path(
     OBSCURE_INCLUDE_DIR
     NAMES obscure/obscure.hpp
-    HINTS ${PROJECT_SOURCE_DIR}/dep/include/
+    HINTS ${PROJECT_SOURCE_DIR}/dep/include/ ${CMAKE_CURRENT_BINARY_DIR}/dep/include
 )
 
 # use the FindPackageHandleStandardArgs to check if everything was found
