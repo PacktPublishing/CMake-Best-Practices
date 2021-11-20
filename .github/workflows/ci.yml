@@ -58,7 +58,7 @@ jobs:
         run: |
           brew update
           brew extract --version=1.2021.13 plantuml homebrew/cask
-          brew install openssl@1.1 plantuml@1.2021.13
+          brew install openssl@1.1 plantuml@1.2021.13 ninja
           brew install --cask doxygen
           
           echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
@@ -72,7 +72,7 @@ jobs:
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
         run: |
           sudo apt -y update
-          sudo apt -y install doxygen plantuml gcovr
+          sudo apt -y install doxygen plantuml gcovr ninja-build
 
       - name: correct-tmp-dir (win)
         if: runner.os == 'Windows'
@@ -88,7 +88,7 @@ jobs:
 
       - name: cmake-configure-debug
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          cmake .. -DCMAKE_BUILD_TYPE=Debug
         working-directory: ./build
 
       - name: build-debug
@@ -101,20 +101,30 @@ jobs:
       - name: pytest
         run: python3 -m pytest -x -v
 
+      # Note in order for ctest -T Coverage to work the tests have to be executed first
+      # with ctest. Moving this before the test step breaks coverage
       - name: coverage
         if: contains(matrix.compiler, 'g++-10')
         run: |
-          ctest -T Coverage
-          gcovr -r ../ .
+          ctest -T test -T Coverage
+          gcovr -r ../ . --html -o coverage-report.html
         working-directory: ./build
+
+      - name: archive coverage results
+        if: contains(matrix.compiler, 'g++-10')
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ./build/coverage-report.html
+
 
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
         run: |
-          cmake .. --preset Sanitizers
+          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON
           cmake --build .
           ctest
-          
         working-directory: ./build-sanitizers
+        
 
 
