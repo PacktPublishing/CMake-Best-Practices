@@ -121,7 +121,7 @@ jobs:
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
         run: |
-          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON
+          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
           cmake --build .
           ctest
         working-directory: ./build-sanitizers
