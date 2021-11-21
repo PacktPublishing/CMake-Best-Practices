@@ -42,7 +42,7 @@ jobs:
       - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install pytest conan
+          pip3 install pytest conan cpplint
 
       - name: set-compiler-env
         run: |
@@ -53,16 +53,16 @@ jobs:
 
       - name: dependecies (macos)
         if: runner.os == 'macOS'
-        # macOS is using libreSSL which clashes with openssl which means that the package is extracted but 
-        # not installed properly in the system. Because of this cmake needs to be pointed to the correct place 
+        # macOS is using libreSSL which clashes with openssl which means that the package is extracted but
+        # not installed properly in the system. Because of this cmake needs to be pointed to the correct place
         run: |
           brew update
           brew extract --version=1.2021.13 plantuml homebrew/cask
           brew install openssl@1.1 plantuml@1.2021.13 ninja
           brew install --cask doxygen
-          
+
           echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
-          
+
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
@@ -72,13 +72,13 @@ jobs:
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
         run: |
           sudo apt -y update
-          sudo apt -y install doxygen plantuml gcovr ninja-build
+          sudo apt -y install doxygen plantuml gcovr ninja-build cppcheck clang-tidy iwyu
 
       - name: correct-tmp-dir (win)
         if: runner.os == 'Windows'
         run: |
-              echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
-              echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+          echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+          echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
         shell: pwsh
 
       - name: make-build-dir
@@ -108,7 +108,7 @@ jobs:
           ctest -T Coverage
           cmake --build . --target coverage_report
           gcovr -r ../ . --html -o coverage-report.html
-          
+
         working-directory: ./build
 
       - name: archive coverage results
@@ -118,14 +118,9 @@ jobs:
           name: code-coverage-report
           path: ./build/coverage-report.html
 
-
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
         run: |
           cmake -S . -B build-sanitizers -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
           cmake --build build-sanitizers
           ctest --test-dir build-sanitizers
-        
-        
-
-
