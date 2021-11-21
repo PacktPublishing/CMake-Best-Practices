@@ -33,7 +33,7 @@ target_link_libraries(ch7_code_coverage_test ch7_code_coverage)
 target_compile_options(ch7_code_coverage_test PUBLIC $<$<BOOL:${ENABLE_COVERAGE}>:${COVERAGE_COMPILER_FLAGS}>)  
 
 target_compile_features(ch7_code_coverage_test PRIVATE cxx_std_11)
-add_test(NAME "code_coverage_test" COMMAND ch7_code_coverage_test)
+add_test(NAME code_coverage_test COMMAND ch7_code_coverage_test)
 
 
 find_program(GCOVR_EXECUTABLE NAMES gcovr)
