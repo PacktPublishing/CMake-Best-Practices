@@ -15,7 +15,7 @@ find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
 
 if(CPPCHECK_EXECUTABLE)
   option(ENABLE_CPPCHECK "Enable cppcheck" ON)
-  set(CPPCHECK_COMMAND)
+  
   list(APPEND CPPCHECK_COMMAND "${CPPCHECK_EXECUTABLE}"
   "--enable=warning" 
   "--inconclusive"
