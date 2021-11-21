@@ -18,8 +18,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
   set(COVERAGE_COMPILER_FLAGS --coverage)
 
 endif()
-  
-enable_testing()
+
 add_library(ch7_code_coverage STATIC)
 target_include_directories(ch7_code_coverage PUBLIC include)
 target_compile_features(ch7_code_coverage PUBLIC cxx_std_11)
