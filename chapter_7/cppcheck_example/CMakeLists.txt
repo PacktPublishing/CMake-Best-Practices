@@ -15,11 +15,20 @@ find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
 
 if(CPPCHECK_EXECUTABLE)
   option(ENABLE_CPPCHECK "Enable cppcheck" ON)
-  set(CPPCHECK_COMMAND ${CPPCHECK_EXECUTABLE} --enable=warning --inconclusive --force --inline-suppr)
+  set(CPPCHECK_COMMAND)
+  list(APPEND CPPCHECK_COMMAND "${CPPCHECK_EXECUTABLE}"
+  "--enable=warning" 
+  "--inconclusive"
+  "--force"
+  "--inline-suppr"
+  #"--error-exitcode=1"
+  )
+  
+  
 endif()
 
 add_executable(ch7_cppcheck_example)
 target_sources(ch7_cppcheck_example PRIVATE src/main.cpp)
 if (ENABLE_CPPCHECK)
-  set_target_properties(ch7_cppcheck_example PROPERTIES CXX_CPPCHECK ${CPPCHECK_EXECUTABLE})    
+  set_target_properties(ch7_cppcheck_example PROPERTIES CXX_CPPCHECK "${CPPCHECK_COMMAND}")    
 endif()
