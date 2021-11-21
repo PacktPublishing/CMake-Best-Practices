@@ -17,7 +17,7 @@ project(
     LANGUAGES CXX
 )
 include(CTest)
-enable_testing()
+
 # Set the default build type for single-config generators. The build type
 # variable is still overridable from outside.
 set(CMAKE_BUILD_TYPE

@@ -84,7 +84,6 @@ jobs:
       - name: make-build-dir
         run: |
           mkdir build
-          mkdir build-sanitizers
 
       - name: cmake-configure-debug
         run: |
@@ -106,7 +105,7 @@ jobs:
       - name: coverage
         if: contains(matrix.compiler, 'g++-10')
         run: |
-          ctest -T test -T Coverage
+          ctest -T Coverage
           gcovr -r ../ . --html -o coverage-report.html
         working-directory: ./build
 
@@ -121,10 +120,10 @@ jobs:
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
         run: |
-          cmake -S .. -B . -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
-          cmake --build .
-          ctest
-        working-directory: ./build-sanitizers
+          cmake -S . -B build-sanitizers -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
+          cmake --build build-sanitizers
+          ctest --test-dir build-sanitizers
+        
         
 
 
