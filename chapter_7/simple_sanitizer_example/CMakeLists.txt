@@ -21,9 +21,7 @@ if(ENABLE_ADDRESS_SANITIZER_GLOBAL)
   add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
   add_link_options(-fsanitize=address)
 endif()
-  
 
-enable_testing()
 add_executable(ch7_simple_sanitizer)
 target_sources(ch7_simple_sanitizer PRIVATE src/main.cpp)
 target_compile_options(ch7_simple_sanitizer PRIVATE $<$<BOOL:${ENABLE_ADDRESS_SANITIZER}>:-fsanitize=address -fno-omit-frame-pointer>)
