@@ -23,6 +23,7 @@ endif()
 
 add_executable(ch7_clang_tidy_example)
 target_sources(ch7_clang_tidy_example PRIVATE src/main.cpp)
+target_compile_features(ch7_clang_tidy_example PRIVATE cxx_std_17)
 if (ENABLE_CLANG_TIDY)
   set_target_properties(ch7_clang_tidy_example PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")    
 endif()
