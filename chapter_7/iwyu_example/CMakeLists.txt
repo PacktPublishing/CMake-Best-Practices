@@ -16,13 +16,22 @@ find_program(INCLUDE_WHAT_YOU_USE_EXECUTABLE NAMES include-what-you-use iwyu)
 if(INCLUDE_WHAT_YOU_USE_EXECUTABLE)
   option(ENABLE_INCLUDE_WHAT_YOU_USE "Enable iwyu" ON)
     
-  list(APPEND INCLUDE_WHAT_YOU_USE_COMMAND "${INCLUDE_WHAT_YOU_USE_EXECUTABLE}")
-
+  list(APPEND INCLUDE_WHAT_YOU_USE_COMMAND "${INCLUDE_WHAT_YOU_USE_EXECUTABLE}"
+  "-Xiwyu"
+  "any"
+  "-Xiwyu"
+  "iwyu"
+  "-Xiwyu"
+  "args"
+  "--verbose=5"
+  "-I ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}"
+  )
+      
 endif()
 
 add_executable(ch7_iwyu_example)
 target_sources(ch7_iwyu_example PRIVATE src/main.cpp)
 if (ENABLE_INCLUDE_WHAT_YOU_USE)
-message(STATUS "Enabling IWYU for example ${INCLUDE_WHAT_YOU_USE_COMMAND}")
+  message(STATUS "Enabling IWYU for example ${INCLUDE_WHAT_YOU_USE_COMMAND}")
   set_target_properties(ch7_iwyu_example PROPERTIES CXX_INCLUDE_WHAT_YOU_USE "${INCLUDE_WHAT_YOU_USE_COMMAND}")    
 endif()
