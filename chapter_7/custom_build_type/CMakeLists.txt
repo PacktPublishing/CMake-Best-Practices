@@ -17,7 +17,7 @@ if(isMultiConfig)
         list(APPEND CMAKE_CONFIGURATION_TYPES Coverage)
     endif()
 else()
-    set(allowedBuildTypes Debug Release Coverage)
+    set(allowedBuildTypes Debug Release Coverage RelWithDebugInfo MinSizeRel)
     set_property(
         CACHE CMAKE_BUILD_TYPE
         PROPERTY STRINGS "${allowedBuildTypes}"
@@ -31,10 +31,20 @@ endif()
 
 set(CMAKE_C_FLAGS_COVERAGE "${CMAKE_C_FLAGS_DEBUG} --coverage" CACHE STRING "") 
 set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_DEBUG} --coverage" CACHE STRING "")
-set(CAMKE_EXE_LINKER_FLAGS_COVERAGE "${CMAKE_EXE_LINKER_FLAGS_DEBUG} --coverage" CACHE STRING "")
+set(CMAKE_EXE_LINKER_FLAGS_COVERAGE "${CMAKE_EXE_LINKER_FLAGS_DEBUG} --coverage" CACHE STRING "")
 set(CMAKE_SHARED_LINKER_FLAGS_COVERAGE "${CMAKE_SHARED_LINKER_FLAGS_DEBUG} --coverage" CACHE STRING "")
 set(CMAKE_STATIC_LINKGER_FLAGS_COVERAGE "${CMAKE_STATIC_LINKER_FLAGS_DEBUG} --coverage" CACHE STRING "")
 set(CMAKE_MODULE_LINKER_FLAGS_COVERAGE "${CMAKE_MODULE_LINKER_FLAGS_DEBUG} --coverage" CACHE STRING "")
+
+mark_as_advanced(CMAKE_C_FLAGS_COVERAGE 
+                 CMAKE_CXX_FLAGS_COVERAGE 
+                 CMAKE_EXE_LINKER_FLAGS_COVERAGE 
+                 CMAKE_SHARED_LINKER_FLAGS_COVERAGE 
+                 CMAKE_STATIC_LINKGER_FLAGS_COVERAGE 
+                 CMAKE_MODULE_LINKER_FLAGS_COVERAGE)
+
+                 
+set_property(GLOBAL APPEND PROPERTY DEBUG_CONFIGURATIONS Coverage)
 
 add_library(ch7_custom_build_type STATIC)
 target_include_directories(ch7_custom_build_type PUBLIC include)
