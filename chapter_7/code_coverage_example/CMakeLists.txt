@@ -49,5 +49,5 @@ message(STATUS "Code coverage enabled")
     DEPENDS run_coverage_tests
     COMMAND ${GCOVR_EXECUTABLE} -r ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Generate coverate report")
+    COMMENT "Generate coverage report")
 endif()
