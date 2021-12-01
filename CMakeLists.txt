@@ -54,6 +54,7 @@ add_subdirectory(chapter_4)
 add_subdirectory(chapter_5)
 add_subdirectory(chapter_6)
 add_subdirectory(chapter_7)
+add_subdirectory(chapter_8)
 # the chapter 10 examples are intended to be built standalone
 # add_subdirectory(chapter_10) 
 add_subdirectory(chapter_11)
