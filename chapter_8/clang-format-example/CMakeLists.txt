@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.21)
 project(
   "ch8_clang_format_example"
   VERSION 1.0
-  DESCRIPTION "A simple C++ project to demonstrate creation of a custom target"
+  DESCRIPTION "A simple C++ project to demonstrate creating a pre-build step using a custom command"
   LANGUAGES CXX)
 
 find_program(CLANG_FORMAT_EXECUTABLE clang-format)
