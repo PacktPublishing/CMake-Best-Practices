@@ -12,3 +12,4 @@ project(
   LANGUAGES CXX)
 
 add_subdirectory(custom_target_example)
+add_subdirectory(clang-format-example)
