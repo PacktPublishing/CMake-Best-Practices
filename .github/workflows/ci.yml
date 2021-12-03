@@ -69,7 +69,7 @@ jobs:
         run: |
           brew update
           brew extract --version=1.2021.13 plantuml homebrew/cask
-          brew install openssl@1.1 plantuml@1.2021.13 ninja llvm
+          brew install openssl@1.1 plantuml@1.2021.13 ninja clang-format llvm
           brew install --cask doxygen
           
           ln -s "/usr/local/opt/llvm/bin/clang-format" "/usr/local/bin/clang-format"
