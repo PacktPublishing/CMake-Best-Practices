@@ -11,4 +11,4 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate creation of a custom target"
   LANGUAGES CXX)
 
-add_custom_target(ch8_echo_target ALL cmake -E echo "Hello from chapter 8")
+add_custom_target(ch8_echo_target ALL cmake -E echo "Hello from a custom target in chapter 8")
