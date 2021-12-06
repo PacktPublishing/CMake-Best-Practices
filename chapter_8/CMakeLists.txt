@@ -14,3 +14,4 @@ project(
 add_subdirectory(custom_target_example)
 add_subdirectory(clang-format-example)
 add_subdirectory(create_hash_example)
+add_subdirectory(hash_target_example)
