@@ -1,5 +1,5 @@
 
-# CMakeLists file for the Chapter 1 example
+# CMakeLists file for the Chapter 8 example
 # 
 # SPDX-License-Identifier: MIT
 
