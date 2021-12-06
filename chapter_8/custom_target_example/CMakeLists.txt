@@ -11,4 +11,6 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate creation of a custom target"
   LANGUAGES CXX)
 
-add_custom_target(ch8_echo_target ALL cmake -E echo "Hello from a custom target in chapter 8")
+list(APPEND MYLIST "A" "B" "C")
+
+add_custom_target(ch8_echo_target ALL cmake -E echo "Hello from a custom target in chapter 8 ${MYLIST}" COMMAND_EXPAND_LISTS)
