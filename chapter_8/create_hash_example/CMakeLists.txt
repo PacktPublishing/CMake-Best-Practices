@@ -23,5 +23,16 @@ add_custom_command(OUTPUT hash_example.md5
                    VERBATIM 
 )
 
+find_program(GZIP_EXE gzip)
+
+if(GZIP_EXE)
+  message(STATUS "GZIP found, compressing hash")
+  add_custom_command(OUTPUT hash_example.md5 hash_example.md5.gz
+  COMMAND ${GZIP_EXE} -k -f ${CMAKE_CURRENT_BINARY_DIR}/hash_example.md5
+  APPEND) 
+endif()
+
+
+
 add_custom_target(ch8_compute_md5 ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/hash_example.md5)
 
