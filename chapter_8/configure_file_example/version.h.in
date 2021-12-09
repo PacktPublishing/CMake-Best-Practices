@@ -1,0 +1,4 @@
+#pragma once
+#ifndef CMAKE_BEST_PRACTICES_VERSION
+#define CMAKE_BEST_PRACTICES_VERSION "@GIT_REVISION@"
+#endif
