@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  "ch1_simple_executable"
+  ch1_simple_executable
   VERSION 1.0
   DESCRIPTION "A simple C++ project to demonstrate basic CMake usage"
   LANGUAGES CXX)
