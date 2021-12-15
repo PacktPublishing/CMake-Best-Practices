@@ -67,13 +67,13 @@ set_property(
 generate_export_header(
     ch3_hello_shared
     EXPORT_FILE_NAME
-    export_ch3_hello_shared.hpp
+    export/hello/export_hello.hpp
 )
 # Add CMAKE_CURRENT_BINARY_DIR to the include path so the generated header can
 # be found
 target_include_directories(
     ch3_hello_shared
-    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}"
+    PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/export"
 )
 
 # An alternative but not recomended way export the symbols is to use
