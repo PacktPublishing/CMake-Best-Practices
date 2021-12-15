@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    "chapter_1"
+    chapter_1
     VERSION 1.0
     DESCRIPTION
         "Examples for chapter 1 of the CMake Best Practices book"
