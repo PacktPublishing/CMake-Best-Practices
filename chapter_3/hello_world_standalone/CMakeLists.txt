@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    hello_world_standalone
+    ch3_hello_world_standalone
     VERSION 1.0
     DESCRIPTION
         "A simple C++ project to demonstrate creating a standalone executables"
@@ -13,6 +13,6 @@ project(
 )
 
 # Create a target to build an executable
-add_executable(hello_world_standalone)
+add_executable(ch3_hello_world_standalone)
 # Add source files to 'hello_world' target
-target_sources(hello_world_standalone PRIVATE src/main.cpp)
+target_sources(ch3_hello_world_standalone PRIVATE src/main.cpp)
