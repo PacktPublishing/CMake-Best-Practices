@@ -15,6 +15,7 @@ project(
 # Add subdirectories with examples
 add_subdirectory(hello_world_standalone)
 add_subdirectory(hello_shared_lib)
+add_subdirectory(hello_static_lib)
 add_subdirectory(hello_header_only)
 add_subdirectory(hello_object_lib)
 
