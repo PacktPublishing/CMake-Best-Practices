@@ -70,7 +70,7 @@ include(CMakePackageConfigHelpers)
 # We're not explicitly specifying the VERSION parameter to allow `write_basic_package_version_file` to 
 # get it from project(...) version (which is 1.0.1)
 write_basic_package_version_file(
-  "${CMAKE_CURRENT_BINARY_DIR}/ch4_ex05_lib-config-version.cmake"
+  "ch4_ex05_lib-config-version.cmake"
   # Package compatibility strategy. SameMajorVersion is essentially `semantic versioning`.
   COMPATIBILITY SameMajorVersion
 )
