@@ -80,10 +80,10 @@ doxygen_add_docs(
 include(GNUInstallDirs)
 
 # Install the HTML documentation to system's default documentation folder 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs/html/ DESTINATION ${CMAKE_INSTALL_DOCDIR})
+install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/docs/html/" DESTINATION "${CMAKE_INSTALL_DOCDIR}" COMPONENT ch6_ex01_html)
 
 # Install the MAN pages to man3 folder, since we're documenting a `library`.
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/docs/man/ DESTINATION ${CMAKE_INSTALL_MANDIR})
+install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/docs/man/" DESTINATION "${CMAKE_INSTALL_MANDIR}" COMPONENT ch6_ex01_man)
 
 # Override the package name
 set(CPACK_PACKAGE_NAME cbp_chapter6_example01)
