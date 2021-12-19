@@ -26,6 +26,6 @@ install(TARGETS ch4_ex02_static)
 # Install the header files. Since header files are not listed as output artifacts, they have
 # to be installed separately. 
 install (
-    DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    DIRECTORY include/
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
