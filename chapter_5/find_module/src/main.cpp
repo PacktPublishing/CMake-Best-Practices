@@ -4,5 +4,5 @@ int main(int, char**)
 {
     obscure::Obscure greeter{"Arcane wizard"};
     greeter.greet();
-    return 0;
+    
 }

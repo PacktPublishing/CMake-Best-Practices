@@ -2,5 +2,5 @@
 
 int main(int, char**) {
   fmt::print("Hello, world from the conan example!\n");
-  return 0;
+  
 }
