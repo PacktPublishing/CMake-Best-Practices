@@ -14,20 +14,20 @@ project(
 include(ExternalProject)
 
 ExternalProject_Add(
-  bertrand_downloaded
+  bertrand
   URL https://github.com/bernedom/bertrand/archive/refs/tags/0.0.17.tar.gz
   URL_HASH MD5=354141c50b8707f2574b69f30cef0238
   
-  INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/bertrand_downloaded_install
+  INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/bertrand_install
   CMAKE_ARGS -D BERTRAND_BUILD_TESTING=OFF             
              -D CMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 )
 
-ExternalProject_Get_Property(bertrand_downloaded INSTALL_DIR)
-set(BERTRAND_DOWNLOADED_INSTALL_DIR "${INSTALL_DIR}")
+ExternalProject_Get_Property(bertrand INSTALL_DIR)
+set(BERTRAND_INSTALL_DIR "${INSTALL_DIR}")
 
 # Add an extra step after the build step to extract and archive the license file
-ExternalProject_Add_Step(bertrand_downloaded copy_license 
+ExternalProject_Add_Step(bertrand copy_license 
                         COMMAND ${CMAKE_COMMAND} -E tar "cvzf" 
                                 ${CMAKE_CURRENT_BINARY_DIR}/licenses.tar.gz <SOURCE_DIR>/LICENSE 
                         DEPENDEES build
@@ -49,9 +49,9 @@ target_sources(
 )
 # make the executable to be built depend on the external project
 # to force downloading first
-add_dependencies(external_project_example bertrand_downloaded)
+add_dependencies(external_project_example bertrand)
 
 # make the header file for bertrand available
 target_include_directories(external_project_example PRIVATE 
-                          ${BERTRAND_DOWNLOADED_INSTALL_DIR}/include
+                          ${BERTRAND_INSTALL_DIR}/include
 )

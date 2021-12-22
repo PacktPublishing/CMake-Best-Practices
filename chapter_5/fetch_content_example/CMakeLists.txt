@@ -14,14 +14,14 @@ project(
 # make the FetchContent module available
 include(FetchContent)
 
-# declare where to get bertrand from 
+# declare where to get si from 
 FetchContent_Declare(
-  bertrand
-  GIT_REPOSITORY https://github.com/bernedom/bertrand.git
-  GIT_TAG f88bf21b3a651c07e94a9a9c33607dd659fe6318) # 0.0.17
+  SI
+  GIT_REPOSITORY https://github.com/bernedom/si.git
+  GIT_TAG 5f4b9a5924a8b3509baec07525fda9ad926adcec) # 2.3.0
 
-# populate bertrand to make it available
-FetchContent_MakeAvailable(bertrand)
+# populate si to make it available
+FetchContent_MakeAvailable(si)
 
 # Create a target to build an executable
 add_executable(fetch_content_example)
@@ -37,8 +37,8 @@ target_sources(
     PRIVATE src/main.cpp
 )
 
-# link the bertrand library to the executable
+# link the si library to the executable
 target_link_libraries(
     fetch_content_example
-    PRIVATE bertrand::bertrand
+    PRIVATE SI::SI
 )
