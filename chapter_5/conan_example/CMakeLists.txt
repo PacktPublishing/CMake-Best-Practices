@@ -19,11 +19,16 @@ if(CONAN)
   if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
     file( DOWNLOAD
-      "https://raw.githubusercontent.com/conan-io/cmake-conan/0.70.0/conan.cmake"
+    "https://raw.githubusercontent.com/conan-io/cmake-conan/0.17.0/conan.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake"
       EXPECTED_HASH
       SHA256=3bef79da16c2e031dc429e1dac87a08b9226418b300ce004cc125a82687baeef
+      STATUS download_status
       )
+
+    if(NOT download_status MATCHES "^0;")
+      message(FATAL_ERROR "Downloading conan.cmake failed with ${download_status}")
+    endif()
   endif()
   include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
   
@@ -34,9 +39,8 @@ if(CONAN)
   conan_cmake_autodetect(CONAN_SETTINGS)
   
   # install all the configured dependencies locally
-  conan_cmake_install(PATH_OR_REFERENCE ${CMAKE_CURRENT_LIST_DIR}
+  conan_cmake_install(PATH_OR_REFERENCE .
                       BUILD missing
-                      REMOTE conancenter
                       SETTINGS ${CONAN_SETTINGS}
                     )
 else()
@@ -44,8 +48,8 @@ else()
   return()
 endif()
 
-# Append the current binary dir to CMAKE_MODULE_PATH because conan stores the configuration for the dependencies there
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR})
+# Append the current binary dir to CMAKE_PREFIX_PATH so the conan package are found
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(fmt 6.1 REQUIRED)
 
