@@ -14,7 +14,7 @@ project(
 
 # enable debuging for finding the package (For illustrative purposes)
 # set(CMAKE_FIND_DEBUG_MODE TRUE )
-find_package(OpenSSL REQUIRED)
+find_package(OpenSSL REQUIRED COMPONENTS SSL)
 # # disable debugging again set(CMAKE_FIND_DEBUG_MODE FALSE )
 
 # Create a target to build an executable

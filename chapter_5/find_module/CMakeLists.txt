@@ -41,7 +41,7 @@ find_package(Obscure REQUIRED)
 
 # Create a target to build an executable
 add_executable(find_module_example)
-target_link_libraries(find_module_example Obscure::Obscure)
+target_link_libraries(find_module_example PRIVATE Obscure::Obscure)
 # set the c++ version required
 
 target_compile_features(
