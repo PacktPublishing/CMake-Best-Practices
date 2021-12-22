@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    conan_example
+    ch5_conan_example
     VERSION 1.0
     DESCRIPTION
         "A simple C++ project to demonstrate creating a standalone executables"
@@ -47,21 +47,21 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR})
 find_package(fmt 6.1 REQUIRED)
 
 # Create a target to build an executable
-add_executable(conan_example)
+add_executable(ch5_conan_example)
 # set the c++ version required
 
 target_compile_features(
-    conan_example
+    ch5_conan_example
     PRIVATE cxx_std_11
 )
 # Add source files to 'hello_world' target
 target_sources(
-    conan_example
+    ch5_conan_example
     PRIVATE src/main.cpp
 )
 
 # link the fmt library to the executable
 target_link_libraries(
-    conan_example
+    ch5_conan_example
     PRIVATE fmt::fmt
 )

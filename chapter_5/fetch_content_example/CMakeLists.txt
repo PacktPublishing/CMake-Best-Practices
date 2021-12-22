@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    fetch_content_example
+    ch5_fetch_content_example
     VERSION 1.0
     DESCRIPTION
         "A simple C++ project to demonstrate fetching external content"
@@ -24,21 +24,21 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(si)
 
 # Create a target to build an executable
-add_executable(fetch_content_example)
+add_executable(ch5_fetch_content_example)
 # set the c++ version required
 
 target_compile_features(
-    fetch_content_example
+    ch5_fetch_content_example
     PRIVATE cxx_std_11
 )
-# Add source files to 'fetch_content_example' target
+# Add source files to 'ch5_fetch_content_example' target
 target_sources(
-    fetch_content_example
+    ch5_fetch_content_example
     PRIVATE src/main.cpp
 )
 
 # link the si library to the executable
 target_link_libraries(
-    fetch_content_example
+    ch5_fetch_content_example
     PRIVATE SI::SI
 )
