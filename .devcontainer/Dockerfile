@@ -17,8 +17,14 @@ RUN pip3 install cpplint
 # Download version 3.21 from CMake
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh
 
-RUN chmod +x ./cmake-3.21.2-linux-x86_64.sh && ./cmake-3.21.2-linux-x86_64.sh --skip-license --prefix=/opt/pyenv/versions/3.7.5/
+RUN chmod +x ./cmake-3.21.2-linux-x86_64.sh && ./cmake-3.21.2-linux-x86_64.sh --skip-license --prefix=/opt/pyenv/versions/3.7.5/ && rm ./cmake-3.21.2-linux-x86_64.sh
 RUN cp /opt/pyenv/shims/cmake /opt/pyenv/shims/ccmake
+
+# Download and install vcpkg
+RUN curl -OL https://github.com/microsoft/vcpkg/archive/refs/tags/2021.05.12.tar.gz 
+RUN mkdir -p /opt/vcpkg && tar -xvf 2021.05.12.tar.gz --strip-components=1 -C /opt/vcpkg && rm 2021.05.12.tar.gz
+RUN /opt/vcpkg/bootstrap-vcpkg.sh && ln -s /opt/vcpkg/vcpkg /usr/local/bin/vcpkg
+
 USER conan
 
 #install git shell extension
