@@ -19,13 +19,16 @@ if(CONAN)
   if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
     file( DOWNLOAD
-      "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake"
-      "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
+      "https://raw.githubusercontent.com/conan-io/cmake-conan/0.70.0/conan.cmake"
+      "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake"
+      EXPECTED_HASH
+      SHA256=3bef79da16c2e031dc429e1dac87a08b9226418b300ce004cc125a82687baeef
+      )
   endif()
   include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
   
   # Pass the dependencies to conan
-  conan_cmake_configure(REQUIRES fmt/6.1.2 GENERATORS cmake_find_package)
+  conan_cmake_configure(REQUIRES fmt/6.1.2 GENERATORS cmake_find_package_multi)
 
   # retrieve the current CMake settings and store them in CONAN_SETTINGS
   conan_cmake_autodetect(CONAN_SETTINGS)
