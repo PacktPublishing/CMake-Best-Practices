@@ -58,7 +58,7 @@ target_sources(
     PRIVATE src/main.cpp
 )
 
-# link the openssl library to the executable
+# link the fmt library to the executable
 target_link_libraries(
     conan_conanfile_example
     PRIVATE fmt::fmt

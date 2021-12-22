@@ -30,7 +30,7 @@ find_package_handle_standard_args(
 mark_as_advanced(OBSCURE_LIBRARY OBSCURE_INCLUDE_DIR)
 
 # if not building the library itself
-if(OBSCURE_FOUND AND NOT TARGET Obscure::Obscure)
+if(NOT TARGET Obscure::Obscure)
     
     # make the library target available
     add_library(Obscure::Obscure UNKNOWN IMPORTED)
@@ -40,5 +40,6 @@ if(OBSCURE_FOUND AND NOT TARGET Obscure::Obscure)
         Obscure::Obscure
         PROPERTIES IMPORTED_LOCATION "${OBSCURE_LIBRARY}"
                    INTERFACE_INCLUDE_DIRECTORIES "${OBSCURE_INCLUDE_DIR}"
+                   IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
     )
 endif()
