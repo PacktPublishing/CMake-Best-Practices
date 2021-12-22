@@ -1,0 +1,43 @@
+# CMakeLists creating a simple executable that links library retrieved with vcpkg
+#
+# SPDX-License-Identifier: MIT
+
+cmake_minimum_required(VERSION 3.21)
+
+project(
+    ch5_vcpkg_example
+    VERSION 1.0
+    DESCRIPTION
+        "A simple C++ project to demonstrate creating a standalone executables"
+    LANGUAGES CXX
+)
+find_program(VCPKG_EXECUTABLE vcpkg)
+
+# if built within conan use the file from local cache
+if(NOT VCPKG_EXECUTABLE)
+  message(WARNING "vcpkg not found. Will not build vcpkg example")
+  return()
+endif()
+
+
+find_package(rapidjson REQUIRED)
+
+# Create a target to build an executable
+add_executable(ch5_vcpkg_example)
+# set the c++ version required
+
+target_compile_features(
+    ch5_vcpkg_example
+    PRIVATE cxx_std_11
+)
+# Add source files to 'hello_world' target
+target_sources(
+    ch5_vcpkg_example
+    PRIVATE src/main.cpp
+)
+
+# link the fmt library to the executable
+target_link_libraries(
+    ch5_vcpkg_example
+    PRIVATE rapidjson::rapidjson
+)
