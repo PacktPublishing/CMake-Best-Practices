@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    external_project_example
+    ch5_external_project_example
     VERSION 1.0
     DESCRIPTION
         "A simple C++ project to demonstrate fetching external content"
@@ -34,23 +34,23 @@ ExternalProject_Add_Step(bertrand copy_license
 )
 
 # Create a target to build an executable
-add_executable(external_project_example)
+add_executable(ch5_external_project_example)
 # set the c++ version required
 
 target_compile_features(
-    external_project_example
+    ch5_external_project_example
     PRIVATE cxx_std_17
 )
-# Add source files to 'external_project_example' target
+# Add source files to 'ch5_external_project_example' target
 target_sources(
-    external_project_example
+    ch5_external_project_example
     PRIVATE src/main.cpp
 )
 # make the executable to be built depend on the external project
 # to force downloading first
-add_dependencies(external_project_example bertrand)
+add_dependencies(ch5_external_project_example bertrand)
 
 # make the header file for bertrand available
-target_include_directories(external_project_example PRIVATE 
+target_include_directories(ch5_external_project_example PRIVATE 
                           ${BERTRAND_INSTALL_DIR}/include
 )

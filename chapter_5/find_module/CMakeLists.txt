@@ -40,16 +40,16 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(Obscure REQUIRED)
 
 # Create a target to build an executable
-add_executable(find_module_example)
-target_link_libraries(find_module_example PRIVATE Obscure::Obscure)
+add_executable(ch5_find_module_example)
+target_link_libraries(ch5_find_module_example PRIVATE Obscure::Obscure)
 # set the c++ version required
 
 target_compile_features(
-    find_module_example
+    ch5_find_module_example
     PRIVATE cxx_std_11
 )
 # Add source files to 'hello_world' target
 target_sources(
-    find_module_example
+    ch5_find_module_example
     PRIVATE src/main.cpp
 )
