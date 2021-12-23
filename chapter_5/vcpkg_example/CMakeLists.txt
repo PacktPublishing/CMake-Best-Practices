@@ -20,7 +20,7 @@ if(NOT VCPKG_EXECUTABLE)
 endif()
 
 
-find_package(rapidjson REQUIRED)
+find_package(RapidJSON REQUIRED)
 
 # Create a target to build an executable
 add_executable(ch5_vcpkg_example)
@@ -39,5 +39,5 @@ target_sources(
 # link the fmt library to the executable
 target_link_libraries(
     ch5_vcpkg_example
-    PRIVATE rapidjson::rapidjson
+    PRIVATE rapidjson
 )
