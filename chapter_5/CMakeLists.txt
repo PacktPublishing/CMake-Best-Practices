@@ -18,4 +18,13 @@ add_subdirectory(fetch_content_example)
 add_subdirectory(external_project_example)
 add_subdirectory(conan_example)
 add_subdirectory(conan_conanfile_example)
-add_subdirectory(vcpkg_example)
+
+
+find_program(VCPKG_EXECUTABLE vcpkg)
+
+# if built within conan use the file from local cache
+if(NOT VCPKG_EXECUTABLE OR NOT CMAKE_TOOLCHAIN_FILE MATCHES "vcpkg.cmake$")
+  message(WARNING "vcpkg not found or vcpkg toolchain not set. Will not build vcpkg example")
+else()
+    add_subdirectory(vcpkg_example)
+endif()
