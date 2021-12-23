@@ -1,5 +1,5 @@
 {
-    "name" : "vcpkg_example",
+    "name" : "vcpkg-example",
     "version-semver" : "0.0.1",
     "dependencies" :
     [
