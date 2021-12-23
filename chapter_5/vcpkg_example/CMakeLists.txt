@@ -4,8 +4,6 @@
 
 cmake_minimum_required(VERSION 3.21)
 
-
-
 project(
     ch5_vcpkg_example
     VERSION 1.0
@@ -14,9 +12,10 @@ project(
     LANGUAGES CXX
 )
 
-
-
-find_package(RapidJSON REQUIRED)
+find_package(RapidJSON QUIET)
+if(NOT RapidJSON_FOUND)
+    message(WARNING "RapidJSON not found, skipping vcpkg example")
+endif()
 
 # Create a target to build an executable
 add_executable(ch5_vcpkg_example)
