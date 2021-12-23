@@ -4,6 +4,8 @@
 
 cmake_minimum_required(VERSION 3.21)
 
+
+
 project(
     ch5_vcpkg_example
     VERSION 1.0
@@ -11,13 +13,7 @@ project(
         "A simple C++ project to demonstrate creating a standalone executables"
     LANGUAGES CXX
 )
-find_program(VCPKG_EXECUTABLE vcpkg)
 
-# if built within conan use the file from local cache
-if(NOT VCPKG_EXECUTABLE)
-  message(WARNING "vcpkg not found. Will not build vcpkg example")
-  return()
-endif()
 
 
 find_package(RapidJSON REQUIRED)
