@@ -11,41 +11,35 @@ project(
         "A simple C++ project to demonstrate creating a standalone executables"
     LANGUAGES CXX
 )
-find_program(CONAN conan)
 
-# if built within conan use the file from local cache
-if(CONAN)
+
   
-  # Download conan.cmake if it does not already exist
-  if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
-    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-    file( DOWNLOAD
-      "https://raw.githubusercontent.com/conan-io/cmake-conan/0.17.0/conan.cmake"
-      "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake"
-      EXPECTED_HASH
-      SHA256=3bef79da16c2e031dc429e1dac87a08b9226418b300ce004cc125a82687baeef
-      STATUS download_status
-      )
-    if(NOT download_status MATCHES "^0;")
-      message(FATAL_ERROR "Downloading conan.cmake failed with ${download_status}")
-    endif()
-
+# Download conan.cmake if it does not already exist
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
+  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+  file( DOWNLOAD
+    "https://raw.githubusercontent.com/conan-io/cmake-conan/0.17.0/conan.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake"
+    EXPECTED_HASH
+    SHA256=3bef79da16c2e031dc429e1dac87a08b9226418b300ce004cc125a82687baeef
+    STATUS download_status
+    )
+  if(NOT download_status MATCHES "^0;")
+    message(FATAL_ERROR "Downloading conan.cmake failed with ${download_status}")
   endif()
 
-  include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
-  # Detect the current settings of cmake and store them for conan in CONAN_SETTINGS
-  conan_cmake_autodetect(CONAN_SETTINGS)
-  
-  # Run conan to set up the dependencies
-  conan_cmake_run(CONANFILE ${CMAKE_CURRENT_LIST_DIR}/conanfile.txt 
-                  BASIC_SETUP
-                  BUILD missing
-                  SETTINGS ${CONAN_SETTINGS})
-                  
-else()
-  message(WARNING "Conan not found. Will not build conan example")
-  return()
 endif()
+
+include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
+# Detect the current settings of cmake and store them for conan in CONAN_SETTINGS
+conan_cmake_autodetect(CONAN_SETTINGS)
+
+# Run conan to set up the dependencies
+conan_cmake_run(CONANFILE ${CMAKE_CURRENT_LIST_DIR}/conanfile.txt 
+                BASIC_SETUP
+                BUILD missing
+                SETTINGS ${CONAN_SETTINGS})
+                
 
 # Append the current binary dir to CMAKE_PREFIX_PATH so the conan package are found
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_BINARY_DIR})
