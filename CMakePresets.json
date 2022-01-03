@@ -8,9 +8,10 @@
     "configurePresets": [
         {
             "name": "ninja",
-            "displayName": "Ninja Config",
+            "displayName": "Ninja",
             "description": "build using Ninja generator",
             "generator": "Ninja",
+            "hidden" : true,
             "binaryDir": "${sourceDir}/build"
         },
         {
@@ -24,7 +25,7 @@
         {
             "name": "ninja-release",
             "inherits": "ninja",
-            "displayName": "Ninja release",
+            "displayName": "Ninja Release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
