@@ -66,7 +66,8 @@ jobs:
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
-          choco install -y --limit-output openssl doxygen.install plantuml
+          choco install -y --limit-output openssl plantuml
+          choco install -y --limit-output doxygen.install --version="1.9.2"
 
       - name: dependencies (debian-like)
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
