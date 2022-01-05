@@ -4,6 +4,13 @@
 
 cmake_minimum_required(VERSION 3.21)
 
+option(ENABLE_DOCUMENTATION "Enable documentation" OFF)
+
+if(NOT ENABLE_DOCUMENTATION)
+  message(STATUS "Documentation is disabled, excluded chapter 6 documentation examples")
+  return()
+endif()
+
 project(
   "CMake Best Practices Chapter 6"
   VERSION 1.0
