@@ -83,8 +83,9 @@
     ],
     "testPresets": [
         {
-            "name": "ci-unit-tests",
-            "configurePreset": "ci-ninja",
+            "name": "ci-unit-tests-debug",
+            "configurePreset": "ci-msvc-19",
+            "configuration": "Debug",
             "output": {
                 "outputOnFailure": true
             },
