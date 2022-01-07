@@ -7,7 +7,7 @@
     },
     "configurePresets": [
         {
-            "name": "ninja",
+            "name": "ci-ninja",
             "displayName": "Ninja",
             "description": "build using Ninja generator",
             "generator": "Ninja",
@@ -15,41 +15,43 @@
             "binaryDir": "${sourceDir}/build"
         },
         {
-            "name": "ninja-debug",
-            "inherits": "ninja",
+            "name": "ci-ninja-debug",
+            "inherits": "ci-ninja",
             "displayName": "Ninja Debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "ninja-release",
-            "inherits": "ninja",
+            "name": "ci-ninja-release",
+            "inherits": "ci-ninja",
             "displayName": "Ninja Release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
-            "name": "ninja-multi",
-            "inherits": "ninja",
+            "name": "ci-ninja-multi",
+            "inherits": "ci-ninja",
             "displayName": "Ninja Multi-Config",
             "description": "build using Ninja Multi-Config generator",
             "generator": "Ninja Multi-Config"
         },
         {
-            "name": "Sanitizers",
-            "inherits": "ninja-debug",
+            "name": "ci-ninja-sanitizers",
+            "inherits": "ci-ninja-debug",
             "displayName": "Sanitizers Debug",
             "cacheVariables": {
                 "ENABLE_ADDRESS_SANITIZER": "ON"
             }
         },
         {
-            "name": "windows-only",
-            "inherits": "ninja",
-            "displayName": "Windows-only configuration",
-            "description": "This build is only available on Windows",
+            "name": "ci-msvc-19",
+            
+            "displayName": "msvc 19",
+            "description": "Configuring for msvc 19",
+            "generator": "Visual Studio 16 2019",
+            "binaryDir" : "build",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -59,14 +61,30 @@
     ],
     "buildPresets": [
         {
-            "name": "ninja",
-            "configurePreset": "ninja"
+            "name": "ci-msvc-debug",
+            "configurePreset": "ci-msvc-19",
+            "configuration": "Debug",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "ci-msvc-release",
+            "configurePreset": "ci-msvc-19",
+            "configuration": "Release",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
         }
     ],
     "testPresets": [
         {
-            "name": "ninja",
-            "configurePreset": "ninja",
+            "name": "ci-unit-tests",
+            "configurePreset": "ci-ninja",
             "output": {
                 "outputOnFailure": true
             },
