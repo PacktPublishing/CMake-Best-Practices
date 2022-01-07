@@ -20,16 +20,22 @@ jobs:
           - name: ubuntu-gcc-10
             os: ubuntu-20.04
             compiler: g++-10
+            configurePreset: ci-ninja-debug
 
           - name: ubuntu-clang-12
             os: ubuntu-20.04
             compiler: clang++-12
+            configurePreset: ci-ninja-debug
 
           - name: macos-appleclang-12
             os: macos-10.15
+            configurePreset: ci-ninja-debug
 
           - name: windows-msvc-19
             os: windows-2019
+            configurePreset: ci-msvc-19
+            buildPreset: ci-msvc-debug
+            testPreset: ci-unit-tests-debug
 
     steps:
       - uses: actions/checkout@v1
@@ -49,6 +55,7 @@ jobs:
           if [ "${{ matrix.compiler }}" != "" ]; then
             echo "CXX=${{ matrix.compiler }}" >> $GITHUB_ENV
           fi
+          cmake --version
         shell: bash
 
       - name: dependecies (macos)
@@ -82,21 +89,27 @@ jobs:
           echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
         shell: pwsh
 
-      - name: make-build-dir
+      - name: cmake-configure
         run: |
-          mkdir build
+          cmake --preset=${{ matrix.configurePreset }}
 
-      - name: cmake-configure-debug
+      - name: build
         run: |
-          cmake .. -DCMAKE_BUILD_TYPE=Debug
-        working-directory: ./build
-
-      - name: build-debug
-        run: cmake --build ./build --config Debug
+          if [ "${{ matrix.buildPreset }}" == "" ]; then
+            cmake --build ./build 
+          else
+            cmake --build --preset=${{ matrix.buildPreset }}
+          fi
+        shell: bash
 
       - name: ctest
-        run: ctest -C Debug
-        working-directory: ./build
+        run: |
+          if [ "${{ matrix.testPreset }}" == "" ]; then
+            ctest --test-dir build
+          else
+            ctest --preset=${{ matrix.testPreset }}
+          fi
+        shell: bash
 
       - name: pytest
         run: python3 -m pytest -x -v
