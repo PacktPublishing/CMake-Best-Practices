@@ -126,6 +126,8 @@ jobs:
           ctest -T Coverage
           cmake --build . --target coverage_report
           gcovr -r ../ . --html -o coverage-report.html
+          lcov -c -d . -o lcov.info
+          genhtml -o lcov_report lcov.info
 
         working-directory: ./build
 
