@@ -1,4 +1,4 @@
-# Top-level CMakeLists file for the Chapter 3 example content.
+# Top-level CMakeLists file for the Chapter 1 example content.
 #
 # SPDX-License-Identifier: MIT
 
