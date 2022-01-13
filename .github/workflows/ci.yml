@@ -15,7 +15,7 @@ jobs:
       fail-fast: true
       matrix:
         name:
-          [ubuntu-gcc-10, ubuntu-clang-12, macos-appleclang-12, windows-msvc-19]
+          [ubuntu-gcc-10, ubuntu-clang-12, macos-appleclang-12, windows-msvc-19, windows-clang]
         include:
           - name: ubuntu-gcc-10
             os: ubuntu-20.04
@@ -36,6 +36,10 @@ jobs:
             configurePreset: ci-msvc-19
             buildPreset: ci-msvc-debug
             testPreset: ci-unit-tests-debug
+
+          - name: windows-clang
+            os: windows-2019
+            configurePreset: ci-ninja-windows-debug
 
     steps:
       - uses: actions/checkout@v1
@@ -73,7 +77,7 @@ jobs:
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
-          choco install -y --limit-output openssl plantuml
+          choco install -y --limit-output openssl plantuml ninja
           choco install -y --limit-output doxygen.install --version="1.9.2"
 
       - name: dependencies (debian-like)
