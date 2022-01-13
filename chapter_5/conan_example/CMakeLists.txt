@@ -4,12 +4,13 @@
 
 cmake_minimum_required(VERSION 3.21)
 
+# using language CXX and C is necessary so conan recognizes the compiler correctly when compiling with clang under windows
 project(
     ch5_conan_example
     VERSION 1.0
     DESCRIPTION
-        "A simple C++ project to demonstrate creating a standalone executables"
-    LANGUAGES CXX
+        "A simple C++ project to demonstrate fetching conan packages directly out of CMake"
+    LANGUAGES CXX C
 )
   
 if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
@@ -28,11 +29,11 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
 endif()
 include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
 
-# Pass the dependencies to conan
-conan_cmake_configure(REQUIRES fmt/6.1.2 GENERATORS cmake_find_package_multi)
-
 # retrieve the current CMake settings and store them in CONAN_SETTINGS
 conan_cmake_autodetect(CONAN_SETTINGS)
+
+# Pass the dependencies to conan
+conan_cmake_configure(REQUIRES fmt/6.1.2 GENERATORS cmake_find_package_multi)
 
 # install all the configured dependencies locally
 conan_cmake_install(PATH_OR_REFERENCE .
