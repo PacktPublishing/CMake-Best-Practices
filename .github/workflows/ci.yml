@@ -77,7 +77,7 @@ jobs:
       - name: dependencies (windows)
         if: runner.os == 'Windows'
         run: |
-          choco install -y --limit-output openssl plantuml ninja
+          choco install -y --limit-output openssl plantuml ninja opencppcoverage
           choco install -y --limit-output doxygen.install --version="1.9.2"
 
       - name: dependencies (debian-like)
@@ -120,24 +120,32 @@ jobs:
 
       # Note in order for ctest -T Coverage to work the tests have to be executed first
       # with ctest. Moving this before the test step breaks coverage
-      - name: coverage
+      - name: coverage gcov
         if: contains(matrix.compiler, 'g++-10')
         run: |
-          ctest -T Coverage
-          cmake --build . --target coverage_report
-          gcovr -r ../ . --html -o coverage-report.html
+          mkdir -p gcov-coverage
+          gcovr -r ../ . --html-details -o gcov-coverage/coverage.html
           lcov -c -d . -o lcov.info
-          genhtml -o lcov_report lcov.info
+          genhtml -o lcov-coverage lcov.info
         working-directory: ./build
 
+      - name: coverage openCppCoverage
+        if: contains(matrix.buildPreset, 'ci-msvc-debug')
+        run: |
+          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --sources ${{github.workspace}}\\ --modules ${{github.workspace}}\\build  --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
+          dir /s
+        shell: cmd
         working-directory: ./build
 
       - name: archive coverage results
-        if: contains(matrix.compiler, 'g++-10')
         uses: actions/upload-artifact@v2
+        if: contains(matrix.buildPreset, 'ci-msvc-debug') || contains(matrix.compiler, 'g++-10')
         with:
           name: code-coverage-report
-          path: ./build/coverage-report.html
+          path: |
+            ./build/gcov-coverage/
+            ./build/lcov-coverage/
+            ./build/opencppcoverage.html
 
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
@@ -145,3 +153,4 @@ jobs:
           cmake -S . -B build-sanitizers -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
           cmake --build build-sanitizers
           ctest --test-dir build-sanitizers
+  
