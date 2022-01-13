@@ -128,6 +128,7 @@ jobs:
           gcovr -r ../ . --html -o coverage-report.html
           lcov -c -d . -o lcov.info
           genhtml -o lcov_report lcov.info
+        working-directory: ./build
 
         working-directory: ./build
 
