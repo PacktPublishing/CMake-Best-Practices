@@ -12,32 +12,18 @@ project(
     LANGUAGES CXX
 )
 
-# the following code is used to set up and build the library which we want to find with the find_module.
-# calling cmake from itself is dangerous and should not be done in practice
-# this will configure and build the hello_lib from chapter3 into the folder ./dep
-# it will not perform a regular installation as the idea is to provide an example of how include binary projects 
-# by using a custom written find_module
-
-execute_process(
-    COMMAND cmake -S ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/ -B ${CMAKE_CURRENT_BINARY_DIR}/dep/build/ -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_CURRENT_BINARY_DIR}/dep/lib/ -DCMAKE_BUILD_TYPE=Release -G${CMAKE_GENERATOR}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-execute_process(
-    COMMAND cmake --build ${CMAKE_CURRENT_BINARY_DIR}/dep/build/ --config Release
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-execute_process(
-    COMMAND cmake -E copy_directory dep_source/include ${CMAKE_CURRENT_BINARY_DIR}/dep/include 
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-# End of setting up block - The example starts below
+# The following example will look for a pre-built library in the folder ${CMAKE_CURRENT_BINARY_DIR}/dep. To use it build the project located in `dep_source`
+# first and install it in the directory `dep` of the current source tree
 
 # Tell CMake where to look for find modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # try to find the package obscure see the file cmake/FindObscure.cmake for the innner workings
-find_package(Obscure REQUIRED)
+find_package(Obscure QUIET)
+
+if(NOT obscure_FOUND)
+    message(STATUS "Prebuilt library 'obscure' not found, skipping find module example")
+    return()
+endif()
 
 # Create a target to build an executable
 add_executable(ch5_find_module_example)
