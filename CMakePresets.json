@@ -7,6 +7,36 @@
     },
     "configurePresets": [
         {
+            "name": "gcc-11",
+            "description": "GCC 11 compiler",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/gcc-11"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/g++-11"
+                }
+            }
+        },
+        {
+            "name": "clang-13",
+            "description": "Clang 13 compiler",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/clang-13"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/clang++-13"
+                }
+            }
+        },
+        {
             "name": "cppcheck",
             "hidden": true,
             "cacheVariables": {
@@ -28,18 +58,17 @@
             }
         },
         {
-            "name" : "iwyu",
-            "hidden" :true,
+            "name": "iwyu",
+            "hidden": true,
             "cacheVariables": {
-                "CMAKE_CXX_INCLUDE_WHAT_YOU_USE" : "iwyu;-Xiwyu;any;-Xiwyu;iwyu;-Xiwyu;args;--verbose=5"
+                "CMAKE_CXX_INCLUDE_WHAT_YOU_USE": "iwyu;-Xiwyu;any;-Xiwyu;iwyu;-Xiwyu;args;--verbose=5"
             }
-
         },
         {
-            "name" : "lwyu",
-            "hidden" : true,
+            "name": "lwyu",
+            "hidden": true,
             "cacheVariables": {
-                "CMAKE_LINK_WHAT_YOU_USE" : true
+                "CMAKE_LINK_WHAT_YOU_USE": true
             }
         },
         {
@@ -52,7 +81,10 @@
         },
         {
             "name": "ci-ninja-debug",
-            "inherits": ["ci-ninja", "clang-tidy"],
+            "inherits": [
+                "ci-ninja",
+                "clang-tidy"
+            ],
             "displayName": "Ninja Debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -133,6 +165,14 @@
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             }
+        },
+        {
+            "name": "ninja-debug-clang-13",
+            "inherits": [
+                "ci-ninja-debug",
+                "clang-13"
+            ],
+            "displayName": "Ninja (Debug, Clang 13)"
         }
     ],
     "buildPresets": [
