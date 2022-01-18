@@ -7,9 +7,10 @@ on:
     types: [published]
 
 jobs:
-  name: linux-coverage
-  runs-on: ubuntu-20.04
-  steps:
+  linux-coverage:
+    name: linux-coverage
+    runs-on: ubuntu-20.04
+    steps:
       - uses: actions/checkout@v1
 
       - name: install-python-3
@@ -44,7 +45,6 @@ jobs:
       # Note in order for ctest -T Coverage to work the tests have to be executed first
       # with ctest. Moving this before the test step breaks coverage
       - name: coverage gcov
-        if: contains(matrix.compiler, 'g++-10')
         run: |
           mkdir -p gcov-coverage
           gcovr -r ../ . --html-details -o gcov-coverage/coverage.html
@@ -54,9 +54,58 @@ jobs:
 
       - name: archive coverage results
         uses: actions/upload-artifact@v2
-        if: contains(matrix.buildPreset, 'ci-msvc-debug') || contains(matrix.compiler, 'g++-10')
         with:
           name: code-coverage-report
           path: |
             ./build/gcov-coverage/
             ./build/lcov-coverage/
+  
+  windows-coverage:
+    name: windows-coverage
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install-python-3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: install-python-deps
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install pytest conan
+
+      - name: dependencies (windows)
+        run: |
+          choco install -y --limit-output openssl ninja opencppcoverage
+
+      - name: correct-tmp-dir (win)
+        run: |
+          echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+          echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: cmake-configure
+        run: |
+          cmake --preset=ci-msvc-19
+
+      - name: build
+        run: |
+          cmake --build --preset=ci-msvc-debug
+
+      - name: coverage openCppCoverage
+        run: |
+          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
+        shell: cmd
+        working-directory: ./build
+
+      - name: archive coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: |
+            ./build/opencppcoverage.html
+
+  

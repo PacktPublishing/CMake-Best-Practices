@@ -132,8 +132,7 @@ jobs:
       - name: coverage openCppCoverage
         if: contains(matrix.buildPreset, 'ci-msvc-debug')
         run: |
-          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --sources ${{github.workspace}}\\ --modules ${{github.workspace}}\\build  --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
-          dir /s
+          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
         shell: cmd
         working-directory: ./build
 
