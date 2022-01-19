@@ -31,6 +31,15 @@
             }
         },
         {
+            "name" : "ci-ninja-coverage",
+            "inherits" : "ci-ninja-debug",
+            "displayName": "Ninja Coverage",
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "--coverage"
+            }
+
+        },
+        {
             "name": "ci-ninja-multi",
             "inherits": "ci-ninja",
             "displayName": "Ninja Multi-Config",
