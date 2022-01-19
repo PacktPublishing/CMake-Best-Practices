@@ -118,34 +118,6 @@ jobs:
       - name: pytest
         run: python3 -m pytest -x -v
 
-      # Note in order for ctest -T Coverage to work the tests have to be executed first
-      # with ctest. Moving this before the test step breaks coverage
-      - name: coverage gcov
-        if: contains(matrix.compiler, 'g++-10')
-        run: |
-          mkdir -p gcov-coverage
-          gcovr -r ../ . --html-details -o gcov-coverage/coverage.html
-          lcov -c -d . -o lcov.info
-          genhtml -o lcov-coverage lcov.info
-        working-directory: ./build
-
-      - name: coverage openCppCoverage
-        if: contains(matrix.buildPreset, 'ci-msvc-debug')
-        run: |
-          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
-        shell: cmd
-        working-directory: ./build
-
-      - name: archive coverage results
-        uses: actions/upload-artifact@v2
-        if: contains(matrix.buildPreset, 'ci-msvc-debug') || contains(matrix.compiler, 'g++-10')
-        with:
-          name: code-coverage-report
-          path: |
-            ./build/gcov-coverage/
-            ./build/lcov-coverage/
-            ./build/opencppcoverage.html
-
       - name: sanitizers
         if: contains(matrix.compiler, 'clang++-12')
         run: |
