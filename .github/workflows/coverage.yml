@@ -30,7 +30,7 @@ jobs:
 
       - name: cmake-configure
         run: |
-          cmake --preset=ci-ninja-debug
+          cmake --preset=ci-ninja-coverage
 
       - name: build
         run: |
@@ -47,7 +47,7 @@ jobs:
       - name: coverage gcov
         run: |
           mkdir -p gcov-coverage
-          gcovr -r ../ . --html-details -o gcov-coverage/coverage.html
+          gcovr -r ../ . -e '_deps' -e '(.+/)bertrand.hpp' -e '(.+/)CMakeCXXCompilerId.cpp' --html-details -o gcov-coverage/coverage.html
           lcov -c -d . -o lcov.info
           genhtml -o lcov-coverage lcov.info
         working-directory: ./build
@@ -75,7 +75,7 @@ jobs:
       - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install pytest conan
+          pip3 install conan
 
       - name: dependencies (windows)
         run: |
@@ -97,7 +97,7 @@ jobs:
 
       - name: coverage openCppCoverage
         run: |
-          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" -v --cover_children --export_type html:opencppcoverage.html -- ctest --build-config Debug
+          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" --modules ${{github.workspace}} --sources ${{ github.workspace }} --cover_children --export_type html:opencppcoverage -- "C:\\Program Files\\CMake\\bin\\ctest.exe" --build-config Debug
         shell: cmd
         working-directory: ./build
 
@@ -106,6 +106,6 @@ jobs:
         with:
           name: code-coverage-report
           path: |
-            ./build/opencppcoverage.html
+            ./build/opencppcoverage/
 
   
