@@ -49,9 +49,10 @@
         {
             "name": "ci-ninja-sanitizers",
             "inherits": "ci-ninja-debug",
-            "displayName": "Sanitizers Debug",
+            "displayName": "Address Sanitizers Debug",
             "cacheVariables": {
-                "CMAKE_CXX_FLAGS": "-fsanitize=address -fno-omit-frame-pointer"
+                "CMAKE_CXX_FLAGS": "-fsanitize=address -fno-omit-frame-pointer",
+                "ENABLE_ADDRESS_SANITIZER_TEST":true
             }
         },
         {
