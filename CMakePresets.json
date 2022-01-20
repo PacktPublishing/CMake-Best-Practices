@@ -51,7 +51,7 @@
             "inherits": "ci-ninja-debug",
             "displayName": "Sanitizers Debug",
             "cacheVariables": {
-                "ENABLE_ADDRESS_SANITIZER": "ON"
+                "CMAKE_CXX_FLAGS": "-fsanitize=address -fno-omit-frame-pointer"
             }
         },
         {

@@ -25,6 +25,8 @@ set(CMAKE_BUILD_TYPE
     CACHE STRING "Default build type for single-config generators"
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
 # Print generator type and build type (if applicable)
 get_property(
     is_multi_config_generator GLOBAL
