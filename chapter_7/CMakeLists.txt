@@ -15,7 +15,6 @@ project(
 add_subdirectory(simple_test)
 add_subdirectory(pass_fail_criteria)
 add_subdirectory(timeout_example)
-add_subdirectory(code_coverage_example)
 add_subdirectory(simple_sanitizer_example)
 add_subdirectory(combined_sanitizer_example)
 add_subdirectory(cppcheck_example)
