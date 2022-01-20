@@ -69,16 +69,17 @@
         {
             "name": "ci-msvc-19-sanitizer",
             "displayName": "msvc 19",
-            "description": "Configuring for msvc 19",
+            "description": "Configuring for code sanitizing with msvc 19 ",
             "generator": "Visual Studio 16 2019",
-            "binaryDir": "build",
+            "binaryDir": "build-sanitizer",
+            "architecture": "x64",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             },
             "cacheVariables": {
-                "CMAKE_CXX_FLAGS": "/fsanitize=address",
+                "CMAKE_CXX_FLAGS": "/fsanitize=address /EHsc /Oy-",
                 "ENABLE_ADDRESS_SANITIZER_TEST": true
             }
         },

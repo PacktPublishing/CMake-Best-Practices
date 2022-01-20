@@ -108,4 +108,26 @@ jobs:
           path: |
             ./build/opencppcoverage
 
+      # experimental below
+
+      # - name: list dir content
+      #   run: |
+      #     dir  /s  /a  /p  "C:\Program Files (x86)\Microsoft Visual Studio"
+      #   shell: cmd
+
+      - name: sanitizer
+        run: |
+          cmake --preset=ci-msvc-19-sanitizer
+          cmake --build --preset=ci-msvc-debug-sanitizer
+
+# set PATH="%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30135\lib\x64\;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64"          
+      - name: run-msvc-sanitizer
+        working-directory: build-sanitizer
+        run: |
+          set PATH="%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64;C:\Program Files\CMake\bin"
+                                                                                                                             
+          echo %PATH%
+          "C:\Program Files\CMake\bin\ctest.exe" -v --output-on-failure -C Debug
+        shell: cmd
+
   
