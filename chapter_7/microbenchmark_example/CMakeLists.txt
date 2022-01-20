@@ -1,5 +1,5 @@
 
-# CMakeLists file for the Chapter 7 example, showing a simple project which executes a test
+# CMakeLists file for the Chapter 7. Example to show how to use catch micro benchmarking
 # 
 # SPDX-License-Identifier: MIT
 

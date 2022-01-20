@@ -1,5 +1,5 @@
 
-# CMakeLists file for the Chapter 7 example, showing a simple project which executes a test
+# CMakeLists file for the Chapter 7. Example to show how cppcheck can be used
 # 
 # SPDX-License-Identifier: MIT
 

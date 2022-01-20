@@ -1,5 +1,5 @@
 
-# CMakeLists file for the Chapter 7 example, showing a simple project wthat tests for a specific string
+# CMakeLists file for the Chapter 7. Example to show how to use custom pass/fail criteria for tests
 # 
 # SPDX-License-Identifier: MIT
 
