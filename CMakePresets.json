@@ -11,7 +11,7 @@
             "displayName": "Ninja",
             "description": "build using Ninja generator",
             "generator": "Ninja",
-            "hidden" : true,
+            "hidden": true,
             "binaryDir": "${sourceDir}/build"
         },
         {
@@ -31,13 +31,12 @@
             }
         },
         {
-            "name" : "ci-ninja-coverage",
-            "inherits" : "ci-ninja-debug",
+            "name": "ci-ninja-coverage",
+            "inherits": "ci-ninja-debug",
             "displayName": "Ninja Coverage",
             "cacheVariables": {
                 "CMAKE_CXX_FLAGS": "--coverage"
             }
-
         },
         {
             "name": "ci-ninja-multi",
@@ -52,16 +51,15 @@
             "displayName": "Address Sanitizers Debug",
             "cacheVariables": {
                 "CMAKE_CXX_FLAGS": "-fsanitize=address -fno-omit-frame-pointer",
-                "ENABLE_ADDRESS_SANITIZER_TEST":true
+                "ENABLE_ADDRESS_SANITIZER_TEST": true
             }
         },
         {
             "name": "ci-msvc-19",
-            
             "displayName": "msvc 19",
             "description": "Configuring for msvc 19",
             "generator": "Visual Studio 16 2019",
-            "binaryDir" : "build",
+            "binaryDir": "build",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -69,12 +67,29 @@
             }
         },
         {
-            "name" : "ci-ninja-windows-debug",
+            "name": "ci-msvc-19-sanitizer",
+            "displayName": "msvc 19",
+            "description": "Configuring for msvc 19",
+            "generator": "Visual Studio 16 2019",
+            "binaryDir": "build",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "/fsanitize=address",
+                "ENABLE_ADDRESS_SANITIZER_TEST": true
+            }
+        },
+        {
+            "name": "ci-ninja-windows-debug",
             "displayName": "Ninja (Debug) with clang for windows",
-            "inherits" : ["ci-ninja-debug"],
+            "inherits": [
+                "ci-ninja-debug"
+            ],
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/.github/toolchain/clang-on-windows-toolchain.cmake"
-                                                      
             },
             "condition": {
                 "type": "equals",
@@ -98,6 +113,16 @@
             "name": "ci-msvc-release",
             "configurePreset": "ci-msvc-19",
             "configuration": "Release",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "ci-msvc-debug-sanitizer",
+            "configurePreset": "ci-msvc-19-sanitizer",
+            "configuration": "Debug",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
