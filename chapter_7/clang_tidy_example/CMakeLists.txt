@@ -13,6 +13,8 @@ project(
 
 find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy)
 
+message(ERROR ${CMAKE_CXX_CLANG_TIDY})
+
 if(CLANG_TIDY_EXECUTABLE)
   option(ENABLE_CLANG_TIDY "Enable CLANG_TIDY" ON)
     
