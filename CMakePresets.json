@@ -7,6 +7,42 @@
     },
     "configurePresets": [
         {
+            "name": "cppcheck",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_CPPCHECK": "cppcheck;--enable=warning;--inconclusive;--force;--inline-suppr"
+            }
+        },
+        {
+            "name": "clang-tidy",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_CLANG_TIDY": "clang-tidy;--header-filter=${sourceDir}/*;-checks=-*,modernize-use-nullptr;-extra-arg=-std=c++17"
+            }
+        },
+        {
+            "name": "cpplint",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_CPPLINT": "cpplint"
+            }
+        },
+        {
+            "name" : "iwyu",
+            "hidden" :true,
+            "cacheVariables": {
+                "CMAKE_CXX_INCLUDE_WHAT_YOU_USE" : "iwyu;-Xiwyu;any;-Xiwyu;iwyu;-Xiwyu;args;--verbose=5"
+            }
+
+        },
+        {
+            "name" : "lwyu",
+            "hidden" : true,
+            "cacheVariables": {
+                "CMAKE_LINK_WHAT_YOU_USE" : true
+            }
+        },
+        {
             "name": "ci-ninja",
             "displayName": "Ninja",
             "description": "build using Ninja generator",
@@ -16,7 +52,7 @@
         },
         {
             "name": "ci-ninja-debug",
-            "inherits": "ci-ninja",
+            "inherits": ["ci-ninja", "clang-tidy"],
             "displayName": "Ninja Debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
