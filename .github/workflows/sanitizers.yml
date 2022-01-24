@@ -1,0 +1,82 @@
+name: Sanitizers
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  linux-sanitizers:
+    name: linux-sanitizers
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install-python-3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: install-python-deps
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install conan
+
+      - name: cmake-configure
+        run: |
+          cmake --preset=ci-ninja-sanitizers
+
+      - name: build
+        run: |
+          cmake --build ./build 
+        shell: bash
+
+      - name: ctest
+        run: |
+          ctest --test-dir build
+        shell: bash
+  
+  windows-sanitizers:
+    name: windows-sanitizers
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install-python-3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: install-python-deps
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install conan
+
+      - name: dependencies (windows)
+        run: |
+          choco install -y --limit-output openssl ninja 
+
+      - name: correct-tmp-dir (win)
+        run: |
+          echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+          echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: cmake-configure
+        run: |
+          cmake --preset=ci-msvc-19-sanitizer
+
+      - name: build
+        run: |
+          cmake --build --preset=ci-msvc-debug-sanitizer
+
+      - name: run-msvc-sanitizer
+        working-directory: build-sanitizer
+        run: |
+          set PATH="%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64;C:\Program Files\CMake\bin"
+                                                                                                                             
+          echo %PATH%
+          "C:\Program Files\CMake\bin\ctest.exe" -v --output-on-failure -C Debug
+        shell: cmd
