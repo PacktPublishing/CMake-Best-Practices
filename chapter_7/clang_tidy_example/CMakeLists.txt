@@ -13,13 +13,11 @@ project(
 
 find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy)
 
-message(ERROR ${CMAKE_CXX_CLANG_TIDY})
-
 if(CLANG_TIDY_EXECUTABLE)
   option(ENABLE_CLANG_TIDY "Enable CLANG_TIDY" ON)
     
   list(APPEND CLANG_TIDY_COMMAND "${CLANG_TIDY_EXECUTABLE}"
-  "-checks=*")
+  "-checks=-*,modernize-use-nullptr")
 
 endif()
 
