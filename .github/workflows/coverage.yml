@@ -26,7 +26,7 @@ jobs:
       - name: dependencies (debian-like)
         run: |
           sudo apt -y update
-          sudo apt -y install gcovr ninja-build
+          sudo apt -y install gcovr ninja-build clang-tidy
 
       - name: cmake-configure
         run: |
