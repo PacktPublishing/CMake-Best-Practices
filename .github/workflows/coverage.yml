@@ -97,7 +97,7 @@ jobs:
 
       - name: coverage openCppCoverage
         run: |
-          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" --modules ${{github.workspace}} --sources ${{ github.workspace }} --cover_children --export_type html:opencppcoverage/coverage --excluded_modules=*ctest* -- "C:\\Program Files\\CMake\\bin\\ctest.exe" --build-config Debug
+          "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe" --modules ${{github.workspace}} --sources ${{ github.workspace }} --cover_children --export_type html:opencppcoverage/opencppcoverage --excluded_modules=*ctest* -- "C:\\Program Files\\CMake\\bin\\ctest.exe" --build-config Debug
         shell: cmd
         working-directory: ./build
 
