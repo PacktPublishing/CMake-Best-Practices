@@ -1,4 +1,4 @@
-FROM conanio/gcc11:1.40.4
+FROM conanio/gcc11:1.44.1
 
 RUN pip install cmake-format
 
@@ -18,7 +18,6 @@ RUN pip3 install cpplint
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh
 
 RUN chmod +x ./cmake-3.21.2-linux-x86_64.sh && ./cmake-3.21.2-linux-x86_64.sh --skip-license --prefix=/opt/pyenv/versions/3.7.5/ && rm ./cmake-3.21.2-linux-x86_64.sh
-RUN cp /opt/pyenv/shims/cmake /opt/pyenv/shims/ccmake
 
 USER conan
 
