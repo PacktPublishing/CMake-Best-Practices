@@ -13,22 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: install-python-3
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: install-python-deps
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install conan
-
       - name: cmake-configure
         run: |
           cmake -S . -B build -GXcode --toolchain ios.toolchain.cmake
         working-directory: ./chapter_12/iOS_example/
         shell: bash
-        
 
       - name: build
         run: |
@@ -40,5 +29,38 @@ jobs:
         run: |
           lipo -info ./chapter_12/iOS_example/build/Release-iphoneos/libhello.a
         shell: bash
+
+  android:
+    name: android
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r23b
+          add-to-path: false
+
+      - uses: actions/checkout@v1
+      
+      - name: cmake-configure
+        run: |
+          echo ${ANDROID_NDK_HOME}
+        working-directory: ./chapter_12/iOS_example/
+        shell: bash
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      # - name: build
+      #   run: |
+      #     cmake --build ./build --config Release
+      #   shell: bash
+      #   working-directory: ./chapter_12/iOS_example/
+
+      # - name: info
+      #   run: |
+      #     lipo -info ./chapter_12/iOS_example/build/Release-iphoneos/libhello.a
+      #   shell: bash
+
+
           
 
