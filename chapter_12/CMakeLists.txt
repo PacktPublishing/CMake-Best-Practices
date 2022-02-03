@@ -8,7 +8,7 @@ project(
     "Chapter_12"
     VERSION 1.0
     DESCRIPTION
-        "A collection of sample C++ projects to demonstrate testing, code coverage and static code analysis"
+        "A collection of sample C++ projects to demonstrate cross-compiling, toolchains and toolchain checks"
     LANGUAGES CXX
 )
 
