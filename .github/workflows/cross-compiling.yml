@@ -21,14 +21,9 @@ jobs:
 
       - name: build
         run: |
-          cmake --build ./build --config Release
+          cmake --build ./build --config Release -- -sdk iphonesimulator
         shell: bash
         working-directory: ./chapter_12/iOS_example/
-
-      - name: info
-        run: |
-          lipo -info ./chapter_12/iOS_example/build/Release-iphoneos/libhello.a
-        shell: bash
 
   android:
     name: android
@@ -44,23 +39,17 @@ jobs:
       
       - name: cmake-configure
         run: |
-          echo ${ANDROID_NDK_HOME}
-        working-directory: ./chapter_12/iOS_example/
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release --toolchain=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake
+        working-directory: ./chapter_12/android-example/
         shell: bash
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
-      # - name: build
-      #   run: |
-      #     cmake --build ./build --config Release
-      #   shell: bash
-      #   working-directory: ./chapter_12/iOS_example/
-
-      # - name: info
-      #   run: |
-      #     lipo -info ./chapter_12/iOS_example/build/Release-iphoneos/libhello.a
-      #   shell: bash
-
+      - name: build
+        run: |
+          cmake --build ./build --config Release
+        shell: bash
+        working-directory: ./chapter_12/android-example/
 
           
 
