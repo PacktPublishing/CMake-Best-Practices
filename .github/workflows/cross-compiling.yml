@@ -21,7 +21,7 @@ jobs:
 
       - name: build
         run: |
-          cmake --build ./build --config Release -- -sdk iphonesimulator
+          cmake --build ./build --config Release
         shell: bash
         working-directory: ./chapter_12/iOS_example/
 
