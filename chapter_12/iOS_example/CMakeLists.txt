@@ -1,4 +1,4 @@
-# Chapter3-  creating a binary library for static linking
+# Chapter12-  creating a simple library for iOS
 #
 # SPDX-License-Identifier: MIT
 
@@ -8,7 +8,7 @@ project(
     ioslib
     VERSION 1.0.0
     DESCRIPTION
-        "A simple C++ project to demonstrate creating executables and libraries in CMake"
+        "A simple C++ project to demonstrate creating a simple ios library"
     LANGUAGES CXX
 )
 

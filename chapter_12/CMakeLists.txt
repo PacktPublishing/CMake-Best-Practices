@@ -11,6 +11,7 @@ project(
         "A collection of sample C++ projects to demonstrate cross-compiling, toolchains and toolchain checks"
     LANGUAGES CXX
 )
-
+# The examples ion android-example and iOS_example are to be used standalone with the 
+# the respecitve SDKs and NDKs
 add_subdirectory(check_source_compiles)
 add_subdirectory(check_push_pop)
