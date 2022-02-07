@@ -22,7 +22,10 @@ void message_printer::print(const char *msg, std::uint32_t len) {
     }
 
     if(std::memcmp(a, msg, len) == 0){
-        throw std::runtime_error{"You found it!"};
+        volatile char* ptr{nullptr};
+        // attempt to write an invalid memory location
+        // it is undefined behavior
+        *ptr = 'a';
     }
 
   // function body
