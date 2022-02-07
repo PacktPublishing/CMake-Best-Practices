@@ -13,3 +13,4 @@ project(
 )
 
 add_subdirectory(check_source_compiles)
+add_subdirectory(check_push_pop)
