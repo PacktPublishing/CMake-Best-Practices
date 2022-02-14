@@ -13,3 +13,4 @@ project(
 )
 
 add_subdirectory(ex01_libfuzzer_static_lib)
+add_subdirectory(ex02_afl_static_lib)

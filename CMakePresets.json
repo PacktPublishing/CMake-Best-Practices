@@ -37,6 +37,21 @@
             }
         },
         {
+            "name": "afl-gcc",
+            "description": "AFL GCC compiler",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/afl-gcc"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "STRING",
+                    "value": "/usr/bin/afl-g++"
+                }
+            }
+        },
+        {
             "name": "cppcheck",
             "hidden": true,
             "cacheVariables": {
@@ -173,6 +188,14 @@
                 "clang-13"
             ],
             "displayName": "Ninja (Debug, Clang 13)"
+        },
+        {
+            "name": "ninja-debug-afl-gcc",
+            "inherits": [
+                "ci-ninja-debug",
+                "afl-gcc"
+            ],
+            "displayName": "Ninja (Debug, AFL-GCC)"
         }
     ],
     "buildPresets": [

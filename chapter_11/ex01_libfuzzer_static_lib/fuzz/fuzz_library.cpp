@@ -8,3 +8,10 @@ extern "C" int LLVMFuzzerTestOneInput(const std::uint8_t *data,
 
   return 0;
 }
+
+// extern "C" int LLVMFuzzerInitialize(const int* argc, char*** argv) {
+//   filepath = std::string(*argv[0]);
+//   return 0;
+// }
+
+
