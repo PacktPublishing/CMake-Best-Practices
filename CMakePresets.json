@@ -106,6 +106,16 @@
             }
         },
         {
+            "name": "ci-ninja-debug-notidy",
+            "inherits": [
+                "ci-ninja"
+            ],
+            "displayName": "Ninja Debug (no-tidy)",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
             "name": "ci-ninja-release",
             "inherits": "ci-ninja",
             "displayName": "Ninja Release",
@@ -184,7 +194,7 @@
         {
             "name": "ninja-debug-clang-13",
             "inherits": [
-                "ci-ninja-debug",
+                "ci-ninja-debug-notidy",
                 "clang-13"
             ],
             "displayName": "Ninja (Debug, Clang 13)"
@@ -192,7 +202,7 @@
         {
             "name": "ninja-debug-afl-gcc",
             "inherits": [
-                "ci-ninja-debug",
+                "ci-ninja-debug-notidy",
                 "afl-gcc"
             ],
             "displayName": "Ninja (Debug, AFL-GCC)"

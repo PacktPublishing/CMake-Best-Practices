@@ -7,10 +7,6 @@
  */
 
 #include <library/uri_helper.hpp>
-#include <cctype>
-#include <cstdio>
-#include <cstring>
-#include <stdexcept>
 
 namespace chapter11 {
 namespace ex02 {

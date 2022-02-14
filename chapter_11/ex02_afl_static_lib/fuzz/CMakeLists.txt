@@ -1,12 +1,12 @@
-# CMakeLists file for the Chapter 11 Example nr. 01:
-# Static library fuzzing with libfuzzer
+# CMakeLists file for the Chapter 11 Example nr. 02:
+# Driver application
 #
 # SPDX-License-Identifier: MIT
 
 project(
   ch11_ex02_afl_fuzz
   VERSION 1.0
-  DESCRIPTION "Chapter 11 Example 01, fuzzing of a static library with libfuzzer"
+  DESCRIPTION "Chapter 11 Example 02, fuzzing of a static library with AFL++, driver application"
   LANGUAGES CXX)
 
 if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")

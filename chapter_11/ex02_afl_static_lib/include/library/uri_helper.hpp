@@ -1,14 +1,12 @@
 /**
  * ______________________________________________________
- * Memory manager interface declaration
+ * URI helper interface declaration
  *
  * SPDX-License-Identifier:	MIT
  * ______________________________________________________
  */
 
 #pragma once
-
-#include <cstdint>
 
 namespace chapter11 {
 namespace ex02 {

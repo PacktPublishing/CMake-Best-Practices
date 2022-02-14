@@ -1,3 +1,11 @@
+/**
+ * ______________________________________________________
+ * URI helper fuzzing driver application
+ *
+ * SPDX-License-Identifier:	MIT
+ * ______________________________________________________
+ */
+
 #include <library/uri_helper.hpp>
 #include <iostream>
 
