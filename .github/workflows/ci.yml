@@ -120,11 +120,3 @@ jobs:
 
       - name: pytest
         run: python3 -m pytest -x -v
-
-      - name: sanitizers
-        if: contains(matrix.compiler, 'clang++-12')
-        run: |
-          cmake -S . -B build-sanitizers -DCMAKE_BUILD_TYPE=Debug -DENABLE_ADDRESS_SANITIZER=ON -DENABLE_SANITIZER_ADDRESS=ON -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
-          cmake --build build-sanitizers
-          ctest --test-dir build-sanitizers
-  
