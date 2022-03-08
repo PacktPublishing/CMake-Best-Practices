@@ -7,14 +7,14 @@ find_library(
     OBSCURE_LIBRARY
     NAMES obscure 
     HINTS ${PROJECT_SOURCE_DIR}/dep/ ${CMAKE_CURRENT_BINARY_DIR}/dep
-    PATH_SUFFIXES lib bin build/Release build/Debug
+    PATH_SUFFIXES lib bin build/Release build/Debug 
 )
 
 # find the main header belonging to the obscure lib
 find_path(
     OBSCURE_INCLUDE_DIR
     NAMES obscure/obscure.hpp
-    HINTS ${PROJECT_SOURCE_DIR}/dep/include/ ${CMAKE_CURRENT_BINARY_DIR}/dep/include
+    HINTS ${PROJECT_SOURCE_DIR}/dep/include/ ${CMAKE_CURRENT_BINARY_DIR}/dep/include ${CMAKE_CURRENT_SOURCE_DIR}/dep_source/include
 )
 
 # use the FindPackageHandleStandardArgs to check if everything was found
