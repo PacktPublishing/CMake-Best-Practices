@@ -20,7 +20,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # try to find the package obscure see the file cmake/FindObscure.cmake for the innner workings
 find_package(Obscure QUIET)
 
-if(NOT obscure_FOUND)
+if(NOT Obscure_FOUND)
     message(STATUS "Prebuilt library 'obscure' not found, skipping find module example")
     return()
 endif()
