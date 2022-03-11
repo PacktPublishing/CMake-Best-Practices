@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+cmake_minimum_required(VERSION 3.21)
+
 project(
   ch4_ex02_static
   VERSION 1.0
