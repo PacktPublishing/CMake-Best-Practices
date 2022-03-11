@@ -13,3 +13,5 @@ project(
 )
 
 add_subdirectory(ex01_git_utility)
+add_subdirectory(ex02_envfile_utility)
+add_subdirectory(ex03_hadouken)

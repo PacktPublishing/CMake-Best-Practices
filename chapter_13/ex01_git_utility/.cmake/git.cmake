@@ -3,7 +3,7 @@
 # This module provides the macros git_get_branch_name(), git_get_head_commit_hash(), git_get_config_value().
 # SPDX-License-Identifier: MIT
 
-include_guard(GLOBAL)
+include_guard(DIRECTORY)
 
 macro(git_get_branch_name result_var_name)
     execute_process(
