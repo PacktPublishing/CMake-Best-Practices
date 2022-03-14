@@ -13,7 +13,7 @@ project(
 
 include(FetchContent)
 
-# Declare googletest dependency details. We will explicitly require 1.10.0 version this time.
+# Declare hadouken dependency details.
 FetchContent_Declare(hadouken
     GIT_REPOSITORY https://github.com/mustafakemalgilor/hadouken.git
     GIT_TAG        7d0447fcadf8e93d25f242b9bb251ecbcf67f8cb

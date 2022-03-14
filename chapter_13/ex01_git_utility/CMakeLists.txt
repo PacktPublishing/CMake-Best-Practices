@@ -11,7 +11,7 @@ project(
   DESCRIPTION "Chapter 13 Example 01, git utility module example"
   LANGUAGES CXX)
 
-include(.cmake/git.cmake)
+include(cmake/git.cmake)
 
 git_get_branch_name(current_branch_name)
 git_get_head_commit_hash(current_head)

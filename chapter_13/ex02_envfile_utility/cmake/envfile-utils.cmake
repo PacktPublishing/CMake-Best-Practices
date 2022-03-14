@@ -3,11 +3,13 @@
 # This module provides the function read_environment_file()
 # SPDX-License-Identifier: MIT
 
+cmake_minimum_required(VERSION 3.21)
+
 include_guard(DIRECTORY)
 
 # Read an environment file and declare each environment
 # variable defined in it with set(...) cmake function.
-# Borrowed from hadouken project: https://github.com/mustafakemalgilor/hadouken/blob/master/hadouken.cmake
+# Used with permission from hadouken project: https://github.com/mustafakemalgilor/hadouken/blob/master/hadouken.cmake
 function(read_environment_file ENVIRONMENT_FILE_NAME)
 
     file(STRINGS ${ENVIRONMENT_FILE_NAME} KVP_LIST ENCODING UTF-8)
