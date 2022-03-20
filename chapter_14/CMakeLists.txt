@@ -14,3 +14,4 @@ project(
 
 add_subdirectory(unity_build)
 add_subdirectory(unity_build_group)
+add_subdirectory(precompiled_headers)
