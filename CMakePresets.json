@@ -76,7 +76,7 @@
             "name": "iwyu",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_CXX_INCLUDE_WHAT_YOU_USE": "iwyu;-Xiwyu;any;-Xiwyu;iwyu;-Xiwyu;args;--verbose=5"
+                "CMAKE_CXX_INCLUDE_WHAT_YOU_USE": "iwyu;-Xiwyu;any;-Xiwyu;iwyu;-Xiwyu"
             }
         },
         {
