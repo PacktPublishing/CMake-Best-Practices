@@ -22,8 +22,6 @@ if(INCLUDE_WHAT_YOU_USE_EXECUTABLE)
   "-Xiwyu"
   "iwyu"
   "-Xiwyu"
-  "args"
-  "--verbose=5"
   "-I ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}"
   )
       
