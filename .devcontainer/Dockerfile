@@ -10,7 +10,7 @@ RUN  apt-get update; \
     apt-get -y install --fix-missing \
     gdb curl bash-completion vim rpm \
     graphviz python3-pytest doxygen plantuml gcovr \
-    clang-tidy cppcheck iwyu zip afl++ clang-format
+    clang-tidy cppcheck iwyu zip afl++ clang-format ccache
 
 RUN pip3 install cpplint
 

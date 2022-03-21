@@ -39,6 +39,13 @@ else()
     message(STATUS "Using a multi-config generator (${CMAKE_GENERATOR})")
 endif()
 
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    message(STATUS "Found ccache")
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+endif()
+
 # Add chapter examples to root project
 add_subdirectory(chapter_1)
 add_subdirectory(chapter_2)
