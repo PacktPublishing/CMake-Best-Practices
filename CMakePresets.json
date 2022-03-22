@@ -59,6 +59,14 @@
             }
         },
         {
+            "name" : "ccache-env",
+            "hidden" :true,
+            "environment": {
+                "CCACHE_BASEDIR" : "${sourceDir}",
+                "CCACHE_SLOPPINESS" : "pch_defines,time_macros"
+            }            
+        },
+        {
             "name": "clang-tidy",
             "hidden": true,
             "cacheVariables": {
@@ -90,6 +98,7 @@
             "name": "ci-ninja",
             "displayName": "Ninja",
             "description": "build using Ninja generator",
+            "inherits": "ccache-env",
             "generator": "Ninja",
             "hidden": true,
             "binaryDir": "${sourceDir}/build"
