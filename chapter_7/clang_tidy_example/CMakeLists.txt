@@ -11,14 +11,17 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate using clang-tidy on an executable"
   LANGUAGES CXX)
 
-find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy)
+if(NOT CMAKE_CXX_CLANG_TIDY)
+  find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy)
 
-if(CLANG_TIDY_EXECUTABLE)
-  option(ENABLE_CLANG_TIDY "Enable CLANG_TIDY" ON)
-    
-  list(APPEND CLANG_TIDY_COMMAND "${CLANG_TIDY_EXECUTABLE}"
-  "-checks=-*,modernize-use-nullptr")
+  if(CLANG_TIDY_EXECUTABLE)
+    option(ENABLE_CLANG_TIDY "Enable CLANG_TIDY" ON)
+      
+    list(APPEND CLANG_TIDY_COMMAND "${CLANG_TIDY_EXECUTABLE}"
+    "-checks=-*,modernize-use-nullptr,-extra-arg=-std=c++17")
 
+  endif()
+  
 endif()
 
 add_executable(ch7_clang_tidy_example)
