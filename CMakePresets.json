@@ -59,12 +59,12 @@
             }
         },
         {
-            "name" : "ccache-env",
-            "hidden" :true,
+            "name": "ccache-env",
+            "hidden": true,
             "environment": {
-                "CCACHE_BASEDIR" : "${sourceDir}",
-                "CCACHE_SLOPPINESS" : "pch_defines,time_macros"
-            }            
+                "CCACHE_BASEDIR": "${sourceDir}",
+                "CCACHE_SLOPPINESS": "pch_defines,time_macros"
+            }
         },
         {
             "name": "clang-tidy",
@@ -106,8 +106,7 @@
         {
             "name": "ci-ninja-debug",
             "inherits": [
-                "ci-ninja",
-                "clang-tidy"
+                "ci-ninja"
             ],
             "displayName": "Ninja Debug",
             "cacheVariables": {
@@ -115,11 +114,12 @@
             }
         },
         {
-            "name": "ci-ninja-debug-notidy",
+            "name": "ci-ninja-debug-tidy",
             "inherits": [
-                "ci-ninja"
+                "ci-ninja",
+                "clang-tidy"
             ],
-            "displayName": "Ninja Debug (no-tidy)",
+            "displayName": "Ninja Debug (clang-tidy)",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
@@ -203,7 +203,7 @@
         {
             "name": "ninja-debug-clang-13",
             "inherits": [
-                "ci-ninja-debug-notidy",
+                "ci-ninja-debug",
                 "clang-13"
             ],
             "displayName": "Ninja (Debug, Clang 13)"
@@ -211,7 +211,7 @@
         {
             "name": "ninja-debug-afl-gcc",
             "inherits": [
-                "ci-ninja-debug-notidy",
+                "ci-ninja-debug",
                 "afl-gcc"
             ],
             "displayName": "Ninja (Debug, AFL-GCC)"
