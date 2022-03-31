@@ -11,6 +11,7 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate basic CMake usage"
   LANGUAGES CXX)
 
+enable_testing()  
 add_executable(ch7_simple_test)
 target_sources(ch7_simple_test PRIVATE src/main.cpp)
 
