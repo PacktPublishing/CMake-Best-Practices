@@ -13,6 +13,7 @@ project(
 )
 
 add_subdirectory(simple_test)
+add_subdirectory(test_labels)
 add_subdirectory(pass_fail_criteria)
 add_subdirectory(timeout_example)
 add_subdirectory(simple_sanitizer_example)
