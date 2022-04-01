@@ -1,0 +1,42 @@
+{
+    "version": {
+        "major": 1,
+        "minor": 0
+    },
+    "local": [
+        {
+            "mem_mb": [
+                {
+                    "id": "memory_pool_0",
+                    "slots": 4096
+                }
+            ],
+            "cpus": [
+                {
+                    "id": "cpu_0",
+                    "slots": 8
+                }
+            ],
+            "servers": [
+                {
+                    "id": "0",
+                    "slots": 4
+                },
+                {
+                    "id": "1",
+                    "slots": 4
+                }
+            ],
+            "clients": [
+                {
+                    "id": "0",
+                    "slots": 8
+                },
+                {
+                    "id": "1",
+                    "slots": 8
+                }
+            ]
+        }
+    ]
+}
