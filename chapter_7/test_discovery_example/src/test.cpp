@@ -8,5 +8,5 @@ std::uint64_t Fibonacci(std::uint64_t number) {
 
 TEST_CASE("Fibonacci(0) returns 1") { REQUIRE(Fibonacci(0) == 1); }
 TEST_CASE("Fibonacci(1) returns 1") { REQUIRE(Fibonacci(1) == 1); }
-TEST_CASE("Fibonacci(2) returns 1") { REQUIRE(Fibonacci(2) == 2); }
+TEST_CASE("Fibonacci(2) returns 2") { REQUIRE(Fibonacci(2) == 2); }
 TEST_CASE("Fibonacci(5) returns 8") { REQUIRE(Fibonacci(5) == 8); }

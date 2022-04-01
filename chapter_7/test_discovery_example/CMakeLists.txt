@@ -11,7 +11,6 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate test discovery with Catch2 in CMake"
   LANGUAGES CXX)
 
-## use catch2 for micro benchmarking
 include(FetchContent)
 FetchContent_Declare(Catch2 
                      GIT_REPOSITORY https://github.com/catchorg/Catch2.git
