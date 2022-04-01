@@ -21,6 +21,9 @@ set_tests_properties(labeled_test PROPERTIES LABELS "example")
 add_test(NAME labeled_test_2 COMMAND ch7_test_labels extra_arg)
 set_tests_properties(labeled_test_2 PROPERTIES LABELS "will_fail" WILL_FAIL True)
 
+add_test(NAME labeled_test_3 COMMAND ch7_test_labels extra_arg)
+set_tests_properties(labeled_test_3 PROPERTIES LABELS "example;will_fail" WILL_FAIL True)
+
 
 
 
