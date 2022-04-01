@@ -17,3 +17,5 @@ target_sources(ch7_simple_test PRIVATE src/main.cpp)
 
 add_test(NAME example_test COMMAND ch7_simple_test)
 
+add_test(NAME example_test_2 COMMAND ch7_simple_test arg1)
+
