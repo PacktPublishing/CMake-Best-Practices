@@ -15,8 +15,8 @@ enable_testing()
 add_executable(ch7_test_labels)
 target_sources(ch7_test_labels PRIVATE src/main.cpp)
 
-add_test(NAME labeled_test COMMAND ch7_test_labels)
-set_tests_properties(labeled_test PROPERTIES LABELS "example")
+add_test(NAME labeled_test_1 COMMAND ch7_test_labels)
+set_tests_properties(labeled_test_1 PROPERTIES LABELS "example")
 
 add_test(NAME labeled_test_2 COMMAND ch7_test_labels extra_arg)
 set_tests_properties(labeled_test_2 PROPERTIES LABELS "will_fail" WILL_FAIL True)
