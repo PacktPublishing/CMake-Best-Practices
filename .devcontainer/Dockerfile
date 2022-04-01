@@ -1,6 +1,6 @@
 FROM conanio/gcc11:1.44.1
 
-RUN pip install cmake-format
+RUN pip install cmake-format pytest
 
 # switch to root
 USER root
