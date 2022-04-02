@@ -1,0 +1,2 @@
+This is just an example file to be added to the archive created by this example. 
+It serves to demonstrate how custom commands that modify the same files can be appended to each other
