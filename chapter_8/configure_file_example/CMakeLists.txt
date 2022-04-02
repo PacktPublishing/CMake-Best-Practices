@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.21)
 project(
   "ch8_configure_file_example"
   VERSION 1.0
-  DESCRIPTION "A simple C++ project to demonstrate usage of execute_process"
+  DESCRIPTION "A simple C++ project to demonstrate usage of configure_file and execute_process"
   LANGUAGES CXX)
 
 

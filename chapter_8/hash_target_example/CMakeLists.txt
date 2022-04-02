@@ -21,7 +21,7 @@ add_executable(
   src/main.cpp)
 
 add_custom_command(OUTPUT hash_example.md5 
-                   COMMAND cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CreateSha256.cmake $<TARGET_FILE:ch8_generate_hash_using_a_target> > ${CMAKE_CURRENT_BINARY_DIR}/hash_example.md5
+                   COMMAND cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CreateSha256.cmake $<TARGET_FILE:ch8_generate_hash_using_a_target> ${CMAKE_CURRENT_BINARY_DIR}/hash_example.sha256
                    COMMENT "Creating sha256 hash for $<TARGET_FILE:ch8_generate_hash_using_a_target>"
                    VERBATIM 
 )
