@@ -20,9 +20,9 @@ cmake_push_check_state()
 cmake_reset_check_state()
 
 include(CheckCompilerFlag)
-check_compiler_flag(CXX -Wall WALL_FLAG_SUPPRTED)
+check_compiler_flag(CXX -Wall WALL_FLAG_SUPPORTED)
 
-if(WALL_FLAG_SUPPRTED)
+if(WALL_FLAG_SUPPORTED)
     set(CMAKE_REQUIRED_FLAGS -Wall)
 
     # Preserve -Wall and add more things for extra checks
