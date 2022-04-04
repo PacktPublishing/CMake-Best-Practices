@@ -1,6 +1,6 @@
 FROM conanio/gcc11:1.44.1
 
-RUN pip install cmake-format pytest
+RUN pip3 install cmake-format pytest pytest-depends cpplint 
 
 # switch to root
 USER root
@@ -11,8 +11,6 @@ RUN  apt-get update; \
     gdb curl bash-completion vim rpm \
     graphviz python3-pytest doxygen plantuml gcovr \
     clang-tidy cppcheck iwyu zip afl++ clang-format ccache
-
-RUN pip3 install cpplint
 
 # Download version 3.21 from CMake
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh

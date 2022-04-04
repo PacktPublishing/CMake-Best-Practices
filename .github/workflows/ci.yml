@@ -52,7 +52,7 @@ jobs:
       - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install pytest conan cpplint
+          pip3 install pytest pytest-depends conan cpplint 
 
       - name: set-compiler-env
         run: |
