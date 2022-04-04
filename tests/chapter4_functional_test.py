@@ -9,6 +9,7 @@ import pytest
 import tempfile
 import os
 import sys
+import glob
 from pathlib import Path
 from os.path import exists as file_exists
 
@@ -119,10 +120,21 @@ class TestChapter4():
     def test_install_check_files_exists(self):
         """Check if install step has installed the all files that install() commands intend to install
         """
+    
+        # Print install folder contents if an assert fails to make debugging easier
+        for root, subdirs, files in os.walk(self.temporary_install_root):
+            print('--\nroot = ' + root)
+            for s in subdirs:
+                print('\tdirs-- ' + s)
+            for f in files:
+                print('\t\t files-- ' + f)
+        
         # Example 1
         assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex01_executable{PLATFORM_EXECUTABLE_EXTENSION}")
         # Example 2
-        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex02_static{PLATFORM_STATIC_LIBRARY_EXTENSION}")
+        # use globbing to account for platform-tuple suffixes i.e. lib/x64_86-linux-gnu etc
+        assert len(glob.glob(f"{self.temporary_install_root}/lib/**/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex02_static{PLATFORM_STATIC_LIBRARY_EXTENSION}", recursive=True)) > 0
+        
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex02/lib.hpp")
         # Example 3
         assert file_exists(f"{self.temporary_install_root}/bin/chapter4_greeter_content")
@@ -136,7 +148,8 @@ class TestChapter4():
         assert file_exists(f"{self.temporary_install_root}/var/dir3/asset4")
         assert not file_exists(f"{self.temporary_install_root}/var/dir3/bin/goodbye.dat")
         # Example 5
-        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex05_lib{PLATFORM_STATIC_LIBRARY_EXTENSION}")
+        assert len(glob.glob(f"{self.temporary_install_root}/lib/**/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex05_lib{PLATFORM_STATIC_LIBRARY_EXTENSION}", recursive=True)) > 0
+        
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex05/lib.hpp")
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config.cmake")
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config-version.cmake")
@@ -198,7 +211,8 @@ class TestChapter4Example6():
         """Check if install step has installed the all files that install() commands intend to install
         """
         assert file_exists(f"{self.temporary_install_root}/bin/ch4_ex06_executable{PLATFORM_EXECUTABLE_EXTENSION}")
-        assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex06_library{PLATFORM_STATIC_LIBRARY_EXTENSION}")
+        # use globbing to account for platform-tuple suffixes i.e. lib/x64_86-linux-gnu etc
+        assert len(glob.glob(f"{self.temporary_install_root}/lib/**/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex06_library{PLATFORM_STATIC_LIBRARY_EXTENSION}", recursive=True)) > 0
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex06/lib.hpp")
 
     @pytest.mark.depends(on=['test_install'])
