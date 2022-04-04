@@ -50,6 +50,34 @@ jobs:
           cmake --build ./build --config Release
         shell: bash
         working-directory: ./chapter_12/android-example/
+  arm:
+    name: arm-crosscompiling
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install dependencies
+        run: |
+          sudo apt -y update
+          sudo apt -y install qemu qemu-system-arm gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libc6-dev-armhf-cross qemu-user 
+
+      - name: cmake-configure
+        run: |
+          cmake -S ./chapter_12/emulator-example -B build --toolchain=$(pwd)/chapter_12/emulator-example/arm64.toolchain.cmake
+
+      - name: cmake-build
+        run: |
+          cmake --build ./build
+
+      - name: run-emulator-test
+        run: |
+          ctest --verbose
+        working-directory: ./build
+
+      - name: run-emulator-bare
+        run: |
+          qemu-arm -L /usr/arm-linux-gnueabihf ./ch12_emulator_example
+        working-directory: ./build
 
           
 
