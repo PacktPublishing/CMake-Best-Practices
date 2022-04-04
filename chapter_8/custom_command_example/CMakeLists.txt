@@ -6,25 +6,24 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  "ch8_clang_format_example"
+  "ch8_custom_command_example"
   VERSION 1.0
-  DESCRIPTION "A simple C++ project to demonstrate creating a pre-build step using a custom command"
+  DESCRIPTION "A simple C++ project to demonstrate creating a post-build step using a custom command"
   LANGUAGES CXX)
 
-find_program(CLANG_FORMAT_EXECUTABLE clang-format)
 
 add_executable(
-  ch8_clang_format_example
+  ch8_custom_command_example
   src/main.cpp)
 
 if(CLANG_FORMAT_EXECUTABLE-NOTFOUND)
   message(STATUS "clang-format not found, skipping clang-format step")
 else()
-get_target_property(CH8_CLANG_FORMAT_EXAMPLE_SOURCES ch8_clang_format_example SOURCES)
 
-add_custom_command(TARGET ch8_clang_format_example
-  PRE_BUILD
-  COMMAND ${CLANG_FORMAT_EXECUTABLE} -i -style=LLVM ${CH8_CLANG_FORMAT_EXAMPLE_SOURCES}
+
+add_custom_command(TARGET ch8_custom_command_example
+  POST_BUILD
+  COMMAND cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CreateSha256.cmake $<TARGET_FILE:ch8_custom_command_example> ${CMAKE_CURRENT_BINARY_DIR}/ch8_custom_command_example.sha256
   COMMENT "Formatting C++ source files using clang-format"
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
