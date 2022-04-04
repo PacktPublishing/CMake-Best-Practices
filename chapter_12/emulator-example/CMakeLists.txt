@@ -11,6 +11,10 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate basic CMake usage"
   LANGUAGES CXX)
 
-add_executable(chapter1)
-target_sources(chapter1 PRIVATE src/main.cpp)
+include(CTest)  
+
+add_executable(ch12_emulator_example)
+target_sources(ch12_emulator_example PRIVATE src/main.cpp)
+
+add_test(NAME emulator_test COMMAND ch12_emulator_example)
 

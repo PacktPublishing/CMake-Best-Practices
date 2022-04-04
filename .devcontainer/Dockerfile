@@ -10,7 +10,9 @@ RUN  apt-get update; \
     apt-get -y install --fix-missing \
     gdb curl bash-completion vim rpm \
     graphviz python3-pytest doxygen plantuml gcovr \
-    clang-tidy cppcheck iwyu zip afl++ clang-format ccache
+    clang-tidy cppcheck iwyu zip afl++ clang-format ccache \
+    qemu qemu-system-arm gcc-arm-linux-gnueabihf libc6-dev-armhf-cross qemu-user
+
 
 # Download version 3.21 from CMake
 RUN curl -OL https://github.com/Kitware/CMake/releases/download/v3.21.2/cmake-3.21.2-linux-x86_64.sh
