@@ -13,8 +13,9 @@ project(
 
 # A custom command that creates the main.cpp file for the executable target below
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/main.cpp 
-  COMMAND cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/WriteMain.cmake ${CMAKE_CURRENT_BINARY_DIR}/main.cpp
+  COMMAND cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/WriteMain.cmake ${CMAKE_CURRENT_SOURCE_DIR}/message.txt ${CMAKE_CURRENT_BINARY_DIR}/main.cpp
   COMMENT "Creating main.cpp"
+  DEPENDS message.txt
   VERBATIM 
 )
 
