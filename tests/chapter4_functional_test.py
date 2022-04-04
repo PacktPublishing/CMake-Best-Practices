@@ -103,16 +103,19 @@ class TestChapter4():
         """
         assert run_cmake("-S", self.source_directory, "-B", self.temporary_build_root)
 
+    @pytest.mark.depends(on=['test_configure'])
     def test_build(self):
         """Check if project can be built
         """
         assert run_cmake("--build", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS,  "--parallel", str(os.cpu_count()))
 
+    @pytest.mark.depends(on=['test_configure'])
     def test_install(self):
         """Check if project can be installed
         """
         assert run_cmake("--install", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS, "--prefix", self.temporary_install_root)
 
+    @pytest.mark.depends(on=['test_install'])
     def test_install_check_files_exists(self):
         """Check if install step has installed the all files that install() commands intend to install
         """
@@ -138,12 +141,14 @@ class TestChapter4():
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config.cmake")
         assert file_exists(f"{self.temporary_install_root}/cmake/ch4_ex05_lib-config-version.cmake")
     
+    @pytest.mark.depends(on=['test_configure'])    
     def test_install_run_binaries(self):
         """Try to run executables that installed via install
         """
         assert run_command(f"{self.temporary_install_root}/bin/ch4_ex01_executable{PLATFORM_EXECUTABLE_EXTENSION}")
         assert run_command("python3", f"{self.temporary_install_root}/bin/chapter4_greeter")
 
+    @pytest.mark.depends(on=['test_configure'])
     def test_ex05_consumer(self):
         """Check config-file package works by building ex05_consumer after installing the chapter 4 content
         """
@@ -168,23 +173,27 @@ class TestChapter4Example6():
         """Check if project can be configured
         """
         assert run_cmake("-S", self.source_directory, "-B", self.temporary_build_root)
-
+    
+    @pytest.mark.depends(on=['test_configure'])
     def test_configure_check_files(self):
         """Check if CPack configuration files are present after configuration 
         """
         assert file_exists(f"{self.temporary_build_root}/CPackConfig.cmake")
         assert file_exists(f"{self.temporary_build_root}/CPackSourceConfig.cmake")
 
+    @pytest.mark.depends(on=['test_configure'])
     def test_build(self):
         """Check if project can be built
         """
         assert run_cmake("--build", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS,  "--parallel", str(os.cpu_count()))
 
+    @pytest.mark.depends(on=['test_configure'])
     def test_install(self):
         """Check if project can be installed
         """
         assert run_cmake("--install", self.temporary_build_root, *CMAKE_COMMAND_MULTICONFIG_ARGS, "--prefix", self.temporary_install_root)
 
+    @pytest.mark.depends(on=['test_install'])
     def test_install_check_files(self):
         """Check if install step has installed the all files that install() commands intend to install
         """
@@ -192,17 +201,19 @@ class TestChapter4Example6():
         assert file_exists(f"{self.temporary_install_root}/lib/{PLATFORM_STATIC_LIBRARY_PREFIX}ch4_ex06_library{PLATFORM_STATIC_LIBRARY_EXTENSION}")
         assert file_exists(f"{self.temporary_install_root}/include/chapter4/ex06/lib.hpp")
 
+    @pytest.mark.depends(on=['test_install'])
     def test_install_run_binaries(self):
         """Try to run executables that installed via install
         """
         assert run_command(f"{self.temporary_install_root}/bin/ch4_ex06_executable{PLATFORM_EXECUTABLE_EXTENSION}")
 
-
+    @pytest.mark.depends(on=['test_configure'])
     def test_pack(self):
         """Try to pack the project via CPack
         """
         assert run_cpack("--config", f"{self.temporary_build_root}/CPackConfig.cmake", *CPACK_COMMAND_MULTICONFIG_ARGS, "-G", "TGZ", "-B", f"{self.temporary_build_root}/pak")
 
+    @pytest.mark.depends(on=['test_pack'])
     def test_pack_check_files(self):
         """Check whether CPack produced the package files
         """
