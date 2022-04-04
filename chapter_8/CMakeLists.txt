@@ -12,8 +12,8 @@ project(
   LANGUAGES CXX)
 
 add_subdirectory(custom_target_example)
-add_subdirectory(clang-format-example)
-add_subdirectory(create_tar_archive_example)
+add_subdirectory(custom_command_example)
+add_subdirectory(chaining_custom_commands_example)
 add_subdirectory(hash_target_example)
 add_subdirectory(execute_process_example)
 add_subdirectory(configure_file_example)
