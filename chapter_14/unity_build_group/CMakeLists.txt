@@ -21,6 +21,7 @@ target_sources(ch14_unity_build_group PRIVATE
                 src/eratosthenes.cpp
                 src/pythagoras.cpp
                 )
+target_compile_features(ch14_unity_build_group PRIVATE cxx_std_11)
 
 set_target_properties(ch14_unity_build_group PROPERTIES UNITY_BUILD_MODE GROUP)
 
