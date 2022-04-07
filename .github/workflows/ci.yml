@@ -72,7 +72,6 @@ jobs:
           brew install openssl@1.1 plantuml@1.2021.13 ninja clang-format llvm
           brew install --cask doxygen
           
-          ln -s "/usr/local/opt/llvm/bin/clang-format" "/usr/local/bin/clang-format"
           ln -s "/usr/local/opt/llvm/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
           echo "OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1/" >> $GITHUB_ENV
