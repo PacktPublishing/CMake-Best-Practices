@@ -14,6 +14,7 @@ project(
 enable_testing()  
 add_executable(ch7_resource_groups)
 target_sources(ch7_resource_groups PRIVATE src/main.cpp)
+target_compile_features(ch7_resource_groups PRIVATE cxx_std_17)
 
 add_test(NAME resource_test_1 COMMAND ch7_resource_groups)
 set_property(TEST resource_test_1 PROPERTY RESOURCE_GROUPS 
