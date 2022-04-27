@@ -26,5 +26,24 @@ target_compile_features(ch11_ex01_libfuzzer_fuzz PRIVATE cxx_std_11)
 target_link_libraries(ch11_ex01_libfuzzer_fuzz PRIVATE ch11_ex01_libfuzzer_static)
 # Pass compile flags to enable libFuzzer for clang
 target_compile_options(ch11_ex01_libfuzzer_fuzz PRIVATE -fsanitize=fuzzer)
-# Pass link flags to linker to enable libFuzzer for clang
-target_link_libraries(ch11_ex01_libfuzzer_fuzz PRIVATE -fsanitize=fuzzer)
+
+if(WIN32)
+  # In Windows, lld-link does not accept -fsanitize=fuzzer argument, so we have to manually pass
+  # the ASAN and libFuzzer libraries to the linker.
+  # In order to do that, we have to discover the LLVM path first.
+  get_filename_component(COMPILER_BIN_PATH "${CMAKE_CXX_COMPILER}" DIRECTORY)
+  get_filename_component(COMPILER_PATH "${COMPILER_BIN_PATH}/.." ABSOLUTE)
+ 
+  find_file(lib_asan_preinit NAMES "clang_rt.asan-preinit-x86_64.lib" PATHS "${COMPILER_PATH}/lib/clang/*/lib/windows" NO_CACHE NO_DEFAULT_PATHS REQUIRED)
+  find_file(lib_asan NAMES "clang_rt.asan-x86_64.lib" PATHS "${COMPILER_PATH}/lib/clang/*/lib/windows" NO_CACHE NO_DEFAULT_PATHS REQUIRED)
+  find_file(lib_asan_cxx NAMES "clang_rt.asan_cxx-x86_64.lib" PATHS "${COMPILER_PATH}/lib/clang/*/lib/windows" NO_CACHE NO_DEFAULT_PATHS REQUIRED)
+  find_file(lib_fuzzer NAMES "clang_rt.fuzzer-x86_64.lib" PATHS "${COMPILER_PATH}/lib/clang/*/lib/windows" NO_CACHE NO_DEFAULT_PATHS REQUIRED)
+  
+  # Pass link flags to linker to enable libFuzzer for clang
+  target_link_libraries(ch11_ex01_libfuzzer_fuzz PRIVATE ${lib_asan_preinit} ${lib_asan} ${lib_asan_cxx} ${lib_fuzzer})
+  # cmake -G "Visual Studio 17" -T ClangCL -S . -B build 
+  # cmake --build .\build\ --target ch11_ex01_libfuzzer_fuzz
+else()
+  # Pass link flags to linker to enable libFuzzer for clang
+  target_link_libraries(ch11_ex01_libfuzzer_fuzz PRIVATE -fsanitize=fuzzer)
+endif()
