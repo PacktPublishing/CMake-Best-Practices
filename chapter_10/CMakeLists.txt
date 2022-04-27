@@ -13,3 +13,4 @@ project(
 )
 
 add_subdirectory(ex01_external_deps)
+add_subdirectory(ex02_external_deps_with_extproject)

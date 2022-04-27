@@ -2,18 +2,18 @@
 #
 # SPDX-License-Identifier: MIT
 
-# We will utilize the FetchContent module for satisfying the boost and googletest dependencies.
+# We will utilize the FetchContent module for satisfying the google benchmark and google test dependencies.
 include(FetchContent)
 
 message(STATUS "Chapter 10, example 01 superbuild enabled. Will try to satisfy dependencies for the example.")
 
-# Declare boost dependency details. We will explicitly require 1.77.0 version this time.
+# Declare google benchmark dependency details. We will explicitly require 1.6.1 version this time.
 FetchContent_Declare(benchmark
     GIT_REPOSITORY https://github.com/google/benchmark.git
     GIT_TAG        v1.6.1
 )
 
-# Declare googletest dependency details. We will explicitly require 1.10.0 version this time.
+# Declare google test dependency details. We will explicitly require 1.10.0 version this time.
 FetchContent_Declare(GTest
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG        release-1.10.0
