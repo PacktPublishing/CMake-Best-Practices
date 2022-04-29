@@ -11,6 +11,7 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate test discovery with Catch2 in CMake"
   LANGUAGES CXX)
 
+# Fetch Catch2 from github and make it available 
 include(FetchContent)
 FetchContent_Declare(Catch2 
                      GIT_REPOSITORY https://github.com/catchorg/Catch2.git
@@ -24,5 +25,6 @@ add_executable(ch7_test_discovery_example)
 target_sources(ch7_test_discovery_example PRIVATE src/test.cpp)
 target_link_libraries(ch7_test_discovery_example PRIVATE Catch2::Catch2)
 
+# use the discovery function of catch2
 catch_discover_tests(ch7_test_discovery_example)
 

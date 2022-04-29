@@ -8,9 +8,10 @@ cmake_minimum_required(VERSION 3.21)
 project(
   "ch7_iwyu_example"
   VERSION 1.0
-  DESCRIPTION "A simple C++ project to demonstrate using clang-tidy on an executable"
+  DESCRIPTION "A simple C++ project to demonstrate using iwyu on an executable"
   LANGUAGES CXX)
 
+# if the iwyu program is found it is configured
 find_program(INCLUDE_WHAT_YOU_USE_EXECUTABLE NAMES include-what-you-use iwyu)
 
 if(INCLUDE_WHAT_YOU_USE_EXECUTABLE)

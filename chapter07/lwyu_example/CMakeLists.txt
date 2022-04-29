@@ -8,13 +8,15 @@ cmake_minimum_required(VERSION 3.21)
 project(
   "ch7_lwyu_example"
   VERSION 1.0
-  DESCRIPTION "A simple C++ project to demonstrate using clang-tidy on an executable"
+  DESCRIPTION "A simple C++ project to demonstrate using lwyu on an executable"
   LANGUAGES CXX)
 
 find_package(OpenSSL)
 
+# only enable lwyu if openSSL is found and only for GCC and CLang
 if(OpenSSL-NOTFOUND)
   message(STATUS "OpenSSL not found, disabling link what you use example")
+
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   option(ENABLE_LINK_WHAT_YOU_USE "Enable link what you use" ON)
   add_executable(ch7_lwyu_example)
