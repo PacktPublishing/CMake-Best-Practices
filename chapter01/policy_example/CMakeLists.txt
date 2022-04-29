@@ -1,11 +1,12 @@
-# Top-level CMakeLists file for the Chapter 3 example content.
-#
+
+# CMakeLists file for the Chapter 1 example illustrating how to set a policy
+# 
 # SPDX-License-Identifier: MIT
 
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    policy_example
+    ch1_policy_example
     VERSION 1.0
     DESCRIPTION
         "A simple C++ project to demonstrate creating a standalone executables"
