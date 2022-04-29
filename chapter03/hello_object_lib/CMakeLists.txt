@@ -1,4 +1,4 @@
-# Chapter3-  creating an object library
+# Chapter3-  Example illustrating how to create an object library
 #
 # SPDX-License-Identifier: MIT
 

@@ -1,4 +1,4 @@
-# Chapter3-  creating a binary library for static linking
+# Chapter3-  Illustriating how to create a static library
 #
 # SPDX-License-Identifier: MIT
 
@@ -15,6 +15,8 @@ project(
 # add the library target
 add_library(ch3_hello_static STATIC)
 
+# Set the output of the target to `hello` so it will be saved as hello.dll on windows
+# and libhello.a on linux
 set_target_properties(
     ch3_hello_static
     PROPERTIES OUTPUT_NAME hello

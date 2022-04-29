@@ -1,4 +1,6 @@
-# Chapter3-  creating a binary library
+# Chapter3- example illustrating how to create a shared library
+# Additionally the example shows how to set a postfix for debug libraries and 
+# how to handle symbol visibilities for shared libraries
 #
 # SPDX-License-Identifier: MIT
 
@@ -14,7 +16,6 @@ project(
 
 # set the postfix "d" for the resulting .so or .dll files when building the
 # library in debug mode
-
 set(CMAKE_DEBUG_POSTFIX
     d
 )

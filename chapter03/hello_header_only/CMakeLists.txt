@@ -1,4 +1,4 @@
-# Chapter 3 - Header only library
+# Chapter 3 - Example illustrating how to create a header only library
 #
 # SPDX-License-Identifier: MIT
 
