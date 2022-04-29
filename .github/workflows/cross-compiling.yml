@@ -16,14 +16,14 @@ jobs:
       - name: cmake-configure
         run: |
           cmake -S . -B build -GXcode --toolchain ios.toolchain.cmake
-        working-directory: ./chapter_12/iOS_example/
+        working-directory: ./chapter12/iOS_example/
         shell: bash
 
       - name: build
         run: |
           cmake --build ./build --config Release
         shell: bash
-        working-directory: ./chapter_12/iOS_example/
+        working-directory: ./chapter12/iOS_example/
 
   android:
     name: android
@@ -40,7 +40,7 @@ jobs:
       - name: cmake-configure
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release --toolchain=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake
-        working-directory: ./chapter_12/android-example/
+        working-directory: ./chapter12/android-example/
         shell: bash
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
@@ -49,7 +49,7 @@ jobs:
         run: |
           cmake --build ./build --config Release
         shell: bash
-        working-directory: ./chapter_12/android-example/
+        working-directory: ./chapter12/android-example/
   arm:
     name: arm-crosscompiling
     runs-on: ubuntu-20.04
@@ -63,7 +63,7 @@ jobs:
 
       - name: cmake-configure
         run: |
-          cmake -S ./chapter_12/emulator-example -B build --toolchain=$(pwd)/chapter_12/emulator-example/arm64.toolchain.cmake
+          cmake -S ./chapter12/emulator-example -B build --toolchain=$(pwd)/chapter12/emulator-example/arm64.toolchain.cmake
 
       - name: cmake-build
         run: |
