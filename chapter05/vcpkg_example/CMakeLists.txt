@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links library retrieved with vcpkg
+# Chapter 5- Example tto illustrate creating a simple executable that links library retrieved with vcpkg
 #
 # SPDX-License-Identifier: MIT
 
@@ -8,7 +8,7 @@ project(
     ch5_vcpkg_example
     VERSION 1.0
     DESCRIPTION
-        "A simple C++ project to demonstrate creating a standalone executables"
+        "A simple C++ project to demonstrate retrieving third-party dependencies with vcpkg"
     LANGUAGES CXX
 )
 

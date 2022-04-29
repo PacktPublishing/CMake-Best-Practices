@@ -1,4 +1,4 @@
-# CMakeLists to show how find-modules work
+# Chapter 5 - CMakeLists to show how find-modules work
 #
 # SPDX-License-Identifier: MIT
 

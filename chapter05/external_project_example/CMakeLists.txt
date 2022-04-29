@@ -1,4 +1,4 @@
-# Illustrating the use of ExternalProject
+# Chapter 5 - Example Illustrating the use of ExternalProject
 #
 # SPDX-License-Identifier: MIT
 
@@ -11,8 +11,10 @@ project(
         "A simple C++ project to demonstrate fetching external content"
     LANGUAGES CXX
 )
+# include the module `ExternalProject`
 include(ExternalProject)
 
+# Add an external project from a downloaded source archive
 ExternalProject_Add(
   bertrand
   URL https://github.com/bernedom/bertrand/archive/refs/tags/0.0.17.tar.gz
@@ -22,7 +24,9 @@ ExternalProject_Add(
   CMAKE_CACHE_ARGS -DBERTRAND_BUILD_TESTING:BOOL=OFF      
                    -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
 )
+# Retrieve the installation directory of bertrand
 ExternalProject_Get_Property(bertrand INSTALL_DIR)
+# Populate the installation directory to the variable BERTRAND_INSTALL_DIR
 set(BERTRAND_INSTALL_DIR "${INSTALL_DIR}")
 
 # Add an extra step after the build step to extract and archive the license file

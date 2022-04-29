@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links library retrieved with conan
+# Chapter 5 - Example illustrating how to create a simple executable that links library retrieved with conan
 #
 # SPDX-License-Identifier: MIT
 
@@ -12,7 +12,8 @@ project(
         "A simple C++ project to demonstrate fetching conan packages directly out of CMake"
     LANGUAGES CXX C
 )
-  
+
+# Download conan.cmake if it does not already exist
 if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
   message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
   file( DOWNLOAD
@@ -27,6 +28,7 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/conan.cmake")
     message(FATAL_ERROR "Downloading conan.cmake failed with ${download_status}")
   endif()
 endif()
+# include the downloaded conan module to use its functionality
 include(${CMAKE_CURRENT_BINARY_DIR}/conan.cmake)
 
 # retrieve the current CMake settings and store them in CONAN_SETTINGS
@@ -44,6 +46,7 @@ conan_cmake_install(PATH_OR_REFERENCE .
 # Append the current binary dir to CMAKE_PREFIX_PATH so the conan package are found
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
+# use the just downloaded package 
 find_package(fmt 6.1 REQUIRED)
 
 # Create a target to build an executable

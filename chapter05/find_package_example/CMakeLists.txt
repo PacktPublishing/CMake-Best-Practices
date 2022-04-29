@@ -1,4 +1,4 @@
-# CMakeLists creating a simple executable that links to a library found in the default search path
+# Chapter 5 - Example to illustrate how to create a simple executable that links to a library found in the default search path
 #
 # SPDX-License-Identifier: MIT
 
@@ -8,14 +8,18 @@ project(
     ch5_find_package_example
     VERSION 1.0
     DESCRIPTION
-        "A simple C++ project to demonstrate creating a standalone executables"
+        "A C++ project to demonstrate searching third-party dependencies"
     LANGUAGES CXX
 )
 
 # enable debuging for finding the package (For illustrative purposes)
 # set(CMAKE_FIND_DEBUG_MODE TRUE )
+
+# Search the package OpenSSL and its component SSL, configuration fails if not found
+# because of the keyword REQUIRED
 find_package(OpenSSL REQUIRED COMPONENTS SSL)
-# # disable debugging again set(CMAKE_FIND_DEBUG_MODE FALSE )
+
+# disable debugging again set(CMAKE_FIND_DEBUG_MODE FALSE )
 
 # Create a target to build an executable
 add_executable(ch5_find_package_example)

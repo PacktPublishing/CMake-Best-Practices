@@ -1,4 +1,4 @@
-# Illustrating the use of FetchContent
+# Chapter 5 - Example to illustrate the use of FetchContent
 #
 # SPDX-License-Identifier: MIT
 
