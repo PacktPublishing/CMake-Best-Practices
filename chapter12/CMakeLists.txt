@@ -12,6 +12,6 @@ project(
     LANGUAGES CXX
 )
 # The examples ion android-example and iOS_example are to be used standalone with the 
-# the respecitve SDKs and NDKs
+# the respective SDKs and NDKs
 add_subdirectory(check_source_compiles)
 add_subdirectory(check_push_pop)

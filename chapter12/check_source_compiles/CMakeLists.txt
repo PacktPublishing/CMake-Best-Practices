@@ -11,8 +11,10 @@ project(
   DESCRIPTION "A simple C++ project to demonstrate basic CMake usage"
   LANGUAGES CXX)
 
+# include the module to check if the source compiles
 include(CheckSourceCompiles)
 
+# check if the soure compiles and save the result in HAS_STD_ATOMIC
 check_source_compiles(CXX "
 #include <atomic>
 int main(){
@@ -21,6 +23,7 @@ int main(){
   x.fetch_sub(1);
 }" HAS_STD_ATOMIC)
 
+# Print a status message depending on the result of the compile check
 if(HAS_STD_ATOMIC)
   message(STATUS "std::atomic supported")
 else()

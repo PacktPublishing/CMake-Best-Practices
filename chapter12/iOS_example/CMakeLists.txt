@@ -15,7 +15,6 @@ project(
 # add the library target
 add_library(ioslib)
 
-
 # set properties for the target. VERSION set the library version to the project
 # version * SOVERSION set the compatibility  version for the library to the
 # major number of the version
