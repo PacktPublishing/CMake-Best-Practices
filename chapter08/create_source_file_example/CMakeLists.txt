@@ -1,5 +1,5 @@
 
-# CMakeLists file for the Chapter 8 example
+# Chapter 8 example illustrating how to create a file that is used by a target
 # 
 # SPDX-License-Identifier: MIT
 
