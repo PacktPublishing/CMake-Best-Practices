@@ -30,13 +30,13 @@ All of the code is organized into folders. For example, Chapter02.
 The code will look like the following:
 ```
 include(GNUInstallDirs)
-install(DIRECTORY dir1 DESTINATION ${CMAKE_INSTALL_
-  LOCALSTATEDIR} FILES_MATCHING PATTERN "*.x")
-install(DIRECTORY dir2 DESTINATION ${CMAKE_INSTALL_
-  LOCALSTATEDIR}
+install(DIRECTORY dir1 DESTINATION ${CMAKE_INSTALL
+  _LOCALSTATEDIR} FILES_MATCHING PATTERN "*.x")
+install(DIRECTORY dir2 DESTINATION ${CMAKE_INSTALL
+  _LOCALSTATEDIR}
   FILES_MATCHING PATTERN "*.hpp" EXCLUDE PATTERN "*")
-install(DIRECTORY dir3 DESTINATION ${CMAKE_INSTALL_
-  LOCALSTATEDIR} PATTERN "bin" EXCLUDE)
+install(DIRECTORY dir3 DESTINATION ${CMAKE_INSTALL
+  _LOCALSTATEDIR} PATTERN "bin" EXCLUDE)
 ```
 
 **Following is what you need for this book:**
