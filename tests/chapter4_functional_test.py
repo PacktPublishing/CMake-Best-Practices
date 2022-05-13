@@ -21,7 +21,7 @@ def get_root_project_directory():
     return get_script_path().parent
 
 def get_chapter4_root_directory():
-    return get_root_project_directory().joinpath("chapter_4")
+    return get_root_project_directory().joinpath("chapter04")
 
 if os.name == 'nt':
     CMAKE_COMMAND_MULTICONFIG_ARGS=("--config", "Debug")
