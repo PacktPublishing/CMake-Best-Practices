@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+cmake_minimum_required(VERSION 3.21)
+
 project(
   ch10_ex01_external_deps
   VERSION 1.0

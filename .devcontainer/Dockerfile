@@ -11,7 +11,9 @@ RUN  apt-get update; \
     gdb curl bash-completion vim rpm \
     graphviz python3-pytest doxygen plantuml gcovr \
     clang-tidy cppcheck iwyu zip afl++ clang-format ccache \
-    qemu qemu-system-arm gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libc6-dev-armhf-cross qemu-user
+    qemu qemu-system-arm gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libc6-dev-armhf-cross qemu-user \
+    # QT runtime prerequisites
+    libgl1-mesa-dev libglu1-mesa-dev '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
 
 
 # Download version 3.21 from CMake
