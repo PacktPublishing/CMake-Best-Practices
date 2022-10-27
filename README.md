@@ -67,3 +67,7 @@ is a software engineer, blogger and conference speaker with 20 years of professi
 **Mustafa Kemal**
 is an experienced professional working in performance-critical software development for the telecommunication, defense industries, and open-source software. His expertise is in high-performance and scalable software design, network technologies, DevOps, and software architecture. His interest in computers emerged very early on in his childhood. He learned programming to hack MMORPG games at around the age of 12, and he has been writing software ever since. His favorite programming language is C++, and he enjoys doing framework design & system programming. He is also a strong advocate of CMake; he maintained many codebases and ported many legacy projects to CMake throughout his career.
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781803239729">https://packt.link/free-ebook/9781803239729 </a> </p>
