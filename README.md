@@ -59,6 +59,12 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 * Free eBook - Learn Kali Linux 2019 [[Packt]](https://www.packtpub.com/free-ebook/learn-kali-linux-2019/9781789611809?utm_source=github&utm_medium=repository&utm_campaign=) [[Amazon]](https://www.amazon.com/dp/1789611806)
 
 
+## Errata
+
+
+* Page 107 (last line): **make -build ./build cmake -install ./build --prefix /tmp/install-test** _should be_ **make --build ./build cmake --install ./build --prefix /tmp/install-test**
+
+
 
 ## Get to Know the Author
 **Dominik Berner**
