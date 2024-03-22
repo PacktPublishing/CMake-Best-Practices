@@ -3,7 +3,7 @@
 # This module provides the macros git_get_branch_name(), git_get_head_commit_hash(), git_get_config_value().
 # SPDX-License-Identifier: MIT
 
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.23)
 
 include_guard(DIRECTORY)
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.23)
 
 # find the libary file libobscure.so obscure.dll or libobscure.1.0.0.so or similar
 # Additionally to the default paths look in ${PROJECT_SOURCE_DIR}/dep/

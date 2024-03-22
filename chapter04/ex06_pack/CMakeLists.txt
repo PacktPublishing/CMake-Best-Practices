@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.23)
 
 project(
   ch4_ex06_pack
@@ -22,7 +22,7 @@ add_subdirectory(library)
 # let CPack to get project name and version from the project()
 set(CPACK_PACKAGE_VENDOR "CBP Authors")
 # Enable DEB, RPM and TBZ2 generators by default
-set(CPACK_GENERATOR "DEB;RPM;TBZ2")
+set(CPACK_GENERATOR "DEB;TBZ2;TGZ;STGZ")
 # Use all available cores when parallelism is supported
 set(CPACK_THREADS 0) 
 # The DEB generator requires CPACK_DEBIAN_PACKAGE_MAINTAINER

@@ -6,7 +6,7 @@
 # Specifies the minimum required CMake version to build this project (and
 # subprojects) Subprojects may override this value by specifying another version
 # requirement in their CMakeLists file (e.g. require a later version of CMake)
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.23)
 
 # The main project
 project(
