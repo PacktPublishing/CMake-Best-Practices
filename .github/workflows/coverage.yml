@@ -21,7 +21,7 @@ jobs:
       - name: install-python-deps
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install conan
+          pip3 install conan==1.44
 
       - name: dependencies (debian-like)
         run: |
