@@ -14,5 +14,5 @@
     "remoteEnv": {
         "DISPLAY": ":0"
     },
-    "containerUser": "conan"
+    "containerUser": "builder"
 }
