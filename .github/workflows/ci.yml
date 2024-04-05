@@ -53,7 +53,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip3 install pytest pytest-depends conan==1.44 cpplint 
-          conan profile detect
 
       - name: set-compiler-env
         run: |
@@ -82,6 +81,7 @@ jobs:
         run: |
           choco install -y --limit-output plantuml ninja opencppcoverage
           choco install -y --limit-output doxygen.install --version="1.9.2"
+          echo "OPENSSL_ROOT_DIR=C:\Program Files\OpenSSL-Win64" >> $env:GITHUB_ENV
 
       - name: dependencies (debian-like)
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'debian')
